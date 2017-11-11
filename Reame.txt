@@ -1,2 +1,5 @@
-This is Hao's documents !!!
 17/11/10
+This is Hao's documents !!!
+
+17/11/11
+Create sequence diagram
