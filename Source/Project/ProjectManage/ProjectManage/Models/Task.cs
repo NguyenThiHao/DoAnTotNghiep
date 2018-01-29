@@ -30,22 +30,14 @@ namespace ProjectManage.Models
         public System.DateTime real_start_date { get; set; }
         public System.DateTime real_end_date { get; set; }
         public string description { get; set; }
-        public int id_task_type { get; set; }
-        public int assignee_to { get; set; }
-        public int id_status_task { get; set; }
-        public int id_authority { get; set; }
-        public Nullable<int> pre_task { get; set; }
+        public string task_type { get; set; }
+        public string status_task { get; set; }
         public string link { get; set; }
         public int reporter { get; set; }
         public string priority { get; set; }
-        public string task_level { get; set; }
     
         public virtual Phase Phase { get; set; }
         public virtual Project Project { get; set; }
-        public virtual StatusType StatusType { get; set; }
-        public virtual TaskType TaskType { get; set; }
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
         public virtual ICollection<Timesheet> Timesheets { get; set; }
     }
 }

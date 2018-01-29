@@ -12,17 +12,14 @@ namespace ProjectManage.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class StatusType
+    public partial class Detail
     {
-        public StatusType()
-        {
-            this.Tasks = new HashSet<Task>();
-        }
+        public int id_user { get; set; }
+        public int id_project { get; set; }
+        public Nullable<System.DateTime> join_date { get; set; }
+        public Nullable<System.DateTime> leave_date { get; set; }
     
-        public int id_status_type { get; set; }
-        public string name_status_type { get; set; }
-        public string description { get; set; }
-    
-        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual Project Project { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -22,13 +22,11 @@ namespace ProjectManage.Models
         public int id_phase { get; set; }
         public string phase_name { get; set; }
         public string description { get; set; }
-        public int pre_phase { get; set; }
         public int id_project { get; set; }
         public System.DateTime start_date { get; set; }
         public System.DateTime end_date { get; set; }
-        public int id_status_phase { get; set; }
+        public string status_phase { get; set; }
     
-        public virtual Project Project { get; set; }
         public virtual ICollection<Task> Tasks { get; set; }
     }
 }

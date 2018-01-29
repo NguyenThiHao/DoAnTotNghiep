@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/Content/HomeStyleSheet.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title>Project Manage</title>
+</head>
+<body>
+    @Html.Partial("_CategoriesPartial")
+    <!--Vùng body-->
+    <div class="col-md-12" style="min-height: 1000px; text-align: center;">
+        @RenderBody()
+    </div>
+    <!--Kết thúc vùng body-->
+
+    <!--Vùng footer-->
+    <footer class="col-md-12">
+        <h5>Học viện kỹ thuật quân sự</h5>
+        <p>Đồ án tốt nghiệp chuyên ngành công nghệ phần mềm khóa 12</p>
+        <p>Sinh viên: Nguyễn Thị Hảo</p>
+    </footer>
+    <!--Kết thúc vùng footer-->
+</body>
+</html>

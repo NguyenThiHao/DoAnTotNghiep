@@ -14,14 +14,13 @@ namespace ProjectManage.Models
     
     public partial class Timesheet
     {
-        public int id_timesheet { get; set; }
         public int id_task { get; set; }
-        public int reporter { get; set; }
+        public int id_user { get; set; }
         public int time { get; set; }
         public string description { get; set; }
-        public Nullable<int> id_work_type { get; set; }
+        public string type_of_work { get; set; }
     
         public virtual Task Task { get; set; }
-        public virtual TypeOfWork TypeOfWork { get; set; }
+        public virtual User User { get; set; }
     }
 }

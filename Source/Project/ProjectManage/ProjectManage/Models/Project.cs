@@ -16,7 +16,7 @@ namespace ProjectManage.Models
     {
         public Project()
         {
-            this.Phases = new HashSet<Phase>();
+            this.Details = new HashSet<Detail>();
             this.Tasks = new HashSet<Task>();
         }
     
@@ -26,10 +26,11 @@ namespace ProjectManage.Models
         public string description { get; set; }
         public System.DateTime start_date { get; set; }
         public System.DateTime end_date { get; set; }
-        public int id_status_project { get; set; }
+        public string status_project { get; set; }
         public string type_project { get; set; }
     
-        public virtual ICollection<Phase> Phases { get; set; }
+        public virtual ICollection<Detail> Details { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<Task> Tasks { get; set; }
     }
 }

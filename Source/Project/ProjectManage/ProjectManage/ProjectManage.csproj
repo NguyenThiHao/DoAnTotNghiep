@@ -161,13 +161,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AuthorityType.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Category.cs">
+    <Compile Include="Models\Detail.cs">
       <DependentUpon>ProjectManage.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DevelopGroup.cs">
@@ -194,22 +192,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectManage.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\StatusType.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>ProjectManage.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Task.cs">
       <DependentUpon>ProjectManage.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TaskType.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Timesheet.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TypeOfWork.cs">
       <DependentUpon>ProjectManage.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -265,10 +254,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Layout\_HomeLayout.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Layout\CategoryPartial.cshtml" />
+    <Content Include="Views\Shared\_CategoriesPartial.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Shared\_TablePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -301,7 +292,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>36330</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:36330/</IISUrl>
+          <IISUrl>http://localhost:36331/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

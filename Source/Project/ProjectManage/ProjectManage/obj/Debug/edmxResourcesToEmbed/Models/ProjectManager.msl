@@ -1,13 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="db_project_manageModelStoreContainer" CdmEntityContainer="db_project_manageEntities1">
-    <EntitySetMapping Name="Details">
-      <EntityTypeMapping TypeName="db_project_manageModel.Detail">
-        <MappingFragment StoreEntitySet="Detail">
-          <ScalarProperty Name="id_user" ColumnName="id_user" />
-          <ScalarProperty Name="id_project" ColumnName="id_project" />
-          <ScalarProperty Name="join_date" ColumnName="join_date" />
-          <ScalarProperty Name="leave_date" ColumnName="leave_date" />
+  <EntityContainerMapping StorageEntityContainer="db_project_manageModelStoreContainer" CdmEntityContainer="db_project_manageEntities">
+    <EntitySetMapping Name="AuthorityTypes">
+      <EntityTypeMapping TypeName="db_project_manageModel.AuthorityType">
+        <MappingFragment StoreEntitySet="AuthorityType">
+          <ScalarProperty Name="id_authority_type" ColumnName="id_authority_type" />
+          <ScalarProperty Name="name_authority_type" ColumnName="name_authority_type" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="db_project_manageModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="id_category" ColumnName="id_category" />
+          <ScalarProperty Name="name_category" ColumnName="name_category" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="link" ColumnName="link" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -17,7 +26,7 @@
           <ScalarProperty Name="id_develop_group" ColumnName="id_develop_group" />
           <ScalarProperty Name="name_group" ColumnName="name_group" />
           <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="authority" ColumnName="authority" />
+          <ScalarProperty Name="id_authority" ColumnName="id_authority" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -27,10 +36,11 @@
           <ScalarProperty Name="id_phase" ColumnName="id_phase" />
           <ScalarProperty Name="phase_name" ColumnName="phase_name" />
           <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="pre_phase" ColumnName="pre_phase" />
           <ScalarProperty Name="id_project" ColumnName="id_project" />
           <ScalarProperty Name="start_date" ColumnName="start_date" />
           <ScalarProperty Name="end_date" ColumnName="end_date" />
-          <ScalarProperty Name="status_phase" ColumnName="status_phase" />
+          <ScalarProperty Name="id_status_phase" ColumnName="id_status_phase" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -43,8 +53,17 @@
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="start_date" ColumnName="start_date" />
           <ScalarProperty Name="end_date" ColumnName="end_date" />
-          <ScalarProperty Name="status_project" ColumnName="status_project" />
+          <ScalarProperty Name="id_status_project" ColumnName="id_status_project" />
           <ScalarProperty Name="type_project" ColumnName="type_project" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusTypes">
+      <EntityTypeMapping TypeName="db_project_manageModel.StatusType">
+        <MappingFragment StoreEntitySet="StatusType">
+          <ScalarProperty Name="id_status_type" ColumnName="id_status_type" />
+          <ScalarProperty Name="name_status_type" ColumnName="name_status_type" />
+          <ScalarProperty Name="description" ColumnName="description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -73,22 +92,46 @@
           <ScalarProperty Name="real_start_date" ColumnName="real_start_date" />
           <ScalarProperty Name="real_end_date" ColumnName="real_end_date" />
           <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="task_type" ColumnName="task_type" />
-          <ScalarProperty Name="status_task" ColumnName="status_task" />
+          <ScalarProperty Name="id_task_type" ColumnName="id_task_type" />
+          <ScalarProperty Name="assignee_to" ColumnName="assignee_to" />
+          <ScalarProperty Name="id_status_task" ColumnName="id_status_task" />
+          <ScalarProperty Name="id_authority" ColumnName="id_authority" />
+          <ScalarProperty Name="pre_task" ColumnName="pre_task" />
           <ScalarProperty Name="link" ColumnName="link" />
           <ScalarProperty Name="reporter" ColumnName="reporter" />
           <ScalarProperty Name="priority" ColumnName="priority" />
+          <ScalarProperty Name="task_level" ColumnName="task_level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskTypes">
+      <EntityTypeMapping TypeName="db_project_manageModel.TaskType">
+        <MappingFragment StoreEntitySet="TaskType">
+          <ScalarProperty Name="id_task_type" ColumnName="id_task_type" />
+          <ScalarProperty Name="name_task_type" ColumnName="name_task_type" />
+          <ScalarProperty Name="description" ColumnName="description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Timesheets">
       <EntityTypeMapping TypeName="db_project_manageModel.Timesheet">
         <MappingFragment StoreEntitySet="Timesheet">
+          <ScalarProperty Name="id_timesheet" ColumnName="id_timesheet" />
           <ScalarProperty Name="id_task" ColumnName="id_task" />
-          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="reporter" ColumnName="reporter" />
           <ScalarProperty Name="time" ColumnName="time" />
           <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="type_of_work" ColumnName="type_of_work" />
+          <ScalarProperty Name="id_work_type" ColumnName="id_work_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeOfWorks">
+      <EntityTypeMapping TypeName="db_project_manageModel.TypeOfWork">
+        <MappingFragment StoreEntitySet="TypeOfWork">
+          <ScalarProperty Name="id_work_type" ColumnName="id_work_type" />
+          <ScalarProperty Name="name_work_type" ColumnName="name_work_type" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="status_type_of_work" ColumnName="status_type_of_work" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -100,8 +143,9 @@
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="user_name" ColumnName="user_name" />
           <ScalarProperty Name="id_develop_group" ColumnName="id_develop_group" />
+          <ScalarProperty Name="id_authority" ColumnName="id_authority" />
           <ScalarProperty Name="mail" ColumnName="mail" />
-          <ScalarProperty Name="status_user" ColumnName="status_user" />
+          <ScalarProperty Name="id_status_user" ColumnName="id_status_user" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

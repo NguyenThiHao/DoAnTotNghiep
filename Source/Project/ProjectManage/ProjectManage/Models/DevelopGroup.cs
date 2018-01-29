@@ -14,9 +14,16 @@ namespace ProjectManage.Models
     
     public partial class DevelopGroup
     {
+        public DevelopGroup()
+        {
+            this.Users = new HashSet<User>();
+        }
+    
         public int id_develop_group { get; set; }
         public string name_group { get; set; }
         public string description { get; set; }
-        public int id_authority { get; set; }
+        public int authority { get; set; }
+    
+        public virtual ICollection<User> Users { get; set; }
     }
 }
