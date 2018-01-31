@@ -1,10 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "CreateProject";
+    ViewBag.Title = "CreateGroup";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
-
-<h2>CreateProject</h2>
+<h2>Create Group</h2>
 <div id="page-wrapper">
     <!-- /.row -->
     <div class="row">
@@ -24,28 +23,21 @@
                                     <br />
                                     <form class="form-horizontal form-label-left">
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Name <span class="required">*</span></label>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Group Name <span class="required">*</span></label>
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Name Project">
+                                                <input type="text" class="form-control" placeholder="Group Name">
                                             </div>
                                         </div>
-      
+
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Manager <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Project Manager">
-                                            </div>
-                                        </div>
-                                       
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Project <span class="required">*</span></label>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Group <span class="required">*</span></label>
                                             <div class="col-md-9 col-sm-9 col-xs-12">
                                                 <select class="form-control">
-                                                    <option>Full </option>
-                                                    <option>Develop</option>
-                                                    <option>Test</option>
-                                                    <option>Maintain</option>
-                                                    <option>Template</option>
+                                                    <option>Design</option>
+                                                    <option>Developer</option>
+                                                    <option>Tester</option>
+                                                    <option>QA</option>
+                                                    <option>BA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -60,16 +52,9 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Planed Start <span class="required">*</span></label>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Security <span class="required">*</span></label>
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="date" class="form-control" value="Plan Start">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Due Date <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="date" class="form-control" value="Due Date">
+                                                <input type="text" class="form-control" placeholder="Security">
                                             </div>
                                         </div>
 
@@ -94,4 +79,5 @@
         <!-- /.col-lg-12 -->
     </div>
 </div>
+
 

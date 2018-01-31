@@ -6,11 +6,11 @@ using System.Web.Mvc;
 
 namespace ProjectManage.Controllers
 {
-    public class TaskController : Controller
+    public class UserController : Controller
     {
         //
-        // GET: /Creat Task/
-        public ActionResult CreateTask()
+        // GET: /User/
+        public ActionResult CreateUser()
         {
             return View();
         }

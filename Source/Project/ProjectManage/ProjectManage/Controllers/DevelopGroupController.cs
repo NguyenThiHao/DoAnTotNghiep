@@ -6,11 +6,11 @@ using System.Web.Mvc;
 
 namespace ProjectManage.Controllers
 {
-    public class TaskController : Controller
+    public class DevelopGroupController : Controller
     {
         //
-        // GET: /Creat Task/
-        public ActionResult CreateTask()
+        // GET: /DevelopGroup/
+        public ActionResult CreateGroup()
         {
             return View();
         }
