@@ -12,23 +12,19 @@ namespace ProjectManage.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Project
+    public partial class Result
     {
-        public Project()
-        {
-            this.Details = new HashSet<Detail>();
-        }
-    
-        public int id_project { get; set; }
-        public string project_name { get; set; }
-        public int leader { get; set; }
+        public int id_result { get; set; }
+        public int id_task { get; set; }
+        public string link { get; set; }
         public string description { get; set; }
-        public System.DateTime start_date { get; set; }
-        public System.DateTime end_date { get; set; }
-        public int status { get; set; }
-        public string type_project { get; set; }
+        public string summary { get; set; }
+        public System.DateTime date { get; set; }
+        public int reporter { get; set; }
+        public int id_sprint { get; set; }
+        public double result_today { get; set; }
+        public double total { get; set; }
     
-        public virtual ICollection<Detail> Details { get; set; }
-        public virtual User User { get; set; }
+        public virtual Task Task { get; set; }
     }
 }

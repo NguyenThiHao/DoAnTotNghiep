@@ -12,34 +12,20 @@ namespace ProjectManage.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Task
+    public partial class Sprint
     {
-        public Task()
-        {
-            this.Results = new HashSet<Result>();
-            this.Timesheets = new HashSet<Timesheet>();
-        }
-    
-        public int id_task { get; set; }
-        public string task_name { get; set; }
-        public string summary_task { get; set; }
         public int id_sprint { get; set; }
+        public string name_sprint { get; set; }
+        public string id_phase { get; set; }
         public System.DateTime plan_start_date { get; set; }
         public System.DateTime plan_end_date { get; set; }
         public int estimate_time { get; set; }
         public System.DateTime real_start_date { get; set; }
         public System.DateTime real_end_date { get; set; }
+        public int reporter { get; set; }
         public string description { get; set; }
         public int type { get; set; }
-        public int status { get; set; }
         public string link { get; set; }
-        public int reporter { get; set; }
-        public int priority { get; set; }
-        public int assignee_to { get; set; }
-    
-        public virtual Phase Phase { get; set; }
-        public virtual ICollection<Result> Results { get; set; }
-        public virtual User User { get; set; }
-        public virtual ICollection<Timesheet> Timesheets { get; set; }
+        public int status { get; set; }
     }
 }

@@ -4,7 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db_project_manageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ProjectManageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AuthorityType">
+          <Key>
+            <PropertyRef Name="id_authority_type" />
+          </Key>
+          <Property Name="id_authority_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_authority_type" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id_category" />
+          </Key>
+          <Property Name="id_category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="link" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="Detail">
           <Key>
             <PropertyRef Name="id_user" />
@@ -12,8 +29,8 @@
           </Key>
           <Property Name="id_user" Type="int" Nullable="false" />
           <Property Name="id_project" Type="int" Nullable="false" />
-          <Property Name="join_date" Type="date" />
-          <Property Name="leave_date" Type="date" />
+          <Property Name="join_date" Type="datetime" />
+          <Property Name="leave_date" Type="datetime" />
         </EntityType>
         <EntityType Name="DevelopGroup">
           <Key>
@@ -22,7 +39,7 @@
           <Property Name="id_develop_group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name_group" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="authority" Type="int" Nullable="false" />
+          <Property Name="authorize" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Phase">
           <Key>
@@ -32,9 +49,9 @@
           <Property Name="phase_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="id_project" Type="int" Nullable="false" />
-          <Property Name="start_date" Type="date" Nullable="false" />
-          <Property Name="end_date" Type="date" Nullable="false" />
-          <Property Name="status_phase" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="start_date" Type="datetime" Nullable="false" />
+          <Property Name="end_date" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -44,10 +61,52 @@
           <Property Name="project_name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="leader" Type="int" Nullable="false" />
           <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="start_date" Type="date" Nullable="false" />
-          <Property Name="end_date" Type="date" Nullable="false" />
-          <Property Name="status_project" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="type_project" Type="nvarchar" MaxLength="100" />
+          <Property Name="start_date" Type="datetime" Nullable="false" />
+          <Property Name="end_date" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="type_project" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="id_result" />
+            <PropertyRef Name="id_task" />
+          </Key>
+          <Property Name="id_result" Type="int" Nullable="false" />
+          <Property Name="id_task" Type="int" Nullable="false" />
+          <Property Name="link" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="summary" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="reporter" Type="int" Nullable="false" />
+          <Property Name="id_sprint" Type="int" Nullable="false" />
+          <Property Name="result_today" Type="float" Nullable="false" />
+          <Property Name="total" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sprint">
+          <Key>
+            <PropertyRef Name="id_sprint" />
+          </Key>
+          <Property Name="id_sprint" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_sprint" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="id_phase" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="plan_start_date" Type="datetime" Nullable="false" />
+          <Property Name="plan_end_date" Type="datetime" Nullable="false" />
+          <Property Name="estimate_time" Type="int" Nullable="false" />
+          <Property Name="real_start_date" Type="datetime" Nullable="false" />
+          <Property Name="real_end_date" Type="datetime" Nullable="false" />
+          <Property Name="reporter" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="link" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusType">
+          <Key>
+            <PropertyRef Name="id_status_type" />
+          </Key>
+          <Property Name="id_status_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_status_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -66,19 +125,27 @@
           <Property Name="id_task" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="task_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="summary_task" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="id_project" Type="int" Nullable="false" />
-          <Property Name="id_phase" Type="int" Nullable="false" />
-          <Property Name="plan_start_date" Type="date" Nullable="false" />
-          <Property Name="plan_end_date" Type="date" Nullable="false" />
+          <Property Name="id_sprint" Type="int" Nullable="false" />
+          <Property Name="plan_start_date" Type="datetime" Nullable="false" />
+          <Property Name="plan_end_date" Type="datetime" Nullable="false" />
           <Property Name="estimate_time" Type="int" Nullable="false" />
-          <Property Name="real_start_date" Type="date" Nullable="false" />
-          <Property Name="real_end_date" Type="date" Nullable="false" />
+          <Property Name="real_start_date" Type="datetime" Nullable="false" />
+          <Property Name="real_end_date" Type="datetime" Nullable="false" />
           <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="task_type" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="status_task" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
           <Property Name="link" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="reporter" Type="int" Nullable="false" />
-          <Property Name="priority" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="priority" Type="int" Nullable="false" />
+          <Property Name="assignee_to" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskType">
+          <Key>
+            <PropertyRef Name="id_task_type" />
+          </Key>
+          <Property Name="id_task_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_task_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Timesheet">
           <Key>
@@ -89,7 +156,15 @@
           <Property Name="id_user" Type="int" Nullable="false" />
           <Property Name="time" Type="int" Nullable="false" />
           <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="type_of_work" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type_of_work" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeOfWork">
+          <Key>
+            <PropertyRef Name="id_work_type" />
+          </Key>
+          <Property Name="id_work_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_work_type" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -100,8 +175,10 @@
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="user_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="id_develop_group" Type="int" Nullable="false" />
-          <Property Name="mail" Type="nvarchar" MaxLength="100" />
-          <Property Name="status_user" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="authorize" Type="int" Nullable="false" />
+          <Property Name="position" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Detail_Project">
           <End Role="Project" Type="Self.Project" Multiplicity="1" />
@@ -139,6 +216,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Result_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="id_task" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Task_Phase">
           <End Role="Phase" Type="Self.Phase" Multiplicity="1" />
           <End Role="Task" Type="Self.Task" Multiplicity="*" />
@@ -147,19 +236,19 @@
               <PropertyRef Name="id_phase" />
             </Principal>
             <Dependent Role="Task">
-              <PropertyRef Name="id_phase" />
+              <PropertyRef Name="id_sprint" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Task_Project">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+        <Association Name="FK_Task_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Task" Type="Self.Task" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="id_project" />
+            <Principal Role="User">
+              <PropertyRef Name="id_user" />
             </Principal>
             <Dependent Role="Task">
-              <PropertyRef Name="id_project" />
+              <PropertyRef Name="reporter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -199,14 +288,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="db_project_manageModelStoreContainer">
+        <EntityContainer Name="ProjectManageModelStoreContainer">
+          <EntitySet Name="AuthorityType" EntityType="Self.AuthorityType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail" EntityType="Self.Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DevelopGroup" EntityType="Self.DevelopGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Phase" EntityType="Self.Phase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sprint" EntityType="Self.Sprint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusType" EntityType="Self.StatusType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskType" EntityType="Self.TaskType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Timesheet" EntityType="Self.Timesheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfWork" EntityType="Self.TypeOfWork" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Detail_Project" Association="Self.FK_Detail_Project">
             <End Role="Project" EntitySet="Project" />
@@ -220,12 +316,16 @@
             <End Role="User" EntitySet="User" />
             <End Role="Project" EntitySet="Project" />
           </AssociationSet>
+          <AssociationSet Name="FK_Result_Task" Association="Self.FK_Result_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
           <AssociationSet Name="FK_Task_Phase" Association="Self.FK_Task_Phase">
             <End Role="Phase" EntitySet="Phase" />
             <End Role="Task" EntitySet="Task" />
           </AssociationSet>
-          <AssociationSet Name="FK_Task_Project" Association="Self.FK_Task_Project">
-            <End Role="Project" EntitySet="Project" />
+          <AssociationSet Name="FK_Task_User1" Association="Self.FK_Task_User1">
+            <End Role="User" EntitySet="User" />
             <End Role="Task" EntitySet="Task" />
           </AssociationSet>
           <AssociationSet Name="FK_Timesheet_Task" Association="Self.FK_Timesheet_Task">
@@ -245,7 +345,24 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="db_project_manageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ProjectManageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AuthorityType">
+          <Key>
+            <PropertyRef Name="id_authority_type" />
+          </Key>
+          <Property Name="id_authority_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_authority_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id_category" />
+          </Key>
+          <Property Name="id_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="Detail">
           <Key>
             <PropertyRef Name="id_user" />
@@ -253,8 +370,8 @@
           </Key>
           <Property Name="id_user" Type="Int32" Nullable="false" />
           <Property Name="id_project" Type="Int32" Nullable="false" />
-          <Property Name="join_date" Type="DateTime" Precision="0" />
-          <Property Name="leave_date" Type="DateTime" Precision="0" />
+          <Property Name="join_date" Type="DateTime" Precision="3" />
+          <Property Name="leave_date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Project" Relationship="Self.FK_Detail_Project" FromRole="Detail" ToRole="Project" />
           <NavigationProperty Name="User" Relationship="Self.FK_Detail_User" FromRole="Detail" ToRole="User" />
         </EntityType>
@@ -265,7 +382,7 @@
           <Property Name="id_develop_group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name_group" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="authority" Type="Int32" Nullable="false" />
+          <Property Name="authorize" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_User_DevelopGroup" FromRole="DevelopGroup" ToRole="User" />
         </EntityType>
         <EntityType Name="Phase">
@@ -276,9 +393,9 @@
           <Property Name="phase_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id_project" Type="Int32" Nullable="false" />
-          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="status_phase" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Phase" FromRole="Phase" ToRole="Task" />
         </EntityType>
         <EntityType Name="Project">
@@ -289,13 +406,55 @@
           <Property Name="project_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="leader" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="status_project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="type_project" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="type_project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Details" Relationship="Self.FK_Detail_Project" FromRole="Project" ToRole="Detail" />
           <NavigationProperty Name="User" Relationship="Self.FK_Project_User1" FromRole="Project" ToRole="User" />
-          <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Project" FromRole="Project" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="id_result" />
+            <PropertyRef Name="id_task" />
+          </Key>
+          <Property Name="id_result" Type="Int32" Nullable="false" />
+          <Property Name="id_task" Type="Int32" Nullable="false" />
+          <Property Name="link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="summary" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="reporter" Type="Int32" Nullable="false" />
+          <Property Name="id_sprint" Type="Int32" Nullable="false" />
+          <Property Name="result_today" Type="Double" Nullable="false" />
+          <Property Name="total" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_Result_Task" FromRole="Result" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Sprint">
+          <Key>
+            <PropertyRef Name="id_sprint" />
+          </Key>
+          <Property Name="id_sprint" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_sprint" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_phase" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="plan_start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="plan_end_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estimate_time" Type="Int32" Nullable="false" />
+          <Property Name="real_start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="real_end_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="reporter" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusType">
+          <Key>
+            <PropertyRef Name="id_status_type" />
+          </Key>
+          <Property Name="id_status_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_status_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -314,22 +473,31 @@
           <Property Name="id_task" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="task_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="summary_task" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="id_project" Type="Int32" Nullable="false" />
-          <Property Name="id_phase" Type="Int32" Nullable="false" />
-          <Property Name="plan_start_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="plan_end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_sprint" Type="Int32" Nullable="false" />
+          <Property Name="plan_start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="plan_end_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="estimate_time" Type="Int32" Nullable="false" />
-          <Property Name="real_start_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="real_end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="real_start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="real_end_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="task_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="status_task" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
           <Property Name="link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="reporter" Type="Int32" Nullable="false" />
-          <Property Name="priority" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="priority" Type="Int32" Nullable="false" />
+          <Property Name="assignee_to" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Phase" Relationship="Self.FK_Task_Phase" FromRole="Task" ToRole="Phase" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_Task_Project" FromRole="Task" ToRole="Project" />
+          <NavigationProperty Name="Results" Relationship="Self.FK_Result_Task" FromRole="Task" ToRole="Result" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Task_User1" FromRole="Task" ToRole="User" />
           <NavigationProperty Name="Timesheets" Relationship="Self.FK_Timesheet_Task" FromRole="Task" ToRole="Timesheet" />
+        </EntityType>
+        <EntityType Name="TaskType">
+          <Key>
+            <PropertyRef Name="id_task_type" />
+          </Key>
+          <Property Name="id_task_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_task_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Timesheet">
           <Key>
@@ -340,9 +508,17 @@
           <Property Name="id_user" Type="Int32" Nullable="false" />
           <Property Name="time" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="type_of_work" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type_of_work" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Task" Relationship="Self.FK_Timesheet_Task" FromRole="Timesheet" ToRole="Task" />
           <NavigationProperty Name="User" Relationship="Self.FK_Timesheet_User" FromRole="Timesheet" ToRole="User" />
+        </EntityType>
+        <EntityType Name="TypeOfWork">
+          <Key>
+            <PropertyRef Name="id_work_type" />
+          </Key>
+          <Property Name="id_work_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_work_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -353,11 +529,14 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id_develop_group" Type="Int32" Nullable="false" />
-          <Property Name="mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="status_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="authorize" Type="Int32" Nullable="false" />
+          <Property Name="position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Details" Relationship="Self.FK_Detail_User" FromRole="User" ToRole="Detail" />
           <NavigationProperty Name="DevelopGroup" Relationship="Self.FK_User_DevelopGroup" FromRole="User" ToRole="DevelopGroup" />
           <NavigationProperty Name="Projects" Relationship="Self.FK_Project_User1" FromRole="User" ToRole="Project" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_User1" FromRole="User" ToRole="Task" />
           <NavigationProperty Name="Timesheets" Relationship="Self.FK_Timesheet_User" FromRole="User" ToRole="Timesheet" />
         </EntityType>
         <Association Name="FK_Detail_Project">
@@ -404,7 +583,7 @@
               <PropertyRef Name="id_phase" />
             </Principal>
             <Dependent Role="Task">
-              <PropertyRef Name="id_phase" />
+              <PropertyRef Name="id_sprint" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -420,15 +599,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Task_Project">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+        <Association Name="FK_Result_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="id_task" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Task" Type="Self.Task" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="id_project" />
+            <Principal Role="User">
+              <PropertyRef Name="id_user" />
             </Principal>
             <Dependent Role="Task">
-              <PropertyRef Name="id_project" />
+              <PropertyRef Name="reporter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -456,14 +647,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="db_project_manageEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ProjectManageEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuthorityTypes" EntityType="Self.AuthorityType" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Details" EntityType="Self.Detail" />
           <EntitySet Name="DevelopGroups" EntityType="Self.DevelopGroup" />
           <EntitySet Name="Phases" EntityType="Self.Phase" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="Results" EntityType="Self.Result" />
+          <EntitySet Name="Sprints" EntityType="Self.Sprint" />
+          <EntitySet Name="StatusTypes" EntityType="Self.StatusType" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="TaskTypes" EntityType="Self.TaskType" />
           <EntitySet Name="Timesheets" EntityType="Self.Timesheet" />
+          <EntitySet Name="TypeOfWorks" EntityType="Self.TypeOfWork" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Detail_Project" Association="Self.FK_Detail_Project">
             <End Role="Project" EntitySet="Projects" />
@@ -485,8 +683,12 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
-          <AssociationSet Name="FK_Task_Project" Association="Self.FK_Task_Project">
-            <End Role="Project" EntitySet="Projects" />
+          <AssociationSet Name="FK_Result_Task" Association="Self.FK_Result_Task">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Result" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_User1" Association="Self.FK_Task_User1">
+            <End Role="User" EntitySet="Users" />
             <End Role="Task" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="FK_Timesheet_Task" Association="Self.FK_Timesheet_Task">
@@ -503,9 +705,28 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db_project_manageModelStoreContainer" CdmEntityContainer="db_project_manageEntities1">
+        <EntityContainerMapping StorageEntityContainer="ProjectManageModelStoreContainer" CdmEntityContainer="ProjectManageEntities">
+          <EntitySetMapping Name="AuthorityTypes">
+            <EntityTypeMapping TypeName="ProjectManageModel.AuthorityType">
+              <MappingFragment StoreEntitySet="AuthorityType">
+                <ScalarProperty Name="id_authority_type" ColumnName="id_authority_type" />
+                <ScalarProperty Name="name_authority_type" ColumnName="name_authority_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ProjectManageModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="id_category" ColumnName="id_category" />
+                <ScalarProperty Name="name_category" ColumnName="name_category" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="link" ColumnName="link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Details">
-            <EntityTypeMapping TypeName="db_project_manageModel.Detail">
+            <EntityTypeMapping TypeName="ProjectManageModel.Detail">
               <MappingFragment StoreEntitySet="Detail">
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
                 <ScalarProperty Name="id_project" ColumnName="id_project" />
@@ -515,17 +736,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DevelopGroups">
-            <EntityTypeMapping TypeName="db_project_manageModel.DevelopGroup">
+            <EntityTypeMapping TypeName="ProjectManageModel.DevelopGroup">
               <MappingFragment StoreEntitySet="DevelopGroup">
                 <ScalarProperty Name="id_develop_group" ColumnName="id_develop_group" />
                 <ScalarProperty Name="name_group" ColumnName="name_group" />
                 <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="authority" ColumnName="authority" />
+                <ScalarProperty Name="authorize" ColumnName="authorize" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Phases">
-            <EntityTypeMapping TypeName="db_project_manageModel.Phase">
+            <EntityTypeMapping TypeName="ProjectManageModel.Phase">
               <MappingFragment StoreEntitySet="Phase">
                 <ScalarProperty Name="id_phase" ColumnName="id_phase" />
                 <ScalarProperty Name="phase_name" ColumnName="phase_name" />
@@ -533,12 +754,12 @@
                 <ScalarProperty Name="id_project" ColumnName="id_project" />
                 <ScalarProperty Name="start_date" ColumnName="start_date" />
                 <ScalarProperty Name="end_date" ColumnName="end_date" />
-                <ScalarProperty Name="status_phase" ColumnName="status_phase" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="db_project_manageModel.Project">
+            <EntityTypeMapping TypeName="ProjectManageModel.Project">
               <MappingFragment StoreEntitySet="Project">
                 <ScalarProperty Name="id_project" ColumnName="id_project" />
                 <ScalarProperty Name="project_name" ColumnName="project_name" />
@@ -546,13 +767,57 @@
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="start_date" ColumnName="start_date" />
                 <ScalarProperty Name="end_date" ColumnName="end_date" />
-                <ScalarProperty Name="status_project" ColumnName="status_project" />
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="type_project" ColumnName="type_project" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="ProjectManageModel.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="id_result" ColumnName="id_result" />
+                <ScalarProperty Name="id_task" ColumnName="id_task" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="reporter" ColumnName="reporter" />
+                <ScalarProperty Name="id_sprint" ColumnName="id_sprint" />
+                <ScalarProperty Name="result_today" ColumnName="result_today" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sprints">
+            <EntityTypeMapping TypeName="ProjectManageModel.Sprint">
+              <MappingFragment StoreEntitySet="Sprint">
+                <ScalarProperty Name="id_sprint" ColumnName="id_sprint" />
+                <ScalarProperty Name="name_sprint" ColumnName="name_sprint" />
+                <ScalarProperty Name="id_phase" ColumnName="id_phase" />
+                <ScalarProperty Name="plan_start_date" ColumnName="plan_start_date" />
+                <ScalarProperty Name="plan_end_date" ColumnName="plan_end_date" />
+                <ScalarProperty Name="estimate_time" ColumnName="estimate_time" />
+                <ScalarProperty Name="real_start_date" ColumnName="real_start_date" />
+                <ScalarProperty Name="real_end_date" ColumnName="real_end_date" />
+                <ScalarProperty Name="reporter" ColumnName="reporter" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusTypes">
+            <EntityTypeMapping TypeName="ProjectManageModel.StatusType">
+              <MappingFragment StoreEntitySet="StatusType">
+                <ScalarProperty Name="id_status_type" ColumnName="id_status_type" />
+                <ScalarProperty Name="name_status_type" ColumnName="name_status_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="db_project_manageModel.sysdiagram">
+            <EntityTypeMapping TypeName="ProjectManageModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -563,29 +828,38 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
-            <EntityTypeMapping TypeName="db_project_manageModel.Task">
+            <EntityTypeMapping TypeName="ProjectManageModel.Task">
               <MappingFragment StoreEntitySet="Task">
                 <ScalarProperty Name="id_task" ColumnName="id_task" />
                 <ScalarProperty Name="task_name" ColumnName="task_name" />
                 <ScalarProperty Name="summary_task" ColumnName="summary_task" />
-                <ScalarProperty Name="id_project" ColumnName="id_project" />
-                <ScalarProperty Name="id_phase" ColumnName="id_phase" />
+                <ScalarProperty Name="id_sprint" ColumnName="id_sprint" />
                 <ScalarProperty Name="plan_start_date" ColumnName="plan_start_date" />
                 <ScalarProperty Name="plan_end_date" ColumnName="plan_end_date" />
                 <ScalarProperty Name="estimate_time" ColumnName="estimate_time" />
                 <ScalarProperty Name="real_start_date" ColumnName="real_start_date" />
                 <ScalarProperty Name="real_end_date" ColumnName="real_end_date" />
                 <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="task_type" ColumnName="task_type" />
-                <ScalarProperty Name="status_task" ColumnName="status_task" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="link" ColumnName="link" />
                 <ScalarProperty Name="reporter" ColumnName="reporter" />
                 <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="assignee_to" ColumnName="assignee_to" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskTypes">
+            <EntityTypeMapping TypeName="ProjectManageModel.TaskType">
+              <MappingFragment StoreEntitySet="TaskType">
+                <ScalarProperty Name="id_task_type" ColumnName="id_task_type" />
+                <ScalarProperty Name="name_task_type" ColumnName="name_task_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Timesheets">
-            <EntityTypeMapping TypeName="db_project_manageModel.Timesheet">
+            <EntityTypeMapping TypeName="ProjectManageModel.Timesheet">
               <MappingFragment StoreEntitySet="Timesheet">
                 <ScalarProperty Name="id_task" ColumnName="id_task" />
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
@@ -595,8 +869,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfWorks">
+            <EntityTypeMapping TypeName="ProjectManageModel.TypeOfWork">
+              <MappingFragment StoreEntitySet="TypeOfWork">
+                <ScalarProperty Name="id_work_type" ColumnName="id_work_type" />
+                <ScalarProperty Name="name_work_type" ColumnName="name_work_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="db_project_manageModel.User">
+            <EntityTypeMapping TypeName="ProjectManageModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
                 <ScalarProperty Name="account" ColumnName="account" />
@@ -604,7 +887,9 @@
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
                 <ScalarProperty Name="id_develop_group" ColumnName="id_develop_group" />
                 <ScalarProperty Name="mail" ColumnName="mail" />
-                <ScalarProperty Name="status_user" ColumnName="status_user" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="authorize" ColumnName="authorize" />
+                <ScalarProperty Name="position" ColumnName="position" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

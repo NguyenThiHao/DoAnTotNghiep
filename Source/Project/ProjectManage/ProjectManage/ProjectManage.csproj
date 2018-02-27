@@ -163,11 +163,19 @@
     <Compile Include="Controllers\DevelopGroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PhaseController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\SprintController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuthorityType.cs">
+      <DependentUpon>ProjectManage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>ProjectManage.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detail.cs">
       <DependentUpon>ProjectManage.tt</DependentUpon>
@@ -196,13 +204,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectManage.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Result.cs">
+      <DependentUpon>ProjectManage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sprint.cs">
+      <DependentUpon>ProjectManage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StatusType.cs">
+      <DependentUpon>ProjectManage.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>ProjectManage.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Task.cs">
       <DependentUpon>ProjectManage.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TaskType.cs">
+      <DependentUpon>ProjectManage.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Timesheet.cs">
+      <DependentUpon>ProjectManage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TypeOfWork.cs">
       <DependentUpon>ProjectManage.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -269,6 +292,16 @@
     <Content Include="Views\Task\CreateTask.cshtml" />
     <Content Include="Views\DevelopGroup\CreateGroup.cshtml" />
     <Content Include="Views\User\CreateUser.cshtml" />
+    <Content Include="Views\Phase\CreatePhase.cshtml" />
+    <Content Include="Views\Project\ListTaskPartial.cshtml" />
+    <Content Include="Views\Task\DetailTaskPartial.cshtml" />
+    <Content Include="Views\Project\DetailTaskPartial.cshtml" />
+    <Content Include="Views\Project\MoreDetailTaskPartial.cshtml" />
+    <Content Include="Views\Task\DetailTask.cshtml" />
+    <Content Include="Views\Task\MoreDetailTaskPartial.cshtml" />
+    <Content Include="Views\Sprint\CreateSprint.cshtml" />
+    <Content Include="Views\Sprint\DetailSprint.cshtml" />
+    <Content Include="Views\Project\CreatePRJ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

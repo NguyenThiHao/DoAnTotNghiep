@@ -13,10 +13,10 @@ namespace ProjectManage.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db_project_manageEntities1 : DbContext
+    public partial class ProjectManageEntities : DbContext
     {
-        public db_project_manageEntities1()
-            : base("name=db_project_manageEntities1")
+        public ProjectManageEntities()
+            : base("name=ProjectManageEntities")
         {
         }
     
@@ -25,13 +25,20 @@ namespace ProjectManage.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AuthorityType> AuthorityTypes { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Detail> Details { get; set; }
         public virtual DbSet<DevelopGroup> DevelopGroups { get; set; }
         public virtual DbSet<Phase> Phases { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Result> Results { get; set; }
+        public virtual DbSet<Sprint> Sprints { get; set; }
+        public virtual DbSet<StatusType> StatusTypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
+        public virtual DbSet<TaskType> TaskTypes { get; set; }
         public virtual DbSet<Timesheet> Timesheets { get; set; }
+        public virtual DbSet<TypeOfWork> TypeOfWorks { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace ProjectManage.Controllers
 {
     public class HomeController : Controller
     {
-        db_project_manageEntities1 db = new db_project_manageEntities1();
+        ProjectManageEntities db = new ProjectManageEntities();
         public ActionResult Home()
         {
             return View();

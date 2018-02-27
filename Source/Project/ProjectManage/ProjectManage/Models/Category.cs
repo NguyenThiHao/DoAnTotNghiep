@@ -12,18 +12,11 @@ namespace ProjectManage.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DevelopGroup
+    public partial class Category
     {
-        public DevelopGroup()
-        {
-            this.Users = new HashSet<User>();
-        }
-    
-        public int id_develop_group { get; set; }
-        public string name_group { get; set; }
-        public string description { get; set; }
-        public int authorize { get; set; }
-    
-        public virtual ICollection<User> Users { get; set; }
+        public int id_category { get; set; }
+        public string name_category { get; set; }
+        public bool status { get; set; }
+        public string link { get; set; }
     }
 }

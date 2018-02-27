@@ -25,7 +25,7 @@ namespace ProjectManage.Models
         public int id_project { get; set; }
         public System.DateTime start_date { get; set; }
         public System.DateTime end_date { get; set; }
-        public string status_phase { get; set; }
+        public int status { get; set; }
     
         public virtual ICollection<Task> Tasks { get; set; }
     }

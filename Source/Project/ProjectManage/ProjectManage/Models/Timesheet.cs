@@ -18,7 +18,7 @@ namespace ProjectManage.Models
         public int id_user { get; set; }
         public int time { get; set; }
         public string description { get; set; }
-        public string type_of_work { get; set; }
+        public int type_of_work { get; set; }
     
         public virtual Task Task { get; set; }
         public virtual User User { get; set; }

@@ -18,6 +18,7 @@ namespace ProjectManage.Models
         {
             this.Details = new HashSet<Detail>();
             this.Projects = new HashSet<Project>();
+            this.Tasks = new HashSet<Task>();
             this.Timesheets = new HashSet<Timesheet>();
         }
     
@@ -27,11 +28,14 @@ namespace ProjectManage.Models
         public string user_name { get; set; }
         public int id_develop_group { get; set; }
         public string mail { get; set; }
-        public string status_user { get; set; }
+        public string status { get; set; }
+        public int authorize { get; set; }
+        public string position { get; set; }
     
         public virtual ICollection<Detail> Details { get; set; }
         public virtual DevelopGroup DevelopGroup { get; set; }
         public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
         public virtual ICollection<Timesheet> Timesheets { get; set; }
     }
 }

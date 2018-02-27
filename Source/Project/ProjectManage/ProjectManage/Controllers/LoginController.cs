@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProjectManage.Models;
 
 namespace ProjectManage.Controllers
 {
     public class LoginController : Controller
     {
-        //
+
+        //Khởi tạo DB
+        ProjectManageEntities db = new ProjectManageEntities();
+      //
         // GET: /Login/
         public ActionResult Login()
         {

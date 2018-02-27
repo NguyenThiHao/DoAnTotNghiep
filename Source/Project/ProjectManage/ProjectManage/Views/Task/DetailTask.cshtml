@@ -1,31 +1,22 @@
 ﻿@using ProjectManage.Models;
-@*Định nghĩa kiểu dữ liệu cho biến model*@
-@model List<Task> 
+@model Task
 @{
-    ViewBag.Title = "DetailProject";
+    ViewBag.Title = "DetailTask";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
 <div id="page-wrapper" style="padding-top: 55px;">
     <!-- /.row -->
     <div class="row">
-        @*Vùng hiển thị List Task of Project*@
-        <div class="col-lg-4" style="padding:5px;">
-            <!--Truyền action vào-->
-            @Html.Action("ListTaskPartial","Project")
-        </div>
-        @*Hết phần hiển thị List Task of Project*@
-
-
         @*Vùng hiển thị Chi tiết công việc*@
-        <div class="col-lg-5" style="padding:5px;">
+        <div class="col-lg-8" style="padding:5px;">
             @Html.Action("DetailTaskPartial", "Project")
         </div>
         @*Kết thúc vùng hiển thị Chi tiết công việc*@
 
 
         @*Vùng hiển thị nội dung người tạo và thời gian*@
-        <div class="col-lg-3" style="padding: 5px;">
+        <div class="col-lg-4" style="padding: 5px;">
             @Html.Action("MoreDetailTaskPartial", "Project")
         </div>
         @*Kết thúc vùng hiển thị nội dung người tạo và thời gian*@
