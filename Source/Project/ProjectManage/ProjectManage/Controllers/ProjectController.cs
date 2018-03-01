@@ -20,6 +20,19 @@ namespace ProjectManage.Controllers
             return View();
         }
 
+        #region Tạo mới 1 Project
+        [HttpPost]
+        public ActionResult CreateProject(Project project)
+        {
+
+            //Chèn dữ liệu vào bảng Project
+            db.Projects.Add(project);
+            //Lưu vào CSDL
+            db.SaveChanges();
+            return View();
+        }
+        #endregion 
+
         #region Danh sách Task trong 1 project
         /*
          DetailProject: Hiển thị những Task đang thực hiện trong project

@@ -1,135 +1,94 @@
-﻿
+﻿@using ProjectManage.Models;
+@model Phase
 @{
     ViewBag.Title = "CreatePhase";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<h2>CreatePhase</h2>
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: left; font-size: 25px">
+            Create Phase
+        </div>
+        <div class="panel-body">
+            <div class="well">
 
-@{
-    ViewBag.Title = "CreateUser";
-    Layout = "~/Views/Shared/_HomeLayout.cshtml";
-}
+                <div class="col-md-16 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <br />
+                            <div class="form-horizontal form-label-left">
 
-<h2>CreateUser</h2>
+                                @using (Html.BeginForm())
+                                {
+                                    @*@Html.AntiForgeryToken*@
+                                    @Html.ValidationSummary(true)
 
-<div id="page-wrapper">
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="text-align: left; font-size: 25px">
-                    Create Phase
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <!-- /.table-responsive -->
-                    <div class="well">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Phase Name <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.phase_name, new { @class = "form-control", placeholder = "Phase Name" })
+                                            @*@Html.ValidationMessageFor(model => model.phase_name)*@
+                                        </div>
+                                    </div>
 
-                        <div class="col-md-16 col-xs-12">
-                            <div class="x_panel">
-                                <div class="x_content">
-                                    <br />
-                                    <form class="form-horizontal form-label-left">
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Phase Name <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Phase Name">
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = "6", placeholder = "Description" })
+                                            @*@Html.ValidationMessageFor(model => model.description)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Project <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.id_project, new { @class = "form-control", rows = "6", placeholder = "Project" })
+                                            @*@Html.ValidationMessageFor(model => model.id_project)*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.start_date, new { @class = "form-control", placeholder = "Start Date", type = "date" })
+                                            @*@Html.ValidationMessageFor(model => model.start_date)*@
                                         </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Account <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Account">
-                                            </div>
-                                        </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Password <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="password" class="form-control" placeholder="Password">
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date<span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.end_date, new { @class = "form-control", placeholder = "End Date" , type = "date"})
+                                            @*@Html.ValidationMessageFor(model => model.end_date)*@
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Cormfirm Password <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="password" class="form-control" placeholder="Comfirm Password">
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Status<span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.status, new { @class = "form-control", placeholder = "Status" })
+                                            @*@Html.ValidationMessageFor(model => model.status)*@
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Project <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select class="form-control">
-                                                    <option>Project 1</option>
-                                                    <option>Project 2</option>
-                                                    <option>Project 3</option>
-                                                    <option>Project 4</option>
-                                                    <option>Project 5</option>
-                                                </select>
-                                            </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
+                                            <button type="submit" class="btn btn-success" value="Create">Create</button>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Develop group <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select class="form-control">
-                                                    <option>Developer</option>
-                                                    <option>Tester</option>
-                                                    <option>QA</option>
-                                                    <option>BA</option>
-                                                    <option>Designer</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Position <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select class="form-control">
-                                                    <option>Project manager</option>
-                                                    <option>Team lead</option>
-                                                    <option>Member</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Email">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date Join <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="date" class="form-control" value="Plan Start">
-                                            </div>
-                                        </div>
-
-                                        <div class="ln_solid"></div>
-                                        <div class="form-group">
-                                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                                <button type="submit" class="btn btn-primary">Cancel</button>
-                                                <button type="submit" class="btn btn-success">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                }
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <!-- /.panel-body -->
             </div>
-            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-12 -->
     </div>
 </div>
 

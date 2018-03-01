@@ -27,19 +27,20 @@ namespace ProjectManage
                 namespaces: new[] { "ProjectManage.Controllers" }
             );
 
-            //routes.MapRoute(
-            //    name: "Project",
-            //    url: "Project/{metatitle}",
-            //    defaults: new { controller = "Project", action = "CreateProject", id = UrlParameter.Optional },
-            //    namespaces: new[] { "ProjectManage.Controllers" }
-            //);
-
             routes.MapRoute(
                 name: "Phase",
                 url: "Phase/{metatitle}",
                 defaults: new { controller = "Phase", action = "CreatePhase", id = UrlParameter.Optional },
                 namespaces: new[] { "ProjectManage.Controllers" }
             );
+
+            routes.MapRoute(
+              name: "Sprint",
+              url: "Sprint/{metatitle}",
+              defaults: new { controller = "Sprint", action = "CreateSprint", id = UrlParameter.Optional },
+              namespaces: new[] { "ProjectManage.Controllers" }
+          );
+
 
             routes.MapRoute(
                 name: "Default",

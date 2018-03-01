@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -18,10 +17,13 @@
     @Html.Partial("_CategoriesPartial")
     <!--Vùng body-->
     <div class="col-md-12" style="min-height: 1000px; text-align: center;">
-        @RenderBody()
+        <div id="page-wrapper" style="padding-top: 20px; margin-top: 55px;">
+            <div class="row">
+                @RenderBody()
+            </div>
+        </div>
     </div>
     <!--Kết thúc vùng body-->
-
     <!--Vùng footer-->
     <footer class="col-md-12">
         <h5>Học viện kỹ thuật quân sự</h5>

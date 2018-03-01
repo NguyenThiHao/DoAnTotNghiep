@@ -301,7 +301,6 @@
     <Content Include="Views\Task\MoreDetailTaskPartial.cshtml" />
     <Content Include="Views\Sprint\CreateSprint.cshtml" />
     <Content Include="Views\Sprint\DetailSprint.cshtml" />
-    <Content Include="Views\Project\CreatePRJ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
