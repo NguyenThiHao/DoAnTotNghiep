@@ -16,22 +16,27 @@ namespace ProjectManage.Controllers
         // GET: /Project/
         public ActionResult CreateProject()
         {
-            
+
             return View();
         }
 
         #region Tạo mới 1 Project
         [HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult CreateProject(Project project)
         {
-
-            //Chèn dữ liệu vào bảng Project
-            db.Projects.Add(project);
-            //Lưu vào CSDL
-            db.SaveChanges();
+            // Kiểm tra tất cả Validation
+            if(ModelState.IsValid){
+                //Set giá trị cho trường Status
+                project.status = 1;
+                //Chèn dữ liệu vào bảng Project
+                db.Projects.Add(project);
+                //Lưu vào CSDL       
+                db.SaveChanges();
+            }
             return View();
         }
-        #endregion 
+        #endregion
 
         #region Danh sách Task trong 1 project
         /*
@@ -61,5 +66,5 @@ namespace ProjectManage.Controllers
         {
             return PartialView();
         }
-	}
+    }
 }

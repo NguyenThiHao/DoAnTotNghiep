@@ -22,15 +22,40 @@ namespace ProjectManage.Controllers
         [HttpPost]
         public ActionResult CreateUser(User user)
         {
-            //Chèn dữ liệu vào bảng User
-            db.Users.Add(user);   //Chưa lưu vào CSDL, mới chỉ lưu vào Models, là cái ánh xạ của CSDL
-            //Lưu vào CSDL
-            db.SaveChanges();
+            //Kiểm tra tất cả Validation
+            if (ModelState.IsValid)
+            {
+                //Chèn dữ liệu vào bảng User
+                db.Users.Add(user);   //Chưa lưu vào CSDL, mới chỉ lưu vào Models, là cái ánh xạ của CSDL
+                //Lưu vào CSDL
+                db.SaveChanges();
+            }
             return View();
         }
 
-        public ActionResult CreateUser1()
+        [HttpGet]
+        public ActionResult Login()
         {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Login(FormCollection f)
+        {
+            // Lấy giá trị Account từ form đăng nhập
+            string sAccount = f.Get("txtAccount").ToString();
+            //Lấy giá trị Password từ form đăng nhập
+            string sPass = f.Get("txtPassword").ToString();
+            //So sánh Account và Password nhập vào với acc và pass trong DB
+            User user = db.Users.SingleOrDefault(n=> n.account == sAccount && n.password == sPass);
+            if (user != null)
+            {
+                ViewBag.Mess = "Wellcome to Black Swan!";
+                Session["Account"] = user;
+                return View();
+            }
+            ViewBag.Mess = "Account or Password is incorrect!";
             return View();
         }
 	}

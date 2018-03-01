@@ -5,218 +5,132 @@
 }
 
 
-<h2>CreateUser</h2>
-@using (Html.BeginForm())
-{
-    @*@Html.AntiForgeryToken()*@
-
-    <div class="form-horizontal">
-        <h4>User</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.account, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.account)
-                @*@Html.ValidationMessageFor(model => model.account)*@
-            </div>
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: left; font-size: 25px">
+            Create Project
         </div>
+        <div class="panel-body">
+            <div class="well">
+                <div class="col-md-16 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <br />
+                            <div class="form-horizontal form-label-left">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.password, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.password)
-                @*@Html.ValidationMessageFor(model => model.password)*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.user_name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.user_name)
-                @*@Html.ValidationMessageFor(model => model.user_name)*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.id_develop_group, "id_develop_group", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("id_develop_group", String.Empty)
-                @*@Html.ValidationMessageFor(model => model.id_develop_group)*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mail, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mail)
-                @*@Html.ValidationMessageFor(model => model.mail)*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.status, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.status)
-                @*@Html.ValidationMessageFor(model => model.status)*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.authorize, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.authorize)
-                @*@Html.ValidationMessageFor(model => model.security)*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.position, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.position)
-                @*@Html.ValidationMessageFor(model => model.position)*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-
-
-
-
-
-<div id="page-wrapper">
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="text-align: left; font-size: 25px">
-                    Create Project
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <!-- /.table-responsive -->
-                    <div class="well">
-                        <div class="col-md-16 col-xs-12">
-                            <div class="x_panel">
-                                <div class="x_content">
-                                    <br />
-
-
-                                    <form class="form-horizontal form-label-left">
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Username <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Username">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">User Name <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.user_name,  new { @class = "form-control", placeholder = "User Name" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.user_name)
                                             </div>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Account <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Account">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Account <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.account, new { @class = "form-control", placeholder = "Account" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.account)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Password <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="password" class="form-control" placeholder="Password">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Password <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.password, new { @class = "form-control", placeholder = "Password" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.password)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Cormfirm Password <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="password" class="form-control" placeholder="Comfirm Password">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Group <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.id_develop_group, new { @class = "form-control", placeholder = "Group" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.id_develop_group)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Project <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select class="form-control">
-                                                    <option>Project 1</option>
-                                                    <option>Project 2</option>
-                                                    <option>Project 3</option>
-                                                    <option>Project 4</option>
-                                                    <option>Project 5</option>
-                                                </select>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.mail, new { @class = "form-control", placeholder = "Email" ,type = "email" })
+                                        </div>
+                                        <div class="message">
+                                            @Html.ValidationMessageFor(model => model.mail)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Authorize <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.authorize, new { @class = "form-control", placeholder = "Authorize" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.authorize)
                                             </div>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Develop group <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select class="form-control">
-                                                    <option>Developer</option>
-                                                    <option>Tester</option>
-                                                    <option>QA</option>
-                                                    <option>BA</option>
-                                                    <option>Designer</option>
-                                                </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Position <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.position, new { @class = "form-control", placeholder = "Position" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.position)
                                             </div>
                                         </div>
+                                    </div>
+                                    
+                                     <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Position <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select class="form-control">
-                                                    <option>Project manager</option>
-                                                    <option>Team lead</option>
-                                                    <option>Member</option>
-                                                </select>
+                                            @Html.TextBoxFor(model => model.status, new { @class = "form-control", placeholder = "Status" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.status)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Email">
-                                            </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
+                                            <button type="submit" class="btn btn-success" value="Create">Create</button>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date Join <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="date" class="form-control" value="Plan Start">
-                                            </div>
-                                        </div>
-
-                                        <div class="ln_solid"></div>
-                                        <div class="form-group">
-                                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                                <button type="submit" class="btn btn-primary">Cancel</button>
-                                                <button type="submit" class="btn btn-success">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-
-
-
-                                </div>
+                                    </div>
+                                }
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <!-- /.panel-body -->
             </div>
-            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-12 -->
-        }
     </div>
 </div>
+
+
+<style type="text/css">
+    .message {
+        float: left;
+        padding: 5px;
+        color: red;
+        text-align: left;
+    }
+
+    .required {
+        color: red;
+    }
+</style>

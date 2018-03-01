@@ -19,12 +19,17 @@ namespace ProjectManage.Controllers
 
         #region Thêm mới 1 Group vào CSDL
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateGroup(DevelopGroup group)
         {
-            //Chèn dữ liệu vào bảng DevelopGroup
-            db.DevelopGroups.Add(group);
-            //Lưu vào CSDL
-            db.SaveChanges();
+            //Kiểm tra Tất cả validation hợp lệ
+            if (ModelState.IsValid)
+            {
+                //Chèn dữ liệu vào bảng DevelopGroup
+                db.DevelopGroups.Add(group);
+                //Lưu vào CSDL
+                db.SaveChanges();
+            }
             return View();
         }
         #endregion

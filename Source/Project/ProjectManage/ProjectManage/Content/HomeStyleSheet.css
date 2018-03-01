@@ -28,3 +28,12 @@ footer{
 .caret{
     color: #ffffff;
 }
+
+.message{
+    float: left;
+    padding: 10px;
+    color: red;
+    text-align: left;
+}
+
+

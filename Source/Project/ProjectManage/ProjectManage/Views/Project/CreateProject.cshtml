@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "CreateProject";
     var typeOfProject = new List<String>
-            { 
+            {
                  "Full",
                  "Develop",
                  "Test",
@@ -12,99 +12,106 @@
     ViewBag.typeOfProject = typeOfProject;
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
-<div id="page-wrapper">
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="text-align: left; font-size: 25px">
-                    Create Project
-                </div>
-                <div class="panel-body">
-                    <div class="well">
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: left; font-size: 25px">
+            Create Project
+        </div>
+        <div class="panel-body">
+            <div class="well">
+                <div class="col-md-16 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <br />
+                            <div class="form-horizontal form-label-left">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true)
 
-                        <div class="col-md-16 col-xs-12">
-                            <div class="x_panel">
-                                <div class="x_content">
-                                    <br />
-                                    <div class="form-horizontal form-label-left">
-                                        @using (Html.BeginForm())
-                                        {
-                                            @*@Html.AntiForgeryToken()*@
-                                            @Html.ValidationSummary(true)
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Name <span class="required">*</span></label>
-                                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    @Html.TextBoxFor(model => model.project_name, new { @class = "form-control", placeholder = "Name Project" })
-                                                    @*@Html.ValidationMessageFor(model => model.project_name)*@
-                                                </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Name <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.project_name, new { @class = "form-control", placeholder = "Name Project" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.project_name)
                                             </div>
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Project <span class="required">*</span></label>
-                                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    @Html.DropDownListFor(model => model.type_project, new SelectList(ViewBag.typeOfProject), new { @class = "form-control", placeholder = "Type of Project" })
-                                                    @*@Html.ValidationMessageFor(model => model.type_project)*@
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Manager <span class="required">*</span></label>
-                                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    @Html.TextBoxFor(model => model.leader, new { @class = "form-control", placeholder = "Project Manager" })
-                                                    @*@Html.ValidationMessageFor(model => model.leader)*@
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span></label>
-                                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = "8", placeholder = "Description" })
-                                                    @*@Html.ValidationMessageFor(model => model.description)*@
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Planed Start <span class="required">*</span></label>
-                                                <div class="col-md-9 col-sm-9 col-xs-12">
-
-                                                    @Html.TextBoxFor(model => model.start_date, new { @class = "form-control", placeholder = "Planded Start", type = "date" })
-                                                    @*@Html.ValidationMessageFor(model => model.start_date)*@
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date <span class="required">*</span></label>
-                                                <div class="col-md-9 col-sm-9 col-xs-12">
-
-                                                    @Html.TextBoxFor(model => model.end_date, new { @class = "form-control", placeholder = "End Date", type = "date" })
-                                                    @*@Html.ValidationMessageFor(model => model.end_date)*@
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span></label>
-                                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    @Html.TextBoxFor(model => model.status, new { @class = "form-control", placeholder = "Status" })
-                                                    @*@Html.ValidationMessageFor(model => model.status)*@
-                                                </div>
-
-                                            </div>
-
-                                            <div class="ln_solid"></div>
-                                            <div class="form-group">
-                                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                                    <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
-                                                    <button type="submit" class="btn btn-success" value="Create">Create</button>
-                                                </div>
-                                            </div>
-                                            }
                                         </div>
                                     </div>
-                                </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Project <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.DropDownListFor(model => model.type_project, new SelectList(ViewBag.typeOfProject), new { @class = "form-control", placeholder = "Type of Project" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.type_project)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Manager <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.leader, new { @class = "form-control", placeholder = "Project Manager" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.leader)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = "8", placeholder = "Description" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.description)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Planed Start <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                            @Html.TextBoxFor(model => model.start_date, new { @class = "form-control", placeholder = "Planded Start", type = "date" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.start_date)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                            @Html.TextBoxFor(model => model.end_date, new { @class = "form-control", placeholder = "End Date", type = "date" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.end_date)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.status, new { @class = "form-control", placeholder = "Status" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.status)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
+                                            <button type="submit" class="btn btn-success" value="Create">Create</button>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -112,4 +119,20 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<style type="text/css">
+    .message {
+        float: left;
+        padding: 5px;
+        color: red;
+        text-align: left;
+    }
+
+    .required {
+        color: red;
+    }
+</style>
+
 

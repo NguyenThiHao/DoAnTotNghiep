@@ -241,7 +241,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ProjectManage.edmx">
@@ -301,6 +300,7 @@
     <Content Include="Views\Task\MoreDetailTaskPartial.cshtml" />
     <Content Include="Views\Sprint\CreateSprint.cshtml" />
     <Content Include="Views\Sprint\DetailSprint.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
