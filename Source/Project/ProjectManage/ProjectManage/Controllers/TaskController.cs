@@ -12,10 +12,25 @@ namespace ProjectManage.Controllers
         //Khởi tạo DB
         ProjectManageEntities db = new ProjectManageEntities();
 
-        #region Tạo mới 1 Task
+        
         // GET: /Creat Task/
         public ActionResult CreateTask()
         {
+            return View();
+        }
+
+        #region Tạo mới 1 Task
+        [HttpPost]
+        public ActionResult CreateTask(Task task)
+        {
+            //Kiểm tra tất cả Validation
+            if (ModelState.IsValid)
+            {
+                // Thêm dữ liệu vào bảng Task
+                db.Tasks.Add(task);
+                //Lưu vào DB
+                db.SaveChanges();
+            }
             return View();
         }
 

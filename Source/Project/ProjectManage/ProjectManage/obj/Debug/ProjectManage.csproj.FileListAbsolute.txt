@@ -105,6 +105,5 @@ D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\bin\Micros
 D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\bin\Microsoft.Owin.Security.Google.xml
 D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\bin\Microsoft.Owin.Security.Twitter.xml
 D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\obj\Debug\ProjectManage.csprojResolveAssemblyReference.cache
 D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\obj\Debug\ProjectManage.dll
 D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\obj\Debug\ProjectManage.pdb

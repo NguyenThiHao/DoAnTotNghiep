@@ -14,6 +14,8 @@ namespace ProjectManage.Controllers
         // GET: /Phase/
         public ActionResult CreatePhase()
         {
+            var listProject = db.Projects.ToList();
+            ViewBag.listProject = listProject;
             return View();
         }
 
@@ -21,10 +23,15 @@ namespace ProjectManage.Controllers
         [HttpPost]
         public ActionResult CreatePhase(Phase phase)
         {
-            //Chèn dữ liệu vào bảng Phase
-            db.Phases.Add(phase);
-            //Lưu vào CSDL
-            db.SaveChanges();
+            //Kiểm tra tất cả validation
+            if (ModelState.IsValid)
+            {
+                phase.status = 1;
+                //Chèn dữ liệu vào bảng Phase
+                db.Phases.Add(phase);
+                //Lưu vào CSDL
+                db.SaveChanges();
+            }
             return View();
         }
         #endregion

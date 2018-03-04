@@ -1,147 +1,160 @@
-﻿
+﻿@using ProjectManage.Models;
+@model Task
 @{
     ViewBag.Title = "Task";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
-<h2>Create Task</h2>
-<div id="page-wrapper" style="padding-top: 55px;">
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="text-align: left; font-size: 25px">
-                    Create Task
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <!-- /.table-responsive -->
-                    <div class="well">
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: left; font-size: 25px">
+            Create Task
+        </div>
+        <div class="panel-body">
+            <div class="well">
+                <div class="col-md-16 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <br />
+                            <div class="form-horizontal form-label-left">
 
-                        <div class="col-md-16 col-xs-12">
-                            <div class="x_panel">
-                                <div class="x_content">
-                                    <br />
-                                    <form class="form-horizontal form-label-left">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Sprint <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select class="form-control">
-                                                    <option>Sprint 1</option>
-                                                    <option>Sprint 2 </option>
-                                                    <option>Sprint 3</option>
-                                                    <option>Sprint 4 </option>
-                                                    <option>Sprint 5</option>
-                                                    <option>Sprint 6 </option>
-                                                    <option>Sprint 7</option>
-                                                    <option>Sprint 8 </option>
-                                                    <option>Sprint 9</option>
-                                                    <option>Sprint 10 </option>
-                                                </select>
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true)
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Task Name <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.task_name, new { @class = "form-control", placeholder = "Task Name" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.task_name)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Task name <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Task name">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Summary <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.summary_task, new { @class = "form-control", placeholder = "Summary" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.summary_task)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Summary Task <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Summary Task">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Priority <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.priority, new { @class = "form-control", placeholder = "Priority" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.priority)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                                Description <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <textarea class="form-control" rows="8"></textarea>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sprint <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.id_sprint, new { @class = "form-control", placeholder = "Sprint" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.id_sprint)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Task <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select class="form-control">
-                                                    <option>Code </option>
-                                                    <option>Test</option>
-                                                    <option>Review</option>
-                                                    <option>Fix</option>
-                                                    <option>Design</option>
-                                                </select>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Task <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.type, new { @class = "form-control", placeholder = "Type " })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.type)
                                             </div>
                                         </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Plan Start Date <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.plan_start_date, new { @class = "form-control", placeholder = "Plan Start Date", type = "date" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.plan_start_date)
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Priority<span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select class="form-control">
-                                                    <option>High</option>
-                                                    <option>Medium</option>
-                                                    <option>Low</option>
-                                                </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.plan_end_date, new { @class = "form-control", placeholder = "Plan End Date", type = "date" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.plan_end_date)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Planed Start <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="date" class="form-control" value="Plan Start">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Estimate Time <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.estimate_time, new { @class = "form-control", placeholder = "Estimate Time" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.estimate_time)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Due Date <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="date" class="form-control" value="Due Date">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Assignee to <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.assignee_to, new { @class = "form-control", placeholder = "Assignee to " })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.assignee_to)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Estimate Time<span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" placeholder="Estimate Time">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = "10", placeholder = "Description" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.description)
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Assignee to <span class="required">*</span></label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select class="form-control">
-                                                    <option>User 1 </option>
-                                                    <option>User 2</option>
-                                                    <option>User 3</option>
-                                                    <option>User 4</option>
-                                                    <option>User 5</option>
-                                                </select>
-                                            </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
+                                            <button type="submit" class="btn btn-success" value="Create">Create</button>
                                         </div>
-
-                                        <div class="ln_solid"></div>
-                                        <div class="form-group">
-                                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                                <button type="submit" class="btn btn-primary">Cancel</button>
-                                                <button type="submit" class="btn btn-success">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                }
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <!-- /.panel-body -->
+
             </div>
-            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-12 -->
     </div>
 </div>
 
 
+
+<style type="text/css">
+    .message {
+        float: left;
+        padding: 5px;
+        color: red;
+        text-align: left;
+    }
+
+    .required {
+        color: red;
+    }
+</style>
 

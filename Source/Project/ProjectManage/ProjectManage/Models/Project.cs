@@ -20,8 +20,6 @@ namespace ProjectManage.Models
             this.Details = new HashSet<Detail>();
         }
 
-        [Display(Name = "ID_Project")]    //Thuộc tính Display để đặt lại tên cho cột
-        [Required(ErrorMessage = "{0} must not be empty")]    //Kiểm tra rỗng
         public int id_project { get; set; }
 
         [Display(Name = "Project Name")]    //Thuộc tính Display để đặt lại tên cho cột
@@ -43,9 +41,6 @@ namespace ProjectManage.Models
         [Display(Name = "End Date")]    //Thuộc tính Display để đặt lại tên cho cột
         [Required(ErrorMessage = "{0} must not be empty")]    //Kiểm tra rỗng
         public System.DateTime end_date { get; set; }
-
-        [Display(Name = "Status")]    //Thuộc tính Display để đặt lại tên cho cột
-        [Required(ErrorMessage = "{0} must not be empty")]    //Kiểm tra rỗng
         public int status { get; set; }
 
         [Display(Name = "Type of Project")]    //Thuộc tính Display để đặt lại tên cho cột

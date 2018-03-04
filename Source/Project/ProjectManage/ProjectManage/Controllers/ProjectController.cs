@@ -16,7 +16,8 @@ namespace ProjectManage.Controllers
         // GET: /Project/
         public ActionResult CreateProject()
         {
-
+            var listUser = db.Users.ToList();
+            ViewBag.listUser = listUser;
             return View();
         }
 
@@ -34,6 +35,8 @@ namespace ProjectManage.Controllers
                 //Lưu vào CSDL       
                 db.SaveChanges();
             }
+            CreateProject();
+            //
             return View();
         }
         #endregion
