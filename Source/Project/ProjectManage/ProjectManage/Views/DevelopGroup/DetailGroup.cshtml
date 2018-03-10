@@ -1,0 +1,70 @@
+﻿@using ProjectManage.Models;
+@model List<DevelopGroup>
+@{
+    ViewBag.Title = "Detail Group";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<!--Vùng hiển thị list các group trong 1 dự án-->
+<div class="col-lg-4">
+    <div class="panel panel-default">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>List Group</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr class="gradeA odd" role="row">
+                            <td class="sorting_1">
+                                <a href="#">@item.name_group</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--Vùng hiển thị list user trong group-->
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Position</th>
+                    <th>Joined Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr class="gradeA odd" role="row">
+                            <td class="sorting_1">
+                                <a href="#">User Name</a>
+                            </td>
+                            <td class="sorting_1">
+                                <span>Possition</span>
+                            </td>
+                            <td class="sorting_1">
+                                <span>join date</span>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+

@@ -1,33 +1,147 @@
 ﻿@using ProjectManage.Models;
 @*Định nghĩa kiểu dữ liệu cho biến model*@
-@model List<Task> 
+@model List<Task>
 @{
     ViewBag.Title = "DetailProject";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<div id="page-wrapper" style="padding-top: 55px;">
-    <!-- /.row -->
-    <div class="row">
-        @*Vùng hiển thị List Task of Project*@
-        <div class="col-lg-4" style="padding:5px;">
-            <!--Truyền action vào-->
-            @Html.Action("ListTaskPartial","Project")
+@section morriscss{
+    <link href="~/Scripts/morris.js-0.5.1/morris.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- graph area -->
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="x_panel">
+            <div class="x_title">
+                <div class="panel-heading" style="text-align: left; font-size: 25px">
+                    Sprint status report chart
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content2">
+                <div id="graph_area" style="width:100%; height:300px;">
+                </div>
+            </div>
         </div>
-        @*Hết phần hiển thị List Task of Project*@
-
-
-        @*Vùng hiển thị Chi tiết công việc*@
-        <div class="col-lg-5" style="padding:5px;">
-            @Html.Action("DetailTaskPartial", "Project")
-        </div>
-        @*Kết thúc vùng hiển thị Chi tiết công việc*@
-
-
-        @*Vùng hiển thị nội dung người tạo và thời gian*@
-        <div class="col-lg-3" style="padding: 5px;">
-            @Html.Action("MoreDetailTaskPartial", "Project")
-        </div>
-        @*Kết thúc vùng hiển thị nội dung người tạo và thời gian*@
     </div>
 </div>
+<!-- /graph area -->
+
+@*Vùng hiển thị List User tham gia Project*@
+<div class="col-lg-4" style="padding:5px;">
+    <!--Truyền action vào-->
+    @Html.Action("ListUserPartial", "Project")
+</div>
+
+@*Vùng hiển thị biểu đồ báo cáo tiến độ dự án*@
+<div class="col-lg-8">
+    <!--Detail project-->
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align: left; font-size: 25px">
+                Detail Project
+            </div>
+            <div class="panel-body">
+                <div class="well">
+                    <div class="col-md-16 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_content">
+                                <br />
+                                <div class="form-horizontal form-label-left">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Name:</label>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">Quản lý dự án phần mềm</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Leader: </label>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">Nguyễn Thị Hiền</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Total member: </label>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">10</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Project: </label>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">Create</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Phase: </label>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">4</label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date</label>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">31/1/2018</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Plan End Date</label>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">30/04/2018</label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Description: </label>
+                                        <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">Là dự án tạo mới website quản lý dự án phần mềm</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/. Detail project-->
+    <!--Vùng link Attachment-->
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align: left; font-size: 25px">
+                Attachment
+            </div>
+            <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                <tbody>
+
+                    <tr class="gradeA odd" role="row">
+                        <td class="sorting_1">
+                            <a href="#">Link atttachment</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section morrisjs{
+    <script src="~/Scripts/morris.js-0.5.1/morris.min.js"></script>
+    <script src="~/Scripts/morris.js-0.5.1/raphael-min.js"></script>
+}
+
+<script>
+    new Morris.Area({
+        element: 'graph_area',
+        data: [
+            { period: '2018 W1', open: 56, inprogress: 34, done: 23 },
+            { period: '2018 W2', open: 78, inprogress: 94, done: 50 },
+            { period: '2018 W3', open: 12, inprogress: 69, done: 25 },
+            { period: '2018 W4', open: 67, inprogress: 97, done: 89 },
+            { period: '2018 W5', open: 81, inprogress: 19, done: 93 },
+            { period: '2018 W6', open: 67, inprogress: 42, done: 81 },
+            { period: '2018 W7', open: 82, inprogress: 37, done: 18 },
+            { period: '2018 W8', open: 73, inprogress: 67, done: 75 },
+            { period: '2018 W9', open: 87, inprogress: 60, done: 28 },
+            { period: '2018 W10', open: 32, inprogress: 13, done: 91 },
+            { period: '2018 W11', open: 87, inprogress: 60, done: 28 },
+            { period: '2018 W12', open: 32, inprogress: 13, done: 91 },
+        ],
+        xkey: 'period',
+        ykeys: ['open', 'inprogress', 'done'],
+        lineColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+        labels: ['open', 'inprogress', 'done'],
+        pointSize: 2,
+        hideHover: 'auto'
+    });
+</script>

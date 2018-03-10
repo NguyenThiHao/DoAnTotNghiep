@@ -36,38 +36,25 @@ namespace ProjectManage.Controllers
                 db.SaveChanges();
             }
             CreateProject();
-            //
             return View();
         }
         #endregion
 
-        #region Danh sách Task trong 1 project
+        #region Danh sách user tham gia project
         /*
          DetailProject: Hiển thị những Task đang thực hiện trong project
          */
-        public PartialViewResult ListTaskPartial()
+        public PartialViewResult ListUserPartial()
         {
-            // Khai báo biến List các công việc trong Project
-            var lsTaskOfProject = db.Tasks.ToList();
-            return PartialView(lsTaskOfProject);
+            // Lấy ra danh sách User trong dự án (Đang sai, chưa truy vấn đúng)
+            var listUser = db.Users.ToList();
+            return PartialView(listUser);
         }
         #endregion
-
-        /*
-         Hiển thị chi tiết 1 công việc
-         */
-        public PartialViewResult DetailTaskPartial()
-        {
-            return PartialView();
-        }
 
         public ActionResult DetailProject()
         {
             return View();
-        }
-        public PartialViewResult MoreDetailTaskPartial()
-        {
-            return PartialView();
         }
     }
 }

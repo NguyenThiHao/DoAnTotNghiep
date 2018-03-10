@@ -32,9 +32,12 @@ namespace ProjectManage.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult DetailSprint()
         {
-            return View();
+            //Lấy ra danh sách các sprint
+            var listSprint = db.Sprints.ToList();
+            return View(listSprint);
         }
 	}
 }

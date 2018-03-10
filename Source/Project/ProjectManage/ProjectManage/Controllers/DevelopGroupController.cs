@@ -33,5 +33,10 @@ namespace ProjectManage.Controllers
             return View();
         }
         #endregion
+
+        public ActionResult DetailGroup()
+        {
+            return View();
+        }
     }
 }

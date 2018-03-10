@@ -35,5 +35,10 @@ namespace ProjectManage.Controllers
             return View();
         }
         #endregion
+
+        public ActionResult DetailPhase()
+        {
+            return View();
+        }
     }
 }

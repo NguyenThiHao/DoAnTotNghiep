@@ -1,8 +1,105 @@
-﻿
+﻿@using ProjectManage.Models;
+@model List<Sprint>
 @{
     ViewBag.Title = "DetailSprint";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+<!--Vùng hiển thị list các sprint-->
+<div class="col-lg-3">
+    <div class="panel panel-default">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>List Sprint</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr class="gradeA odd" role="row">
+                            <td class="sorting_1">
+                                <a href="#">@item.name_sprint</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--Vùng hiển thị các task trong 1 sprint-->
+<div class="col-lg-6">
+    <div class="col-lg-3">
+        <div class="panel panel-default">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>List Sprint</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in Model)
+                        {
+                            <tr class="gradeA odd" role="row">
+                                <td class="sorting_1">
+                                    <a href="#">@item.name_sprint</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--Thêm thông tin chi tiết cho sprint-->
+<div class="col-lg-3">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="well">
+                <div class="col-md-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <div class="modal-header" style="padding:0px; text-align: left;"><label>People</label></div>
+                            <table class="table" style="text-align: left; border: none;">
+                                <tr>
+                                    <td style="border: none;">Assignee: </td>
+                                    <td style="border: none;">Nguyễn THị Hiền</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;">Reporter: </td>
+                                    <td style="border: none;">Nguyễn Thị Hảo</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="x_content">
+                            <div class="modal-header" style="padding: 0px; text-align: left;"><label>Date</label></div>
+                            <table class="table" style="text-align: left; border: none;">
+                                <tr>
+                                    <td style="border: none;">Due: </td>
+                                    <td style="border: none;">01/03/2018</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;">Created: </td>
+                                    <td style="border: none;">01/03/2018</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;">Planed Start: </td>
+                                    <td style="border: none;">01/03/2018</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

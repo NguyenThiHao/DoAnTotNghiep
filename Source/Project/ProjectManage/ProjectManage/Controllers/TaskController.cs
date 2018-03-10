@@ -38,6 +38,7 @@ namespace ProjectManage.Controllers
 
         #region Xem chi tiết 1 Task theo id
         //Xem chi tiết 1 task
+        [HttpPost]
         public ActionResult DetailTask(int id_task = 0)
         {
             //Tìm kiếm 1 task theo id
@@ -50,10 +51,14 @@ namespace ProjectManage.Controllers
             }
             return View(task);
         }
-
         #endregion 
 
-        
+        [HttpGet]
+        public ActionResult DetailTask()
+        {
+            return View();
+        }
+
         /*
          Hiển thị chi tiết 1 công việc
          */
@@ -62,10 +67,7 @@ namespace ProjectManage.Controllers
             return PartialView();
         }
 
-        public ActionResult DetailProject()
-        {
-            return View();
-        }
+       
         public PartialViewResult MoreDetailTaskPartial()
         {
             return PartialView();
