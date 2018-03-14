@@ -72,5 +72,13 @@ namespace ProjectManage.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult Dashboard(int id_user)
+        {
+            var listTask = db.Tasks.ToList();
+            return View(listTask);
+        }
+
+
     }
 }

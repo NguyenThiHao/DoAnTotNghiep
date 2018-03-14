@@ -1,4 +1,7 @@
-﻿
+﻿@using ProjectManage.Models;
+@{
+     User currentUser = (User)Session["Account"];
+}
 <!--Vùng menu-->
         <hr />
         <!--Menu bên trái-->
@@ -96,12 +99,12 @@
                     <li class="dropdown">
                         <a data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Nguyễn Thị Hảo</a></li>
+                            <li><a href="../User/DetailUser?id_user=@currentUser.id_user">@currentUser.user_name.ToString()</a></li>
                             <div class="divider"></div>
-                            <li><a href="#">Thông tin</a></li>
-                            <li><a href="#">Đổi mật khẩu</a></li>
+                            <li><a href="../Task/Dashboard?id_user=@currentUser.id_user">Dashboard</a></li>
+                            <li><a href="../Timesheet/Timesheet?id_user=@currentUser.id_user">Timesheet</a></li>
                             <div class="divider"></div>
-                            <li><a href="#">Thoát</a></li>
+                            <li><a href="../User/Login">Log Out</a></li>
                         </ul>
                     </li>
                     <li><a href="#"><span class="glyphicon glyphicon-cog"></span></a></li>

@@ -51,9 +51,8 @@ namespace ProjectManage.Controllers
             User user = db.Users.SingleOrDefault(n=> n.account == sAccount && n.password == sPass);
             if (user != null)
             {
-                ViewBag.Mess = "Wellcome to Black Swan!";
                 Session["Account"] = user;
-                return View();
+                return Redirect("Home/Home");
             }
             ViewBag.Mess = "Account or Password is incorrect!";
             return View();
