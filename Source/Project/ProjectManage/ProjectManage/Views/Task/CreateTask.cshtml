@@ -1,4 +1,4 @@
-﻿@using ProjectManage.Models;
+﻿@*@using ProjectManage.Models;
 @model Task
 @{
     ViewBag.Title = "Task";
@@ -25,9 +25,9 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Task Name <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.task_name, new { @class = "form-control", placeholder = "Task Name" })
+                                            @Html.TextBoxFor(model => model.taskName, new { @class = "form-control", placeholder = "Task Name" })
                                             <div class="message">
-                                                @Html.ValidationMessageFor(model => model.task_name)
+                                                @Html.ValidationMessageFor(model => model.taskName)
                                             </div>
                                         </div>
                                     </div>
@@ -35,9 +35,9 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Summary <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.summary_task, new { @class = "form-control", placeholder = "Summary" })
+                                            @Html.TextBoxFor(model => model.summary, new { @class = "form-control", placeholder = "Summary" })
                                             <div class="message">
-                                                @Html.ValidationMessageFor(model => model.summary_task)
+                                                @Html.ValidationMessageFor(model => model.summary)
                                             </div>
                                         </div>
                                     </div>
@@ -56,9 +56,9 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Sprint <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.id_sprint, new { @class = "form-control", placeholder = "Sprint" })
+                                            @Html.TextBoxFor(model => model.idSprint, new { @class = "form-control", placeholder = "Sprint" })
                                             <div class="message">
-                                                @Html.ValidationMessageFor(model => model.id_sprint)
+                                                @Html.ValidationMessageFor(model => model.idSprint)
                                             </div>
                                         </div>
                                     </div>
@@ -72,24 +72,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Plan Start Date <span class="required">*</span></label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.plan_start_date, new { @class = "form-control", placeholder = "Plan Start Date", type = "date" })
-                                            <div class="message">
-                                                @Html.ValidationMessageFor(model => model.plan_start_date)
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                   
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date <span class="required">*</span></label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Due<span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.plan_end_date, new { @class = "form-control", placeholder = "Plan End Date", type = "date" })
+                                            @Html.TextBoxFor(model => model.due, new { @class = "form-control", placeholder = "Due", type = "date" })
                                             <div class="message">
-                                                @Html.ValidationMessageFor(model => model.plan_end_date)
+                                                @Html.ValidationMessageFor(model => model.due)
                                             </div>
                                         </div>
                                     </div>
@@ -97,9 +87,9 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Estimate Time <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.estimate_time, new { @class = "form-control", placeholder = "Estimate Time" })
+                                            @Html.TextBoxFor(model => model.estimateTime, new { @class = "form-control", placeholder = "Estimate Time" })
                                             <div class="message">
-                                                @Html.ValidationMessageFor(model => model.estimate_time)
+                                                @Html.ValidationMessageFor(model => model.estimateTime)
                                             </div>
                                         </div>
                                     </div>
@@ -107,9 +97,9 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Assignee to <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.assignee_to, new { @class = "form-control", placeholder = "Assignee to " })
+                                            @Html.TextBoxFor(model => model.assignee, new { @class = "form-control", placeholder = "Assignee to " })
                                             <div class="message">
-                                                @Html.ValidationMessageFor(model => model.assignee_to)
+                                                @Html.ValidationMessageFor(model => model.assignee)
                                             </div>
                                         </div>
                                     </div>
@@ -156,5 +146,5 @@
     .required {
         color: red;
     }
-</style>
+</style>*@
 

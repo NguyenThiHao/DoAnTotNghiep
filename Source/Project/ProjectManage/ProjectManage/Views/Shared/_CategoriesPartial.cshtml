@@ -1,7 +1,7 @@
 ﻿@using ProjectManage.Models;
-@{
+@*@{
      User currentUser = (User)Session["Account"];
-}
+}*@
 <!--Vùng menu-->
         <hr />
         <!--Menu bên trái-->
@@ -12,6 +12,7 @@
                 <li class="dropdown">
                     <a href="" data-toggle="dropdown">Project <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                       
                         <li><a href="">Gần đây</a></li>
                         <div class="divider"></div>
                         <li><a href="#">Hiện tại</a></li>
@@ -99,10 +100,10 @@
                     <li class="dropdown">
                         <a data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="../User/DetailUser?id_user=@currentUser.id_user">@currentUser.user_name.ToString()</a></li>
+                            @*<li><a href="../User/DetailUser?id_user=@currentUser.idUser">@currentUser.userName.ToString()</a></li>
                             <div class="divider"></div>
-                            <li><a href="../Task/Dashboard?id_user=@currentUser.id_user">Dashboard</a></li>
-                            <li><a href="../Timesheet/Timesheet?id_user=@currentUser.id_user">Timesheet</a></li>
+                            <li><a href="../Task/Dashboard?id_user=@currentUser.idUser">Dashboard</a></li>
+                            <li><a href="../Timesheet/Timesheet?id_user=@currentUser.idUser">Timesheet</a></li>*@
                             <div class="divider"></div>
                             <li><a href="../User/Login">Log Out</a></li>
                         </ul>

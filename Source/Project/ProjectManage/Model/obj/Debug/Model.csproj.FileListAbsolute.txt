@@ -1,0 +1,10 @@
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\Model\bin\Debug\Model.dll.config
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\Model\bin\Debug\Model.dll
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\Model\bin\Debug\Model.pdb
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\Model\bin\Debug\EntityFramework.dll
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\Model\bin\Debug\EntityFramework.xml
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\Model\obj\Debug\Model.dll
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\Model\obj\Debug\Model.pdb

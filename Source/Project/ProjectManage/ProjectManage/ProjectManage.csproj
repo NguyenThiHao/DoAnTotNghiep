@@ -160,78 +160,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\DevelopGroupController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Common\CommonConstants.cs" />
+    <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\PhaseController.cs" />
-    <Compile Include="Controllers\ProjectController.cs" />
-    <Compile Include="Controllers\SprintController.cs" />
-    <Compile Include="Controllers\TaskController.cs" />
-    <Compile Include="Controllers\TimesheetController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AuthorityType.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Category.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Detail.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DevelopGroup.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Phase.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Project.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProjectManage.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectManage.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProjectManage.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProjectManage.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectManage.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Result.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Sprint.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\StatusType.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Task.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TaskType.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Timesheet.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TypeOfWork.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>ProjectManage.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -244,23 +182,8 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ProjectManage.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ProjectManage.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ProjectManage.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProjectManage.edmx</DependentUpon>
-      <LastGenOutput>ProjectManage.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\ProjectManage.edmx.diagram">
-      <DependentUpon>ProjectManage.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\ProjectManage.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProjectManage.edmx</DependentUpon>
-      <LastGenOutput>ProjectManage.cs</LastGenOutput>
-    </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -325,15 +248,13 @@
     </Content>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
-    <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\_CategoriesPartial.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_TablePartial.cshtml" />
     <Content Include="Views\Project\CreateProject.cshtml" />
     <Content Include="Views\Project\DetailProject.cshtml" />
     <Content Include="Views\Task\CreateTask.cshtml" />
-    <Content Include="Views\DevelopGroup\CreateGroup.cshtml" />
+    <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\User\CreateUser.cshtml" />
     <Content Include="Views\Phase\CreatePhase.cshtml" />
     <Content Include="Views\Project\ListUserPartial.cshtml" />
@@ -342,7 +263,6 @@
     <Content Include="Views\Task\MoreDetailTaskPartial.cshtml" />
     <Content Include="Views\Sprint\CreateSprint.cshtml" />
     <Content Include="Views\Sprint\DetailSprint.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
     <Content Include="Scripts\morris.js-0.5.1\.gitignore" />
     <Content Include="Scripts\morris.js-0.5.1\.travis.yml" />
     <Content Include="Scripts\morris.js-0.5.1\bower.json" />
@@ -373,12 +293,15 @@
     <Content Include="Scripts\morris.js-0.5.1\spec\support\placeholder.coffee" />
     <Content Include="Scripts\morris.js-0.5.1\spec\viz\run.sh" />
     <Content Include="Views\Phase\DetailPhase.cshtml" />
-    <Content Include="Views\DevelopGroup\DetailGroup.cshtml" />
-    <Content Include="Views\Task\Dashboard.cshtml" />
-    <Content Include="Views\Timesheet\Timesheet.cshtml" />
+    <Content Include="Views\Group\DetailGroup.cshtml" />
+    <Content Include="Views\PositionUser\Dashboard.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -389,6 +312,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{725a5fe7-bdb5-4e5a-9de8-50fff723e863}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

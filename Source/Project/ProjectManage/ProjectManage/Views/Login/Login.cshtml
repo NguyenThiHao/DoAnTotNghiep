@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Login";
 }
-
+@model ProjectManage.Models.LoginModel
 
 <!DOCTYPE html>
 <html>
@@ -20,28 +20,29 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Please Sign In</h3>
             </div>
-            <div class="panel-body">
-                <form role="form">
+            <div class="panel-body">      
+                @using(Html.BeginForm("Login", "Login", FormMethod.Post)){
+                    @Html.ValidationSummary(false, "", "error")
                     <fieldset>
                         <div class="form-group">
-                            <input class="form-control" placeholder="Account" name="email" type="email" autofocus>
+                            @Html.TextBoxFor(model => model.account, new { @class = "form-control", placeholder = "Account", @autofocus = "autofocus"})
+                          
                         </div>
                         <div class="form-group">
-                            <input class="form-control" placeholder="Passwords" name="password" type="password" value="">
+                            @Html.PasswordFor(model => model.password, new { @class = "form-control", placeholder = "Password" })
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                @Html.CheckBoxFor(model => model.rememberMe) Remember Me
                             </label>
                         </div>
-                        <!-- Change this to a button or input when using this as a form -->
-                        <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                        <button class="btn btn-lg btn-success btn-block" type="submit"  name="btnSubmit">Login</button>
                     </fieldset>
-                </form>
+                }
+                
             </div>
         </div>
     </div>
-    <!--END FORM LOGIN-->
 </body>
 </html>
 

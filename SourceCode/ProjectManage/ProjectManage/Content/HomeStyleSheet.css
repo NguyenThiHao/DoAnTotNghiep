@@ -1,0 +1,39 @@
+﻿body {
+}
+
+.nav-pills{
+    background-color: #205081;
+}
+
+.nav-pills a{
+    color: #ffffff;
+}
+
+.nav-pills a:hover{
+    color:  #205081;
+}
+
+.righty {
+  float: right; 
+}
+
+
+footer{
+    background-color: #e4e4e4;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-align: center;
+}
+
+.caret{
+    color: #ffffff;
+}
+
+.message{
+    float: left;
+    padding: 10px;
+    color: red;
+    text-align: left;
+}
+
+

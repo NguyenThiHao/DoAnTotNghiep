@@ -108,3 +108,5 @@ D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\bin\Micros
 D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\obj\Debug\ProjectManage.dll
 D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\obj\Debug\ProjectManage.pdb
 D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\obj\Debug\ProjectManage.csprojResolveAssemblyReference.cache
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\bin\Model.dll
+D:\DoAn_repo\DoAnTotNghiep\Source\Project\ProjectManage\ProjectManage\bin\Model.pdb

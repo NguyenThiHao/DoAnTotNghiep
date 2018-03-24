@@ -1,0 +1,42 @@
+﻿
+
+@*@using ProjectManage.Models;
+@model List<Task>
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    int i = 0;
+}
+
+<div class="col-lg-5" style="float: right;">
+    <div class="panel panel-default">
+        <table class="table table-striped table-bordered table-hover">
+            <thead style="text-align: center;">
+                <tr>
+                    <th>No.</th>
+                    <th>Type</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr class="gradeA odd" role="row">
+                            <td class="sorting_1">
+                                <a href="#">@i++</a>
+                            </td>
+                            <td class="sorting_1">
+                                <span>@item.type</span>
+                            </td>
+                            <td class="sorting_1">
+                                <a href="../Task/DetailTask/id_task=@item.summary"></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>*@
+

@@ -1,6 +1,6 @@
-﻿@using ProjectManage.Models;
+﻿@*@using ProjectManage.Models;
 @*Định nghĩa kiểu dữ liệu cho biến model*@
-@model List<Task>
+@model Project
 @{
     ViewBag.Title = "DetailProject";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
@@ -28,16 +28,14 @@
     </div>
 </div>
 <!-- /graph area -->
-
 @*Vùng hiển thị List User tham gia Project*@
 <div class="col-lg-4" style="padding:5px;">
     <!--Truyền action vào-->
     @Html.Action("ListUserPartial", "Project")
 </div>
 
-@*Vùng hiển thị biểu đồ báo cáo tiến độ dự án*@
+@*Vùng hiển thị nội dung chi tiết của dự án*@
 <div class="col-lg-8">
-    <!--Detail project-->
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading" style="text-align: left; font-size: 25px">
@@ -50,7 +48,6 @@
                             <div class="x_content">
                                 <br />
                                 <div class="form-horizontal form-label-left">
-
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Name:</label>
                                         <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">Quản lý dự án phần mềm</label>
@@ -94,6 +91,7 @@
         </div>
     </div>
     <!--/. Detail project-->
+
     <!--Vùng link Attachment-->
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -144,4 +142,4 @@
         pointSize: 2,
         hideHover: 'auto'
     });
-</script>
+</script>*@

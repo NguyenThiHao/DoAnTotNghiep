@@ -1,13 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ProjectManageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="AuthorityType">
-    <Key>
-      <PropertyRef Name="id_authority_type" />
-    </Key>
-    <Property Name="id_authority_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name_authority_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="id_category" />
@@ -17,90 +9,84 @@
     <Property Name="status" Type="Boolean" Nullable="false" />
     <Property Name="link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
-  <EntityType Name="Detail">
+  <EntityType Name="Group">
     <Key>
-      <PropertyRef Name="id_user" />
-      <PropertyRef Name="id_project" />
+      <PropertyRef Name="idGroup" />
     </Key>
-    <Property Name="id_user" Type="Int32" Nullable="false" />
-    <Property Name="id_project" Type="Int32" Nullable="false" />
-    <Property Name="join_date" Type="DateTime" Precision="3" />
-    <Property Name="leave_date" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Project" Relationship="Self.FK_Detail_Project" FromRole="Detail" ToRole="Project" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Detail_User" FromRole="Detail" ToRole="User" />
-  </EntityType>
-  <EntityType Name="DevelopGroup">
-    <Key>
-      <PropertyRef Name="id_develop_group" />
-    </Key>
-    <Property Name="id_develop_group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name_group" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="authorize" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Users" Relationship="Self.FK_User_DevelopGroup" FromRole="DevelopGroup" ToRole="User" />
+    <Property Name="idProject" Type="Int32" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_DevelopGroup_Project" FromRole="Group" ToRole="Project" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_DevelopGroup" FromRole="Group" ToRole="User" />
   </EntityType>
   <EntityType Name="Phase">
     <Key>
-      <PropertyRef Name="id_phase" />
+      <PropertyRef Name="idPhase" />
     </Key>
-    <Property Name="id_phase" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="phase_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idPhase" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="phaseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="id_project" Type="Int32" Nullable="false" />
-    <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idProject" Type="Int32" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="status" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Phase" FromRole="Phase" ToRole="Task" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_Phase_Project" FromRole="Phase" ToRole="Project" />
+    <NavigationProperty Name="Sprints" Relationship="Self.FK_Sprint_Phase" FromRole="Phase" ToRole="Sprint" />
+  </EntityType>
+  <EntityType Name="PositionUser">
+    <Key>
+      <PropertyRef Name="idUser" />
+      <PropertyRef Name="idProject" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="idProject" Type="Int32" Nullable="false" />
+    <Property Name="position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_PositionUser_Project" FromRole="PositionUser" ToRole="Project" />
+    <NavigationProperty Name="User" Relationship="Self.FK_PositionUser_User1" FromRole="PositionUser" ToRole="User" />
   </EntityType>
   <EntityType Name="Project">
     <Key>
-      <PropertyRef Name="id_project" />
+      <PropertyRef Name="idProject" />
     </Key>
-    <Property Name="id_project" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="project_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="leader" Type="Int32" Nullable="false" />
+    <Property Name="idProject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="projectName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="status" Type="Int32" Nullable="false" />
-    <Property Name="type_project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Details" Relationship="Self.FK_Detail_Project" FromRole="Project" ToRole="Detail" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Project_User1" FromRole="Project" ToRole="User" />
+    <Property Name="typeProject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Groups" Relationship="Self.FK_DevelopGroup_Project" FromRole="Project" ToRole="Group" />
+    <NavigationProperty Name="Phases" Relationship="Self.FK_Phase_Project" FromRole="Project" ToRole="Phase" />
+    <NavigationProperty Name="PositionUsers" Relationship="Self.FK_PositionUser_Project" FromRole="Project" ToRole="PositionUser" />
   </EntityType>
   <EntityType Name="Result">
     <Key>
-      <PropertyRef Name="id_result" />
-      <PropertyRef Name="id_task" />
+      <PropertyRef Name="date" />
+      <PropertyRef Name="idTask" />
     </Key>
-    <Property Name="id_result" Type="Int32" Nullable="false" />
-    <Property Name="id_task" Type="Int32" Nullable="false" />
-    <Property Name="link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idTask" Type="Int32" Nullable="false" />
+    <Property Name="link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="summary" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="reporter" Type="Int32" Nullable="false" />
-    <Property Name="id_sprint" Type="Int32" Nullable="false" />
-    <Property Name="result_today" Type="Double" Nullable="false" />
+    <Property Name="resultToday" Type="Double" Nullable="false" />
     <Property Name="total" Type="Double" Nullable="false" />
     <NavigationProperty Name="Task" Relationship="Self.FK_Result_Task" FromRole="Result" ToRole="Task" />
   </EntityType>
   <EntityType Name="Sprint">
     <Key>
-      <PropertyRef Name="id_sprint" />
+      <PropertyRef Name="idSprint" />
     </Key>
-    <Property Name="id_sprint" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name_sprint" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="id_phase" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="plan_start_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="plan_end_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="estimate_time" Type="Int32" Nullable="false" />
-    <Property Name="real_start_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="real_end_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idSprint" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sprintName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idPhase" Type="Int32" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="reporter" Type="Int32" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="type" Type="Int32" Nullable="false" />
-    <Property Name="link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Phase" Relationship="Self.FK_Sprint_Phase" FromRole="Sprint" ToRole="Phase" />
+    <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Sprint" FromRole="Sprint" ToRole="Task" />
   </EntityType>
   <EntityType Name="StatusType">
     <Key>
@@ -122,28 +108,23 @@
   </EntityType>
   <EntityType Name="Task">
     <Key>
-      <PropertyRef Name="id_task" />
+      <PropertyRef Name="idTask" />
     </Key>
-    <Property Name="id_task" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="task_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="summary_task" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="id_sprint" Type="Int32" Nullable="false" />
-    <Property Name="plan_start_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="plan_end_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="estimate_time" Type="Int32" Nullable="false" />
-    <Property Name="real_start_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="real_end_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idTask" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="taskName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="summary" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idSprint" Type="Int32" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="due" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estimateTime" Type="Int32" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="type" Type="Int32" Nullable="false" />
     <Property Name="status" Type="Int32" Nullable="false" />
-    <Property Name="link" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="reporter" Type="Int32" Nullable="false" />
     <Property Name="priority" Type="Int32" Nullable="false" />
-    <Property Name="assignee_to" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Phase" Relationship="Self.FK_Task_Phase" FromRole="Task" ToRole="Phase" />
+    <Property Name="assignee" Type="Int32" Nullable="false" />
+    <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Results" Relationship="Self.FK_Result_Task" FromRole="Task" ToRole="Result" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Task_User1" FromRole="Task" ToRole="User" />
-    <NavigationProperty Name="Timesheets" Relationship="Self.FK_Timesheet_Task" FromRole="Task" ToRole="Timesheet" />
+    <NavigationProperty Name="Sprint" Relationship="Self.FK_Task_Sprint" FromRole="Task" ToRole="Sprint" />
   </EntityType>
   <EntityType Name="TaskType">
     <Key>
@@ -152,19 +133,6 @@
     <Property Name="id_task_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name_task_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Timesheet">
-    <Key>
-      <PropertyRef Name="id_task" />
-      <PropertyRef Name="id_user" />
-    </Key>
-    <Property Name="id_task" Type="Int32" Nullable="false" />
-    <Property Name="id_user" Type="Int32" Nullable="false" />
-    <Property Name="time" Type="Int32" Nullable="false" />
-    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="type_of_work" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Task" Relationship="Self.FK_Timesheet_Task" FromRole="Timesheet" ToRole="Task" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Timesheet_User" FromRole="Timesheet" ToRole="User" />
   </EntityType>
   <EntityType Name="TypeOfWork">
     <Key>
@@ -176,80 +144,87 @@
   </EntityType>
   <EntityType Name="User">
     <Key>
-      <PropertyRef Name="id_user" />
+      <PropertyRef Name="idUser" />
     </Key>
-    <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="account" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="id_develop_group" Type="Int32" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idGroup" Type="Int32" Nullable="false" />
     <Property Name="mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="authorize" Type="Int32" Nullable="false" />
-    <Property Name="position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Details" Relationship="Self.FK_Detail_User" FromRole="User" ToRole="Detail" />
-    <NavigationProperty Name="DevelopGroup" Relationship="Self.FK_User_DevelopGroup" FromRole="User" ToRole="DevelopGroup" />
-    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_User1" FromRole="User" ToRole="Project" />
-    <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_User1" FromRole="User" ToRole="Task" />
-    <NavigationProperty Name="Timesheets" Relationship="Self.FK_Timesheet_User" FromRole="User" ToRole="Timesheet" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_User_DevelopGroup" FromRole="User" ToRole="Group" />
+    <NavigationProperty Name="PositionUsers" Relationship="Self.FK_PositionUser_User1" FromRole="User" ToRole="PositionUser" />
   </EntityType>
-  <Association Name="FK_Detail_Project">
-    <End Role="Project" Type="Self.Project" Multiplicity="1" />
-    <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+  <Association Name="FK_DevelopGroup_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Project">
-        <PropertyRef Name="id_project" />
+        <PropertyRef Name="idProject" />
       </Principal>
-      <Dependent Role="Detail">
-        <PropertyRef Name="id_project" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Detail_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="id_user" />
-      </Principal>
-      <Dependent Role="Detail">
-        <PropertyRef Name="id_user" />
+      <Dependent Role="Group">
+        <PropertyRef Name="idProject" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_User_DevelopGroup">
-    <End Role="DevelopGroup" Type="Self.DevelopGroup" Multiplicity="1" />
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="DevelopGroup">
-        <PropertyRef Name="id_develop_group" />
+      <Principal Role="Group">
+        <PropertyRef Name="idGroup" />
       </Principal>
       <Dependent Role="User">
-        <PropertyRef Name="id_develop_group" />
+        <PropertyRef Name="idGroup" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Task_Phase">
+  <Association Name="FK_Phase_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="Phase" Type="Self.Phase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="idProject" />
+      </Principal>
+      <Dependent Role="Phase">
+        <PropertyRef Name="idProject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sprint_Phase">
     <End Role="Phase" Type="Self.Phase" Multiplicity="1" />
-    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <End Role="Sprint" Type="Self.Sprint" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Phase">
-        <PropertyRef Name="id_phase" />
+        <PropertyRef Name="idPhase" />
       </Principal>
-      <Dependent Role="Task">
-        <PropertyRef Name="id_sprint" />
+      <Dependent Role="Sprint">
+        <PropertyRef Name="idPhase" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Project_User1">
+  <Association Name="FK_PositionUser_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="PositionUser" Type="Self.PositionUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="idProject" />
+      </Principal>
+      <Dependent Role="PositionUser">
+        <PropertyRef Name="idProject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PositionUser_User1">
     <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <End Role="PositionUser" Type="Self.PositionUser" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
-        <PropertyRef Name="id_user" />
+        <PropertyRef Name="idUser" />
       </Principal>
-      <Dependent Role="Project">
-        <PropertyRef Name="leader" />
+      <Dependent Role="PositionUser">
+        <PropertyRef Name="idUser" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -258,55 +233,30 @@
     <End Role="Result" Type="Self.Result" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Task">
-        <PropertyRef Name="id_task" />
+        <PropertyRef Name="idTask" />
       </Principal>
       <Dependent Role="Result">
-        <PropertyRef Name="id_task" />
+        <PropertyRef Name="idTask" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Task_User1">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
+  <Association Name="FK_Task_Sprint">
+    <End Role="Sprint" Type="Self.Sprint" Multiplicity="1" />
     <End Role="Task" Type="Self.Task" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="id_user" />
+      <Principal Role="Sprint">
+        <PropertyRef Name="idSprint" />
       </Principal>
       <Dependent Role="Task">
-        <PropertyRef Name="reporter" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Timesheet_Task">
-    <End Role="Task" Type="Self.Task" Multiplicity="1" />
-    <End Role="Timesheet" Type="Self.Timesheet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Task">
-        <PropertyRef Name="id_task" />
-      </Principal>
-      <Dependent Role="Timesheet">
-        <PropertyRef Name="id_task" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Timesheet_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Timesheet" Type="Self.Timesheet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="id_user" />
-      </Principal>
-      <Dependent Role="Timesheet">
-        <PropertyRef Name="id_user" />
+        <PropertyRef Name="idSprint" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="ProjectManageEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="AuthorityTypes" EntityType="Self.AuthorityType" />
     <EntitySet Name="Categories" EntityType="Self.Category" />
-    <EntitySet Name="Details" EntityType="Self.Detail" />
-    <EntitySet Name="DevelopGroups" EntityType="Self.DevelopGroup" />
+    <EntitySet Name="Groups" EntityType="Self.Group" />
     <EntitySet Name="Phases" EntityType="Self.Phase" />
+    <EntitySet Name="PositionUsers" EntityType="Self.PositionUser" />
     <EntitySet Name="Projects" EntityType="Self.Project" />
     <EntitySet Name="Results" EntityType="Self.Result" />
     <EntitySet Name="Sprints" EntityType="Self.Sprint" />
@@ -314,44 +264,39 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Tasks" EntityType="Self.Task" />
     <EntitySet Name="TaskTypes" EntityType="Self.TaskType" />
-    <EntitySet Name="Timesheets" EntityType="Self.Timesheet" />
     <EntitySet Name="TypeOfWorks" EntityType="Self.TypeOfWork" />
     <EntitySet Name="Users" EntityType="Self.User" />
-    <AssociationSet Name="FK_Detail_Project" Association="Self.FK_Detail_Project">
+    <AssociationSet Name="FK_DevelopGroup_Project" Association="Self.FK_DevelopGroup_Project">
       <End Role="Project" EntitySet="Projects" />
-      <End Role="Detail" EntitySet="Details" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Detail_User" Association="Self.FK_Detail_User">
-      <End Role="User" EntitySet="Users" />
-      <End Role="Detail" EntitySet="Details" />
+      <End Role="Group" EntitySet="Groups" />
     </AssociationSet>
     <AssociationSet Name="FK_User_DevelopGroup" Association="Self.FK_User_DevelopGroup">
-      <End Role="DevelopGroup" EntitySet="DevelopGroups" />
+      <End Role="Group" EntitySet="Groups" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <AssociationSet Name="FK_Task_Phase" Association="Self.FK_Task_Phase">
-      <End Role="Phase" EntitySet="Phases" />
-      <End Role="Task" EntitySet="Tasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Project_User1" Association="Self.FK_Project_User1">
-      <End Role="User" EntitySet="Users" />
+    <AssociationSet Name="FK_Phase_Project" Association="Self.FK_Phase_Project">
       <End Role="Project" EntitySet="Projects" />
+      <End Role="Phase" EntitySet="Phases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sprint_Phase" Association="Self.FK_Sprint_Phase">
+      <End Role="Phase" EntitySet="Phases" />
+      <End Role="Sprint" EntitySet="Sprints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PositionUser_Project" Association="Self.FK_PositionUser_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="PositionUser" EntitySet="PositionUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PositionUser_User1" Association="Self.FK_PositionUser_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PositionUser" EntitySet="PositionUsers" />
     </AssociationSet>
     <AssociationSet Name="FK_Result_Task" Association="Self.FK_Result_Task">
       <End Role="Task" EntitySet="Tasks" />
       <End Role="Result" EntitySet="Results" />
     </AssociationSet>
-    <AssociationSet Name="FK_Task_User1" Association="Self.FK_Task_User1">
-      <End Role="User" EntitySet="Users" />
+    <AssociationSet Name="FK_Task_Sprint" Association="Self.FK_Task_Sprint">
+      <End Role="Sprint" EntitySet="Sprints" />
       <End Role="Task" EntitySet="Tasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Timesheet_Task" Association="Self.FK_Timesheet_Task">
-      <End Role="Task" EntitySet="Tasks" />
-      <End Role="Timesheet" EntitySet="Timesheets" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Timesheet_User" Association="Self.FK_Timesheet_User">
-      <End Role="User" EntitySet="Users" />
-      <End Role="Timesheet" EntitySet="Timesheets" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
