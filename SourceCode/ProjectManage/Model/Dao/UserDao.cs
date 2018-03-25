@@ -75,7 +75,6 @@ namespace Model.Dao
                 user.account = entity.account;
                 user.idGroup = entity.idGroup;
                 user.mail = entity.mail;
-                user.password = entity.password;
                 user.status = entity.status;
                 //lưu vào DB
                 db.SaveChanges();

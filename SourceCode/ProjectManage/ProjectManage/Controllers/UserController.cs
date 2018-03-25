@@ -17,7 +17,7 @@ namespace ProjectManage.Controllers
             return View();
         }
 
-
+        #region Create User
         //Thêm mới 1 user
         public ActionResult CreateUser(User user)
         {
@@ -41,12 +41,23 @@ namespace ProjectManage.Controllers
             return View("CreateUser");
         }
 
+        #endregion
+
         //Xem chi tiết 1 user
         public ActionResult DetailUser(int idUser)
-        {
+        {       
             return View();
         }
 
+        #region Edit User
+        //Load trang Edit user, truyền vào tham số idUser
+        public ActionResult EditUser(int idUser)
+        {
+            var user = new UserDao().ViewDetail(idUser);
+            return View(user);
+        }
+
+        [HttpPost]
         //Chỉnh sửa user
         public ActionResult EditUser(User user)
         {
@@ -74,5 +85,7 @@ namespace ProjectManage.Controllers
             }
             return View("EditUser");
         }
+        #endregion
+
     }
 }

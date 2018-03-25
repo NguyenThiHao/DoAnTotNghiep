@@ -1,0 +1,103 @@
+﻿@model Model.EF.User
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: left; font-size: 25px">
+            Create User
+        </div>
+        <div class="panel-body">
+            <div class="well">
+                <div class="col-md-16 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <br />
+                            <div class="form-horizontal form-label-left">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.ValidationSummary(true)
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">User Name <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.userName, new { @class = "form-control", placeholder = "User Name" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.userName)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Account <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.account, new { @class = "form-control", placeholder = "Account" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.account)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Group </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.idGroup, new { @class = "form-control", placeholder = "Group" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.idGroup)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.mail, new { @class = "form-control", placeholder = "Email", type = "email" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.mail)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.status, new { @class = "form-control", placeholder = "Status"})
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.status)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
+                                            <button type="submit" class="btn btn-success" value="Edit">Edit</button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style type="text/css">
+    .message {
+        float: left;
+        padding: 5px;
+        color: red;
+        text-align: left;
+    }
+
+    .required {
+        color: red;
+    }
+</style>

@@ -1,21 +1,19 @@
-﻿
-
-@*@using ProjectManage.Models;
-@model List<Task>
+﻿@using ProjectManage.Models;
+@model List<Dashboard>
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
-    int i = 0;
+    int i = 1;
 }
 
-<div class="col-lg-5" style="float: right;">
+<div class="col-lg-7" style="float: right;">
     <div class="panel panel-default">
         <table class="table table-striped table-bordered table-hover">
             <thead style="text-align: center;">
                 <tr>
                     <th>No.</th>
-                    <th>Type</th>
-                    <th>Summary</th>
+                    <th>Project</th>
+                    <th>Position</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,13 +22,19 @@
                     {
                         <tr class="gradeA odd" role="row">
                             <td class="sorting_1">
-                                <a href="#">@i++</a>
+                                <a href="#">@(i++)</a>
+                            </td>
+                            <td class="sorting_1" style="min-width: 200px;">
+                                <a href="/Project/DetailProject?idProject=@item.idProject">@item.projectName</a>
                             </td>
                             <td class="sorting_1">
-                                <span>@item.type</span>
+                                <span>@item.position</span>
                             </td>
                             <td class="sorting_1">
-                                <a href="../Task/DetailTask/id_task=@item.summary"></a>
+                                <a href="/PostionUser/ViewDetail?idUser=@item.idUser&idProject=@item.idProject">View Detail</a>
+                            </td>
+                            <td class="sorting_1">
+                                <a href="/PostionUser/ListTask?idUser=@item.idUser&idProject=@item.idProject">List Task</a>
                             </td>
                         </tr>
                     }
@@ -38,5 +42,5 @@
             </tbody>
         </table>
     </div>
-</div>*@
+</div>
 

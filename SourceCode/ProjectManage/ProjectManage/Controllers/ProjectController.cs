@@ -20,6 +20,7 @@ namespace ProjectManage.Controllers
             return View(listPositionUser);
         }
 
+        #region CreateProject
         [HttpGet]
         public ActionResult CreateProject()
         {
@@ -47,11 +48,13 @@ namespace ProjectManage.Controllers
             }
             return View("CreateProject");
         }
+        #endregion
 
+        #region EditProject
+        [HttpGet]
         public ActionResult EditProject(int idProject)
         {
             var project = new ProjectDao().ViewDetail(idProject);
-
             return View(project);
         }
 
@@ -76,7 +79,7 @@ namespace ProjectManage.Controllers
             }
             return View("EditProject");
         }
-
+        #endregion
 
         public ActionResult DetailProject(int idProject)
         {

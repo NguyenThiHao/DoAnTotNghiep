@@ -1,4 +1,4 @@
-﻿@model List<Model.EF.Project>
+﻿@model Model.EF.Project
 @{
     ViewBag.Title = "DetailProject";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
@@ -45,12 +45,10 @@
                         <div class="x_panel">
                             <div class="x_content">
                                 <br />
-                                @foreach(var item in Model)
-                                {
                                     <div class="form-horizontal form-label-left">
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Project Name:</label>
-                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">Quản lý dự án phần mềm</label>
+                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">@Model.projectName</label>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Leader: </label>
@@ -83,7 +81,7 @@
                                             <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">Là dự án tạo mới website quản lý dự án phần mềm</label>
                                         </div>
                                     </div>
-                                }                 
+                                       
                             </div>
                         </div>
                     </div>

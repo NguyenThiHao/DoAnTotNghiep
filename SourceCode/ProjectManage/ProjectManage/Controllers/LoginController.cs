@@ -13,6 +13,13 @@ namespace ProjectManage.Controllers
     public class LoginController : Controller
     {
         // GET: /Login/
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        
+        [HttpPost]
         public ActionResult Login(LoginModel model)
         {
             //Kiểm tra Validation
@@ -32,7 +39,7 @@ namespace ProjectManage.Controllers
 
                     Session.Add(CommonConstants.USER_SESSION, userSession);
                     //Đăng nhập thành công trả về trang chủ
-                    return RedirectToAction("Home", "Home");
+                    return RedirectToAction("Dashboard", "PositionUser", new {idUser = userSession.idUser });
                 }
                 else if (result == 0)
                 {

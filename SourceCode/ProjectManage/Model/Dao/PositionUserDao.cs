@@ -15,10 +15,34 @@ namespace Model.Dao
         {
             db = new ProjectManageDbContext();
         }
+
+        //lấy ra danh sách các project mà 1 user đang tham gia
         public List<PositionUser> ListProjectJoined(int idUser)
         {
             var listPositionUser = db.PositionUsers.Where(x => x.idUser == idUser).ToList();
             return listPositionUser;
+        }
+
+
+        //Kiểm tra 1 người có phải là leader của 1 project hay không
+        public bool IsLeader(int idUser, int idProject)
+        {
+            try
+            {
+                var result = db.PositionUsers.SingleOrDefault(x => x.idUser == idUser & x.idProject == idProject);
+                if (result.position == "Leader")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }  
         }
     }
 }

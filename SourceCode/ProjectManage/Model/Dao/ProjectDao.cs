@@ -64,6 +64,10 @@ namespace Model.Dao
             }  
         }
 
-        //Lấy ra danh sách Project
+        //Lấy ra tên của project theo idProject
+        public string GetProjectName(int idProject)
+        {
+            return db.Projects.Find(idProject).projectName.ToString();
+        }
     }
 }
