@@ -5,6 +5,7 @@ using System.Web;
 
 namespace ProjectManage.Models
 {
+    //Class chi tiết project
     public class DetailProject
     {
         public int idProject { get; set; }

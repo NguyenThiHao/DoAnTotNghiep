@@ -1,4 +1,4 @@
-﻿@model Model.EF.User
+﻿@model Model.EF.Task
 @{
     ViewBag.Title = "Task";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Sprint <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.idSprint, new { @class = "form-control", placeholder = "Sprint" })
+                                            @Html.DropDownListFor(model => model.idSprint, new SelectList(ViewBag.GetListSprint, "idSprint", "sprintName", "Sprint"), new { @class = "form-control", rows = "6", placeholder = "Sprint" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.idSprint)
                                             </div>

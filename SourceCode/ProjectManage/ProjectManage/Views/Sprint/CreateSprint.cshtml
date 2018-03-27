@@ -1,5 +1,4 @@
-﻿@*@using ProjectManage.Models;
-@model Sprint
+﻿@model Model.EF.Sprint
 @{
     ViewBag.Title = "CreatePhase";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
@@ -35,9 +34,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Planed Start <span class="required">*</span></label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Phase <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.createdDate, new { @class = "form-control", placeholder = "Planded Start", type = "date" })
+                                            @Html.DropDownListFor(model => model.idPhase, new SelectList(ViewBag.GetListPhase, "idPhase", "phaseName", "Phase"), new { @class = "form-control", rows = "6", placeholder = "Phase" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.createdDate)
                                             </div>
@@ -54,7 +53,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    @*<div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             @Html.TextBoxFor(model => model.status, new { @class = "form-control", placeholder = "Status" })
@@ -62,15 +61,15 @@
                                                 @Html.ValidationMessageFor(model => model.status)
                                             </div>
                                         </div>
+                                    </div>*@
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                            <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
+                                            <button type="submit" class="btn btn-success" value="Create">Create</button>
+                                        </div>
                                     </div>
-                                }
-                                <div class="ln_solid"></div>
-                                <div class="form-group">
-                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                        <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
-                                        <button type="submit" class="btn btn-success" value="Create">Create</button>
-                                    </div>
-                                </div>
+                                }  
                             </div>
                         </div>
                     </div>
@@ -92,7 +91,7 @@
     .required {
         color: red;
     }
-</style>*@
+</style>
 
 
 

@@ -39,10 +39,17 @@ namespace Model.Dao
                     return false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
-            }  
+            }
+        }
+
+        //Lấy ra List User theo project
+        public List<PositionUser> GetListIdUserByProject(int idProject)
+        {
+            List<PositionUser> listIdUserByProject = db.PositionUsers.Where(x => x.idProject == idProject).ToList();
+            return listIdUserByProject;
         }
     }
 }

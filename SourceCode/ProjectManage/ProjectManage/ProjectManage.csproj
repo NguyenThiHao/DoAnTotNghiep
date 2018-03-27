@@ -207,6 +207,8 @@
     <Content Include="Views\Project\EditProject.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\Phase\CreatePhase.cshtml" />
+    <Content Include="Views\Phase\DetailPhase.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -219,7 +221,6 @@
     <Folder Include="scripts\morris.js-0.5.1\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Group\" />
-    <Folder Include="Views\Phase\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">

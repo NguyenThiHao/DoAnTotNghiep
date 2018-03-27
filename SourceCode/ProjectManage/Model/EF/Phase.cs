@@ -27,11 +27,11 @@ namespace Model.EF
 
         public int? idProject { get; set; }
 
-        public DateTime startDate { get; set; }
+        public DateTime? startDate { get; set; }
 
-        public DateTime endDate { get; set; }
+        public DateTime? endDate { get; set; }
 
-        public long status { get; set; }
+        public string status { get; set; }
 
         public virtual Project Project { get; set; }
 

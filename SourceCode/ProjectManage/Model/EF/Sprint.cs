@@ -24,14 +24,16 @@ namespace Model.EF
 
         public int idPhase { get; set; }
 
-        public DateTime createdDate { get; set; }
+        public DateTime? createdDate { get; set; }
+
+        public DateTime? endDate { get; set; }
 
         public int reporter { get; set; }
 
         [Required]
         public string description { get; set; }
 
-        public long status { get; set; }
+        public string status { get; set; }
 
         public virtual Phase Phase { get; set; }
 

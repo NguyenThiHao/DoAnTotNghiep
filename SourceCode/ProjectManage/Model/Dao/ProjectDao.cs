@@ -69,5 +69,11 @@ namespace Model.Dao
         {
             return db.Projects.Find(idProject).projectName.ToString();
         }
+
+        //Lấy ra List project
+        public List<Project> GetListProject()
+        {
+            return db.Projects.ToList();
+        }
     }
 }

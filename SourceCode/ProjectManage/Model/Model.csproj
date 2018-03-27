@@ -52,8 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dao\GroupDao.cs" />
+    <Compile Include="Dao\PhaseDao.cs" />
     <Compile Include="Dao\PositionUserDao.cs" />
     <Compile Include="Dao\ProjectDao.cs" />
+    <Compile Include="Dao\SprintDao.cs" />
+    <Compile Include="Dao\TaskDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\Category.cs" />
     <Compile Include="EF\Group.cs" />
