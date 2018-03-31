@@ -34,5 +34,41 @@ namespace Model.Dao
         {
             return db.Sprints.ToList();
         }
+
+        //Lấy ra List<Sprint> theo idPhase
+        public List<Sprint> ListSprintByPhase(int idPhase)
+        {
+            return db.Sprints.Where(x => x.idPhase == idPhase).ToList();
+        }
+
+        //Xem chi tiết của Sprint
+        public Sprint ViewDetail(int idSprint)
+        {
+            return db.Sprints.Find(idSprint);
+        }
+
+        //Chỉnh sửa Project
+        public bool EditSprint(Sprint entity)
+        {
+            try
+            {
+                //Lấy ra project có id giống với id của project cần sửa
+                var sprint = db.Sprints.Find(entity.idSprint);
+                //Thay đổi các trường trong project
+                sprint.sprintName = entity.sprintName;
+                sprint.description = entity.description;
+                sprint.createdDate = entity.createdDate;
+                sprint.endDate = entity.endDate;
+                sprint.status = entity.status;
+                sprint.idPhase = entity.idPhase;
+                //Lưu vào csdl
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

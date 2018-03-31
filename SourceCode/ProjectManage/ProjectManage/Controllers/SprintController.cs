@@ -18,7 +18,7 @@ namespace ProjectManage.Controllers
             return View();
         }
 
-        #region CreateSprint
+        #region CreateSprint: Tạo mới 1 Sprint
         [HttpGet]
         public ActionResult CreateSprint()
         {
@@ -52,5 +52,37 @@ namespace ProjectManage.Controllers
             return View("CreateSprint");
         }
         #endregion
+
+        #region EditSprint: Chỉnh sửa thông tin Sprint
+        [HttpGet]
+        public ActionResult EditSprint(int idSprint)
+        {
+            var sprint = new SprintDao().ViewDetail(idSprint);
+            return View(sprint);
+        }
+
+        //Chỉnh sửa project
+        [HttpPost]
+        public ActionResult EditSprint(Sprint sprint)
+        {
+            //Kiểm tra Validation
+            if (ModelState.IsValid)
+            {
+                var dao = new SprintDao();
+                var result = dao.EditSprint(sprint);
+                if (result)
+                {
+                    SetAlert("Edit sprint suscessful!", "success");
+                    return RedirectToAction("DetailSprint", "Sprint");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Edit sprint failed!");
+                }
+            }
+            return View("EditSprint");
+            #endregion
+
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace ProjectManage.Controllers
             return View();
         }
 
-        #region CreatePhase
+        #region CreatePhase: Tạo mới 1 Phase
         [HttpGet]
         public ActionResult CreatePhase()
         {
@@ -46,5 +46,36 @@ namespace ProjectManage.Controllers
             return View("CreatePhase");
         }
         #endregion
+
+        #region EditPhase: Chỉnh sửa thông tin Phase
+        [HttpGet]
+        public ActionResult EditPhase(int idPhase)
+        {
+            var phase = new PhaseDao().ViewDetail(idPhase);
+            return View(phase);
+        }
+
+        //Chỉnh sửa project
+        [HttpPost]
+        public ActionResult EditPhase(Phase phase)
+        {
+            //Kiểm tra Validation
+            if (ModelState.IsValid)
+            {
+                var dao = new PhaseDao();
+                var result = dao.EditPhase(phase);
+                if (result)
+                {
+                    SetAlert("Edit phase suscessful!", "success");
+                    return RedirectToAction("DetailPhase", "Phase");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Edit phase failed!");
+                }
+            }
+            return View("EditPhase");
+            #endregion
+        }
     }
 }

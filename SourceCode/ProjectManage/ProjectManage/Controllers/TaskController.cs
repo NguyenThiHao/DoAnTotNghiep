@@ -53,5 +53,37 @@ namespace ProjectManage.Controllers
         {
             return View();
         }
+
+        #region EditTask: Chỉnh sửa thông tin Task
+        [HttpGet]
+        public ActionResult EditTask(int idTask)
+        {
+            var task = new TaskDao().ViewDetail(idTask);
+            return View(task);
+        }
+
+        //Chỉnh sửa project
+        [HttpPost]
+        public ActionResult EditTask(Task task)
+        {
+            //Kiểm tra Validation
+            if (ModelState.IsValid)
+            {
+                var dao = new TaskDao();
+                var result = dao.EditTask(task);
+                if (result)
+                {
+                    SetAlert("Edit Task suscessful!", "success");
+                    return RedirectToAction("DetailTask", "Task");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Edit Task failed!");
+                }
+            }
+            return View("EditTask");
+        }
+        #endregion
+
     }
 }

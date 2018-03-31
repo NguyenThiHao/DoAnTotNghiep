@@ -180,6 +180,7 @@
     <Compile Include="Models\Dashboard.cs" />
     <Compile Include="Models\DetailProject.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\TasksAssignedToUser.cs" />
     <Compile Include="Models\UserByProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -212,6 +213,9 @@
     <Content Include="Views\Phase\DetailPhase.cshtml" />
     <Content Include="Views\PositionUser\ViewDetail.cshtml" />
     <Content Include="Views\PositionUser\ListTask.cshtml" />
+    <Content Include="Views\Phase\EditPhase.cshtml" />
+    <Content Include="Views\Sprint\EditSprint.cshtml" />
+    <Content Include="Views\Task\EditTask.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

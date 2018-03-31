@@ -62,9 +62,10 @@ namespace ProjectManage.Controllers
         }
         #endregion
 
-        #region ListTask Danh sách các công việc Assigee cho 1 User trong project
+        #region ListTask: Danh sách các công việc Assigee cho 1 User trong project
         public ActionResult ListTask(int idUser, int idProject)
         {
+            //lấy ra danh sách task
             return View();
         }
         #endregion

@@ -32,5 +32,41 @@ namespace Model.Dao
         {
             return db.Phases.ToList();
         }
+
+        //Lấy ra List<Phase> theo idProject
+        public List<Phase> ListPhaseByProject(int idProject)
+        {
+            return db.Phases.Where(x => x.idProject == idProject).ToList();
+        }
+
+        //Xem chi tiết của Phase
+        public Phase ViewDetail(int idPhase)
+        {
+            return db.Phases.Find(idPhase);
+        }
+
+        //Chỉnh sửa Phase
+        public bool EditPhase(Phase entity)
+        {
+            try
+            {
+                //Lấy ra project có id giống với id của project cần sửa
+                var phase = db.Phases.Find(entity.idPhase);
+                //Thay đổi các trường trong project
+                phase.phaseName = entity.phaseName;
+                phase.description = entity.description;
+                phase.startDate = entity.startDate;
+                phase.endDate = entity.endDate;
+                phase.status = entity.status;
+                phase.idProject = entity.idProject;
+                //Lưu vào csdl
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
