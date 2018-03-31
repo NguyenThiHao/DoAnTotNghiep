@@ -20,14 +20,10 @@ namespace Model.EF
 
         [Required]
         [StringLength(50)]
-        public string nameGroup { get; set; }
+        public string groupName { get; set; }
 
         [Required]
         public string description { get; set; }
-
-        public int? idProject { get; set; }
-
-        public virtual Project Project { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }

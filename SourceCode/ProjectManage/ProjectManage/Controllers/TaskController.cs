@@ -29,9 +29,8 @@ namespace ProjectManage.Controllers
         {
             //Tạo ViewBag lưu danh sách project
             ViewBag.GetListSprint = new SprintDao().GetListSprint();
-            //Lưu danh sách User theo project
-            //
-            //
+            //Lưu danh sách User theo project vào ViewBag
+            //List<UserByProject> listUserByProject = new PositionUserDao.ListUserByProject(idProject)
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {

@@ -64,6 +64,7 @@ namespace Model.Dao
             return db.Users.Find(idUser);
         }
 
+        //Chỉnh sửa thông tin User
         public bool EditUser(User entity)
         {
             try

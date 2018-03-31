@@ -12,7 +12,6 @@ namespace Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Project()
         {
-            Groups = new HashSet<Group>();
             Phases = new HashSet<Phase>();
             PositionUsers = new HashSet<PositionUser>();
         }
@@ -38,9 +37,6 @@ namespace Model.EF
         [Required]
         [StringLength(50)]
         public string typeProject { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Group> Groups { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Phase> Phases { get; set; }

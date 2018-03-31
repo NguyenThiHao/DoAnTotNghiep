@@ -21,5 +21,11 @@ namespace Model.Dao
             return db.Groups.ToList();
         }
 
+        //Lấy ra tên của group theo id
+        public string GetGroupName(int idGroup)
+        {
+            return db.Groups.Find(idGroup).groupName.ToString();
+        }
+
     }
 }

@@ -9,13 +9,13 @@ using ProjectManage.Models;
 
 namespace ProjectManage.Controllers
 {
-    public class PositionUserController : Controller
+    public class PositionUserController : BaseController
     {
 
-        #region View Dashboard
-        //Lấy ra danh sách project mà user đang tham gia
+        #region View Dashboard: Danh sách các Project mà 1 User đang tham gia
         public ActionResult Dashboard(int idUser)
-        { 
+        {
+            //Lấy ra danh sách project mà user đang tham gia
             var listProjectJoined = new PositionUserDao().ListProjectJoined(idUser);
             //Khởi tạo class 1 Dashboard để lấy ra chi tiết hơn
             Dashboard dashboard = new Dashboard();
@@ -34,6 +34,38 @@ namespace ProjectManage.Controllers
                 listDashboard.Add(dashboard);
             }
             return View(listDashboard);
+        }
+        #endregion
+
+        #region ViewDetail: Chi tiết vai trò của User trong Project
+        [HttpGet]
+        public ActionResult ViewDetail(int idUser, int idProject)
+        {
+            //Lấy ra positionUser trong project
+            PositionUser result = new PositionUserDao().DetailUserInProject(idUser, idProject);
+            UserByProject userByProject = new UserByProject();
+            userByProject.idUser = result.idUser;
+            userByProject.idProject = result.idProject;
+            userByProject.position = result.position;
+            userByProject.status = result.status;
+            userByProject.JoinedDate = result.joinedDate;
+            userByProject.projectName = new ProjectDao().GetProjectName(idProject);
+
+            //Lấy ra ViewDetail của user theo idUser
+            User user = new UserDao().ViewDetail(idUser);
+            userByProject.userName = user.userName;
+            userByProject.account = user.account;
+            userByProject.idGroup = user.idGroup;
+            //Lấy ra tên group
+            userByProject.groupName = new GroupDao().GetGroupName(userByProject.idGroup);
+            return View(userByProject);
+        }
+        #endregion
+
+        #region ListTask Danh sách các công việc Assigee cho 1 User trong project
+        public ActionResult ListTask(int idUser, int idProject)
+        {
+            return View();
         }
         #endregion
     }
