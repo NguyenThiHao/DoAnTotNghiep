@@ -27,6 +27,8 @@ namespace Model.EF
 
         public DateTime? leaveDate { get; set; }
 
+        [Required]
+        [StringLength(50)]
         public string status { get; set; }
 
         public virtual Project Project { get; set; }

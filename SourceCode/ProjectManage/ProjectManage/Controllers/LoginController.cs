@@ -30,7 +30,7 @@ namespace ProjectManage.Controllers
                 if (result == 1)
                 {
                     //lấy ra user theo account
-                    var user = dao.GetUserById(model.account);
+                    var user = dao.GetUserByAccount(model.account);
                     //Tạo ra 1 userSession
                     var userSession = new UserLogin();
                     //khởi tạo giá trị cho userSession lấy từ user

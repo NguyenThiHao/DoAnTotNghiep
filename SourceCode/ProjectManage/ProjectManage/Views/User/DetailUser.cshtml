@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "DetailUser";
-    Layout = "~/Views/Shared/_CategoriesPartial.cshtml";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
 <h2>DetailUser</h2>
@@ -60,8 +60,5 @@
         </dd>
 
     </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idUser }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+

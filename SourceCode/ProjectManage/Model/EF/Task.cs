@@ -37,13 +37,17 @@ namespace Model.EF
         [Required]
         public string description { get; set; }
 
-        public int type { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string type { get; set; }
 
         [Required]
         [StringLength(50)]
         public string status { get; set; }
 
-        public int priority { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string priority { get; set; }
 
         public int assignee { get; set; }
 
@@ -53,5 +57,7 @@ namespace Model.EF
         public virtual ICollection<Result> Results { get; set; }
 
         public virtual Sprint Sprint { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

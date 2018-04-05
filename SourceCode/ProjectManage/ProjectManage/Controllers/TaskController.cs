@@ -39,7 +39,7 @@ namespace ProjectManage.Controllers
                 if (idTask > 0)
                 {
                     SetAlert("Create task suscessful!", "success");
-                    return RedirectToAction("DetailTask", "Task");
+                    return RedirectToAction("DetailTask", "Task", new {idTask = task.idTask });
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace ProjectManage.Controllers
                 if (result)
                 {
                     SetAlert("Edit Task suscessful!", "success");
-                    return RedirectToAction("DetailTask", "Task");
+                    return RedirectToAction("DetailTask", "Task", new { idTask = task.idTask });
                 }
                 else
                 {
@@ -85,5 +85,22 @@ namespace ProjectManage.Controllers
         }
         #endregion
 
+        public ActionResult DetailTask(int idTask)
+        {
+            //Tạo ViewBag lưu danh sách project
+            ViewBag.GetListSprint = new SprintDao().GetListSprint();
+            return View();
+        }
+
+        public ActionResult MoreDetailTaskPartial()
+        {
+            return View();
+        }
+
+        public ActionResult ListTask(int idUser)
+        {
+            var result = new TaskDao().ListTaskAsigneeToUser(idUser);
+            return View(result);
+        }
     }
 }

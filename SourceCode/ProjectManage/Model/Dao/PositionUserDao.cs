@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
+using Model.ViewModel;
 
 namespace Model.Dao
 {
@@ -45,28 +46,37 @@ namespace Model.Dao
             }
         }
 
-        ////lấy ra danh sách user theo project
-        //public List<UserByProject> listUserByProject(int idProject)
-        //{
-        //    var listUserByProject = (List<UserByProject>)from p in db.Projects
-        //                            where p.idProject == idProject
-        //                            join pu in db.PositionUsers
-        //                            on p.idProject equals pu.idProject
-        //                            join u in db.Users
-        //                            on pu.idUser equals u.idUser
-        //                            select new
-        //                            {
-        //                                idUser = p.idProject,
-        //                                userName = u.userName,
-        //                            };
-        //    return listUserByProject;
-        //}
+        //Lấy ra danh sách user tham gia vào project
+        public List<PositionUser> ListUserByProject(int idProject)
+        {
+            List<PositionUser> listIdUser = db.PositionUsers.Where(x => x.idProject == idProject).ToList();
+            return listIdUser;
+        }
 
         //Tìm kiếm PositionUser theo idUser và IdProject
         public PositionUser DetailUserInProject(int idUser, int idProject)
         {
             PositionUser result = db.PositionUsers.SingleOrDefault(x => x.idProject == idProject && x.idUser == idUser);
             return result;
+        }
+
+        //Tổng số người tham gia 1 project
+        public int TotalUserByProject(int idProject)
+        {
+            return db.PositionUsers.Count(x => x.idProject == idProject);
+        }
+
+        //Tìm kiếm Leader của 1 Project
+        public int GetLeaderOfProject(int idProject)
+        {
+            try
+            {
+                return db.PositionUsers.SingleOrDefault(x => x.idProject == idProject && x.position == "Leader").idUser;
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
         }
     }
 }

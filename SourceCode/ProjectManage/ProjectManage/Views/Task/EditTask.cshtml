@@ -3,11 +3,14 @@
     ViewBag.Title = "EditTask";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+<div class="col-lg-2">
+
+</div>
 <div class="col-lg-2"></div>
 <div class="col-lg-8">
     <div class="panel panel-default">
         <div class="panel-heading" style="text-align: left; font-size: 25px">
-            Create Task
+            Edit Task
         </div>
         <div class="panel-body">
             <div class="well">
@@ -47,17 +50,6 @@
                                             @Html.TextBoxFor(model => model.priority, new { @class = "form-control", placeholder = "Priority" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.priority)
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sprint <span class="required">*</span></label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.DropDownListFor(model => model.idSprint, new SelectList(ViewBag.GetListSprint, "idSprint", "sprintName", "Sprint"), new { @class = "form-control", rows = "6", placeholder = "Sprint" })
-                                            <div class="message">
-                                                @Html.ValidationMessageFor(model => model.idSprint)
                                             </div>
                                         </div>
                                     </div>
@@ -118,7 +110,7 @@
                                     <div class="form-group">
                                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                             <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
-                                            <button type="submit" class="btn btn-success" value="Create">Create</button>
+                                            <button type="submit" class="btn btn-success" value="Edit">Edit</button>
                                         </div>
                                     </div>
                                 }

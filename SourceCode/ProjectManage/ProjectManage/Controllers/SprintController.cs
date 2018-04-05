@@ -42,7 +42,7 @@ namespace ProjectManage.Controllers
                 if (idSprint > 0)
                 {
                     SetAlert("Create sprint suscessful!", "success");
-                    return RedirectToAction("DetailSprint", "Sprint");
+                    return RedirectToAction("DetailSprint", "Sprint", new { idSprint = sprint.idSprint });
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace ProjectManage.Controllers
                 if (result)
                 {
                     SetAlert("Edit sprint suscessful!", "success");
-                    return RedirectToAction("DetailSprint", "Sprint");
+                    return RedirectToAction("DetailSprint", "Sprint", new { idSprint = sprint.idSprint });
                 }
                 else
                 {
@@ -81,8 +81,13 @@ namespace ProjectManage.Controllers
                 }
             }
             return View("EditSprint");
-            #endregion
-
         }
+        #endregion
+        #region: DetailSprint: Xem chi tiết một Sprint
+        public ActionResult DetailSprint(int idSprint)
+        {
+            return View();
+        }
+        #endregion
     }
 }

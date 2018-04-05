@@ -36,7 +36,7 @@ namespace ProjectManage.Controllers
                 if (idPhase > 0)
                 {
                     SetAlert("Create phase suscessful!", "success");
-                    return RedirectToAction("DetailPhase", "Phase");
+                    return RedirectToAction("DetailPhase", "Phase", new { idPhase = phase.idPhase });
                 }
                 else
                 {
@@ -67,7 +67,7 @@ namespace ProjectManage.Controllers
                 if (result)
                 {
                     SetAlert("Edit phase suscessful!", "success");
-                    return RedirectToAction("DetailPhase", "Phase");
+                    return RedirectToAction("DetailPhase", "Phase", new { idPhase = phase.idPhase });
                 }
                 else
                 {
@@ -77,5 +77,12 @@ namespace ProjectManage.Controllers
             return View("EditPhase");
             #endregion
         }
+
+        #region: DetailSprint: Xem chi tiết một Sprint
+        public ActionResult DetailPhase(int idPhase)
+        {
+            return View();
+        }
+        #endregion
     }
 }

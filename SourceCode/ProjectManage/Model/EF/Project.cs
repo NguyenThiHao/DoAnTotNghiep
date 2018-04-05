@@ -30,7 +30,7 @@ namespace Model.EF
 
         public DateTime endDate { get; set; }
 
-        
+        [Required]
         [StringLength(50)]
         public string status { get; set; }
 

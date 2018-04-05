@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectManage.Models
+namespace Model.ViewModel
 {
     public class UserByProject
     {
@@ -18,7 +18,7 @@ namespace ProjectManage.Models
         public int idGroup { get; set; }
         public string groupName { get; set;  }
 
-        public DateTime? JoinedDate { get; set; }
+        public DateTime? joinedDate { get; set; }
         public string status { get; set; }
 
     }

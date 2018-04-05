@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
+using Model.ViewModel;
 
 namespace Model.Dao
 {
@@ -54,7 +55,6 @@ namespace Model.Dao
                 task.description = entity.description;
                 task.due = entity.due;
                 task.status = entity.status;
-                task.idSprint = entity.idSprint;
                 task.assignee = entity.assignee;
                 task.priority = entity.priority;
                 task.summary = entity.summary;
@@ -66,6 +66,31 @@ namespace Model.Dao
             {
                 return false;
             }
+        }
+
+        //Lấy ra danh sách Task được asignee cho 1 người trong project
+        public IQueryable<TasksAssignedToUser> ListTaskAsigneeToUser(int idUser)
+        {
+            try
+            {
+                var result = from p in db.Tasks
+                                                                              where p.User.idUser == idUser
+                                                                              select new
+                                                                              {
+                                                                                  idUser = p.User.idUser,
+                                                                                  idTask = p.idTask,
+                                                                                  idSprint = p.idSprint,
+                                                                                  idProject = p.Sprint.Phase.idProject,
+                                                                                  taskName = p.taskName,
+                                                                              };
+                IQueryable<TasksAssignedToUser> a = (IQueryable<TasksAssignedToUser>)result;
+                return a;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+
         }
 
     }

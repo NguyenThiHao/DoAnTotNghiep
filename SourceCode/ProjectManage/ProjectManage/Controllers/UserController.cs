@@ -49,11 +49,11 @@ namespace ProjectManage.Controllers
             return View();
         }
 
-        #region Edit User
+        #region Edit User: Chỉnh sửa thông tin User
         //Load trang Edit user, truyền vào tham số idUser
         public ActionResult EditUser(int idUser)
         {
-            var user = new UserDao().ViewDetail(idUser);
+            var user = new UserDao().GetUserById(idUser);
             return View(user);
         }
 

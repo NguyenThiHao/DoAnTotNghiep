@@ -33,9 +33,17 @@ namespace Model.EF
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Phase>()
+                .Property(e => e.status)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Phase>()
                 .HasMany(e => e.Sprints)
                 .WithRequired(e => e.Phase)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PositionUser>()
+                .Property(e => e.status)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Project>()
                 .HasMany(e => e.PositionUsers)
@@ -43,9 +51,21 @@ namespace Model.EF
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Sprint>()
+                .Property(e => e.status)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Sprint>()
                 .HasMany(e => e.Tasks)
                 .WithRequired(e => e.Sprint)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.type)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Task>()
+                .Property(e => e.priority)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Task>()
                 .HasMany(e => e.Results)
@@ -59,6 +79,12 @@ namespace Model.EF
             modelBuilder.Entity<User>()
                 .HasMany(e => e.PositionUsers)
                 .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Tasks)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.assignee)
                 .WillCascadeOnDelete(false);
         }
     }

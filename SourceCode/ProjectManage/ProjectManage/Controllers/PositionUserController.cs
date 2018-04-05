@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model.Dao;
 using Model.EF;
+using Model.ViewModel;
 using ProjectManage.Models;
 
 namespace ProjectManage.Controllers
@@ -48,11 +49,11 @@ namespace ProjectManage.Controllers
             userByProject.idProject = result.idProject;
             userByProject.position = result.position;
             userByProject.status = result.status;
-            userByProject.JoinedDate = result.joinedDate;
+            userByProject.joinedDate = result.joinedDate;
             userByProject.projectName = new ProjectDao().GetProjectName(idProject);
 
             //Lấy ra ViewDetail của user theo idUser
-            User user = new UserDao().ViewDetail(idUser);
+            User user = new UserDao().GetUserById(idUser);
             userByProject.userName = user.userName;
             userByProject.account = user.account;
             userByProject.idGroup = user.idGroup;
@@ -65,6 +66,8 @@ namespace ProjectManage.Controllers
         #region ListTask: Danh sách các công việc Assigee cho 1 User trong project
         public ActionResult ListTask(int idUser, int idProject)
         {
+            List<Phase> listPhase = new PhaseDao().ListPhaseByProject(idProject);
+
             //lấy ra danh sách task
             return View();
         }

@@ -60,7 +60,6 @@ namespace Model.Dao
                 sprint.createdDate = entity.createdDate;
                 sprint.endDate = entity.endDate;
                 sprint.status = entity.status;
-                sprint.idPhase = entity.idPhase;
                 //Lưu vào csdl
                 db.SaveChanges();
                 return true;

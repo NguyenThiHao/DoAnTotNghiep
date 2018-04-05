@@ -1,19 +1,28 @@
-﻿<div class="panel panel-default">
+﻿@model List<Model.ViewModel.UserByProject>
+@{ 
+    int i = 1;
+}
+<div class="panel panel-default">
     <table class="table table-striped table-bordered table-hover dataTable no-footer">
         <thead>
             <tr>
-                <th>User Name</th>
+                <th>No.</th>
+                <th>Account</th>
                 <th>Position</th>
                 <th>Joined Date</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            @*@{
+            @{
                 foreach (var item in Model)
                 {
                     <tr class="gradeA odd" role="row">
                         <td class="sorting_1">
-                            <a href="../User/DetailUser?idUser=@item.idUser">@item.idUser)</a>
+                            <span>@(i++)</span>
+                        </td>
+                        <td class="sorting_1">
+                            <a href="../User/DetailUser?idUser=@item.idUser">@item.account</a>
                         </td>
                         <td class="sorting_1">
                             <span>@item.position</span>
@@ -21,9 +30,12 @@
                         <td class="sorting_1">
                             <span>@item.joinedDate</span>
                         </td>
+                        <td class="sorting_1">
+                            <span>@item.status</span>
+                        </td>
                     </tr>
                 }
-            }*@
+            }
         </tbody>
     </table>
 </div>

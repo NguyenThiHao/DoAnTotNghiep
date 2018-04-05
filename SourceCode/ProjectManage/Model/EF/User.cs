@@ -13,6 +13,7 @@ namespace Model.EF
         public User()
         {
             PositionUsers = new HashSet<PositionUser>();
+            Tasks = new HashSet<Task>();
         }
 
         [Key]
@@ -42,5 +43,8 @@ namespace Model.EF
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PositionUser> PositionUsers { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

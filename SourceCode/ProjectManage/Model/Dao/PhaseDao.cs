@@ -22,6 +22,7 @@ namespace Model.Dao
             db.Phases.Add(entity);
             //Thiết đặt status
             entity.status = "Created";
+            entity.startDate = DateTime.Now;
             //Lưu vào CSDL
             db.SaveChanges();
             return entity.idPhase;
@@ -66,6 +67,19 @@ namespace Model.Dao
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+
+        //Lấy ra tổng số Phase trong 1 project
+        public int TotalPhaseByProject(int idProject)
+        {
+            try
+            {
+                return db.Phases.Count(x => x.idProject == idProject);
+            }
+            catch(Exception ex)
+            {
+                return 0;
             }
         }
     }

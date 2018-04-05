@@ -1,4 +1,4 @@
-﻿@model Model.EF.Project
+﻿@model ProjectManage.Models.DetailProject
 @{
     ViewBag.Title = "DetailProject";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
@@ -26,14 +26,9 @@
     </div>
 </div>
 <!-- /graph area -->
-@*Vùng hiển thị List User tham gia Project*@
-<div class="col-lg-4" style="padding:5px;">
-    <!--Truyền action vào-->
-    @*@Html.Action("ListUserPartial", "Project")*@
-</div>
 
 @*Vùng hiển thị nội dung chi tiết của dự án*@
-<div class="col-lg-8">
+<div class="col-lg-7">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading" style="text-align: left; font-size: 25px">
@@ -52,33 +47,33 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Leader: </label>
-                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">Nguyễn Thị Hiền</label>
+                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">@Model.leaderName</label>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Total member: </label>
-                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">10</label>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Total members: </label>
+                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">@Model.totalMembers</label>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Project: </label>
-                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">Create</label>
+                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">@Model.typeProject</label>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Phase: </label>
-                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">4</label>
+                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">@Model.totalPhase</label>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date</label>
-                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">31/1/2018</label>
+                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">@Model.startDate</label>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Plan End Date</label>
-                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">30/04/2018</label>
+                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">@Model.endDate</label>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Description: </label>
-                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">Là dự án tạo mới website quản lý dự án phần mềm</label>
+                                            <label class="control-label col-md-9 col-sm-9 col-xs-12" style="text-align: left;">@Model.description</label>
                                         </div>
                                     </div>
                                        
@@ -112,6 +107,11 @@
     </div>
 </div>
 
+@*Vùng hiển thị List User tham gia Project*@
+<div class="col-lg-5" style="padding:5px;">
+    <!--Truyền action vào-->
+    @Html.Action("ListUserPartial", "Project")
+</div>
 @section morrisjs{
     <script src="~/Scripts/morris.js-0.5.1/morris.min.js"></script>
     <script src="~/Scripts/morris.js-0.5.1/raphael-min.js"></script>

@@ -1,10 +1,10 @@
-﻿@using ProjectManage.Models;
-@model List<Dashboard>
+﻿@model List<Model.ViewModel.TasksAssignedToUser>
 @{
-    ViewBag.Title = "Dashboard";
+    ViewBag.Title = "ListTask";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
     int i = 1;
 }
+
 
 <div class="col-lg-7" style="float: right;">
     <div class="panel panel-default">
@@ -12,9 +12,8 @@
             <thead style="text-align: center;">
                 <tr>
                     <th>No.</th>
-                    <th>T</th>
-                    <th>Position</th>
-                    <th>Status</th>
+                    <th>Project</th>
+                    <th>Task Name</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,21 +25,17 @@
                                 <a href="#">@(i++)</a>
                             </td>
                             <td class="sorting_1" style="min-width: 200px;">
-                                <a href="/Project/DetailProject?idProject=@item.idProject">@item.projectName</a>
+                                <a href="/Project/DetailProject?idProject=@item.idProject">@item.taskName</a>
                             </td>
                             <td class="sorting_1">
-                                <span>@item.position</span>
+                                <a href="/PositionUser/ViewDetail?idUser=@item.idUser&idProject=@item.idProject">@item.taskName</a>
+                            </td>
+                            <td class="sorting_1">
+                                <a href="/PositionUser/ListTask?idUser=@item.idUser&idProject=@item.idProject">List Task</a>
                             </td>
                             <td class="sorting_1">
                                 <span>@item.status </span>
                             </td>
-                            <td class="sorting_1">
-                                <a href="/PositionUser/ViewDetail?idUser=@item.idUser&idProject=@item.idProject">View Detail</a>
-                            </td>
-                            <td class="sorting_1">
-                                <a href="/Task/ListTask?idUser=@item.idUser&idProject=@item.idProject">List Task</a>
-                            </td>
-                            
                         </tr>
                     }
                 }
@@ -48,4 +43,5 @@
         </table>
     </div>
 </div>
+
 

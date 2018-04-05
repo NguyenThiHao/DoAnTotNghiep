@@ -53,13 +53,13 @@ namespace Model.Dao
         }
 
         //lấy ra 1 user theo idUser
-        public User GetUserById(string account)
+        public User GetUserByAccount(string account)
         {
             return db.Users.SingleOrDefault(x => x.account == account);
         }
 
         //Xem chi tiết của 1 user
-        public User ViewDetail(int idUser)
+        public User GetUserById(int idUser)
         {
             return db.Users.Find(idUser);
         }
@@ -84,6 +84,32 @@ namespace Model.Dao
             {
                 //Log
                 return false;
+            }
+        }
+
+        //Lấy ra tên của 1 idUser
+        public string GetNameUser(int idUser)
+        {
+            try
+            {
+                return db.Users.SingleOrDefault(x => x.idUser == idUser).userName.ToString();
+            }
+            catch(Exception ex)
+            {
+                return "";
+            }
+        }
+
+        //Lấy ra account của 1 idUser
+        public string GetAccountUser(int idUser)
+        {
+            try
+            {
+                return db.Users.SingleOrDefault(x => x.idUser == idUser).account.ToString();
+            }
+            catch (Exception ex)
+            {
+                return "";
             }
         }
     }

@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Model.Dao;
 using Model.EF;
+using Model.ViewModel;
 using ProjectManage.Common;
+using ProjectManage.Models;
 
 
 namespace ProjectManage.Controllers
@@ -39,7 +41,7 @@ namespace ProjectManage.Controllers
                 if (idProject > 0)
                 {
                     SetAlert("Create project suscessful!", "success");
-                    return RedirectToAction("DetailProject", "Project");
+                    return RedirectToAction("DetailProject", "Project", new { idProject = project.idProject});
                 }
                 else
                 {
@@ -70,7 +72,7 @@ namespace ProjectManage.Controllers
                 if (result)
                 {
                     SetAlert("Edit project suscessful!", "success");
-                    return RedirectToAction("DetailProject", "Project");
+                    return RedirectToAction("DetailProject", "Project", new { idProject = project.idProject });
                 }
                 else
                 {
@@ -84,12 +86,42 @@ namespace ProjectManage.Controllers
         public ActionResult DetailProject(int idProject)
         {
             var project = new ProjectDao().ViewDetail(idProject);
-            return View(project);
+            var detailProject = new DetailProject();
+            //Gán giá trị cho DetailProject
+            detailProject.idProject = project.idProject;
+            detailProject.projectName = project.projectName;
+            detailProject.startDate = project.startDate;
+            detailProject.status = project.status;
+            detailProject.endDate = project.endDate;
+            detailProject.description = project.description;
+            detailProject.typeProject = project.typeProject;
+            //Lấy ra id của người là Leader của Project
+            detailProject.idLeader = new PositionUserDao().GetLeaderOfProject(idProject);
+            //Lấy ra tên của Leader
+            detailProject.leaderName = new UserDao().GetNameUser(detailProject.idLeader);
+            //Lấy ra tổng số người tham gia project
+            detailProject.totalMembers = new PositionUserDao().TotalUserByProject(idProject);
+            //Lấy ra tổng số Phase trong 1 project
+            detailProject.totalPhase = new PhaseDao().TotalPhaseByProject(idProject);
+            return View(detailProject);
         }
 
-        public ActionResult ListUserPartial()
+        public ActionResult ListUserPartial(int idProject)
         {
-            return View();
+            List<PositionUser> listPosition = new PositionUserDao().ListUserByProject(idProject);
+            List<Model.ViewModel.UserByProject> listUserByProject = new List<Model.ViewModel.UserByProject>();
+            foreach(PositionUser i in listPosition)
+            {
+                int idUser = i.idUser;
+                var userByProject = new Model.ViewModel.UserByProject();
+                userByProject.idUser = idUser;
+                userByProject.position = i.position;
+                userByProject.account = new UserDao().GetAccountUser(idUser);
+                userByProject.status = i.status;
+                userByProject.joinedDate = i.joinedDate;
+                listUserByProject.Add(userByProject);
+            }
+            return View(listUserByProject);
         }
     }
 }

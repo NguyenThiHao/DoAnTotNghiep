@@ -17,7 +17,7 @@
                             <br />
                             <div class="form-horizontal form-label-left">
 
-                                @using (Html.BeginForm())
+                                @using (Html.BeginForm("CreateTask", "Task"))
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
