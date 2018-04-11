@@ -77,10 +77,17 @@ namespace Model.Dao
             {
                 return db.Phases.Count(x => x.idProject == idProject);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return 0;
             }
+        }
+
+        //Kiểm tra 1 Phase thuộc Project nào
+        public int CheckProject(int idPhase)
+        {
+            int idProject = db.Phases.SingleOrDefault(x => x.idPhase == idPhase).idProject;
+            return idProject;
         }
     }
 }

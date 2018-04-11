@@ -5,43 +5,43 @@
     int i = 1;
 }
 
-
-<div class="col-lg-7" style="float: right;">
+<div class="col-lg-4">
+    <a href="Project/ProjectDetail?idProject=@ViewBag.idProject">
+        <h3>@ViewBag.ProjectName</h3>
+    </a>
+</div>
+<div class="col-lg-8">
     <div class="panel panel-default">
         <table class="table table-striped table-bordered table-hover">
             <thead style="text-align: center;">
                 <tr>
                     <th>No.</th>
-                    <th>Project</th>
                     <th>Task Name</th>
+                    <th>Status</th>
+                    <th>Summary</th>
                 </tr>
             </thead>
             <tbody>
-                @{
-                    foreach (var item in Model)
+                @{foreach (var item in Model)
                     {
                         <tr class="gradeA odd" role="row">
                             <td class="sorting_1">
                                 <a href="#">@(i++)</a>
                             </td>
                             <td class="sorting_1" style="min-width: 200px;">
-                                <a href="/Project/DetailProject?idProject=@item.idProject">@item.taskName</a>
+                                <a href="/Task/DetailTask?idTask=@item.idTask">@item.taskName</a>
                             </td>
                             <td class="sorting_1">
-                                <a href="/PositionUser/ViewDetail?idUser=@item.idUser&idProject=@item.idProject">@item.taskName</a>
+                                <span>@item.status</span>
                             </td>
                             <td class="sorting_1">
-                                <a href="/PositionUser/ListTask?idUser=@item.idUser&idProject=@item.idProject">List Task</a>
-                            </td>
-                            <td class="sorting_1">
-                                <span>@item.status </span>
+                                <span>@item.summary </span>
                             </td>
                         </tr>
+
                     }
                 }
             </tbody>
         </table>
     </div>
 </div>
-
-

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
 using Model.ViewModel;
+using Model.Dao;
 
 namespace Model.Dao
 {
@@ -68,30 +69,80 @@ namespace Model.Dao
             }
         }
 
-        //Lấy ra danh sách Task được asignee cho 1 người trong project
-        public IQueryable<TasksAssignedToUser> ListTaskAsigneeToUser(int idUser)
+        //Lấy ra danh sách Task được asignee cho 1 người
+        public List<TasksAssignedToUser> ListTaskAsigneeToUser(int idUser, int idProject)
         {
             try
             {
-                var result = from p in db.Tasks
-                                                                              where p.User.idUser == idUser
-                                                                              select new
-                                                                              {
-                                                                                  idUser = p.User.idUser,
-                                                                                  idTask = p.idTask,
-                                                                                  idSprint = p.idSprint,
-                                                                                  idProject = p.Sprint.Phase.idProject,
-                                                                                  taskName = p.taskName,
-                                                                              };
-                IQueryable<TasksAssignedToUser> a = (IQueryable<TasksAssignedToUser>)result;
-                return a;
+                List<TasksAssignedToUser> listTasksAssigned = new List<TasksAssignedToUser>();
+                List<EF.Task> listTask = db.Tasks.Where(x => x.assignee == idUser).ToList();
+                foreach(var item in listTask)
+                {
+                    if(CheckProject(item.idTask, idProject))
+                    {
+                        TasksAssignedToUser task = new TasksAssignedToUser();
+                        task.idTask = item.idTask;
+                        task.idUser = item.assignee;
+                        task.idProject = idProject;
+                        task.priority = item.priority;
+                        task.status = item.status;
+                        task.summary = item.summary;
+                        task.description = item.description;
+                        task.due = item.due;
+                        task.createdDate = item.createdDate;
+                        task.projectName = new ProjectDao().GetProjectName(idProject);
+                        task.taskName = item.taskName;
+                        listTasksAssigned.Add(task);
+                    }
+                }
+                return listTasksAssigned;
             }
             catch(Exception ex)
             {
                 return null;
             }
-
         }
 
+        //Kiểm tra 1 task thuộc Sprint nào
+        public int CheckSprint(int idTask)
+        {
+            int idSprint = db.Tasks.SingleOrDefault(x => x.idTask == idTask).idSprint;
+            return idSprint;
+        }
+
+        //Kiểm tra 1 task có phải thuộc project đó k
+        public bool CheckProject(int idTask, int idProject)
+        {
+            int idSprint = CheckSprint(idTask);
+            int idPhase = new SprintDao().CheckPhase(idSprint);
+            int idPrj = new PhaseDao().CheckProject(idPhase);
+            if(idPrj == idProject)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Lấy ra người thực hiện 1 task
+        public int GetAssignee(int idTask)
+        {
+            int idUser = db.Tasks.SingleOrDefault(x => x.idTask == idTask).assignee;
+            return idUser;
+        }
+
+        //Lấy ra summary của 1 task
+        public string GetSummary(int idTask)
+        {
+            return db.Tasks.SingleOrDefault(x => x.idTask == idTask).summary;
+        }
+
+        //Lấy ra taskName của 1 task
+        public string GetTaskName (int idTask)
+        {
+            return db.Tasks.SingleOrDefault(x => x.idTask == idTask).taskName;
+        }
     }
 }

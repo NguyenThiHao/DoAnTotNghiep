@@ -8,6 +8,7 @@ namespace Model.ViewModel
     public class TasksAssignedToUser
     {
         public int idProject { get; set; }
+        public string projectName { get; set; }
         public int idPhase { get; set; }
         public int idSprint { get; set; }
         public int idTask { get; set; }

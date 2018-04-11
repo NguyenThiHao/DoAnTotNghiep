@@ -69,5 +69,12 @@ namespace Model.Dao
                 return false;
             }
         }
+
+        //Kiểm tra 1 sprint thuộc phase nào
+        public int CheckPhase(int idSprint)
+        {
+            int idPhase = db.Sprints.SingleOrDefault(x => x.idSprint == idSprint).idPhase;
+            return idPhase;
+        }
     }
 }

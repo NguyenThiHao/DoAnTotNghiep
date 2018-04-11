@@ -1,18 +1,21 @@
-﻿@model ProjectManage.Models.UserByProject
+﻿@model Model.ViewModel.UserByProject
 @{
     ViewBag.Title = "ViewDetail";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
 <!--Thông tin chi tiết của 1 User trong Project-->
+<div class="col-lg-2"></div>
 <div class="col-lg-8">
     <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: left; font-size: 25px">
+            Detail User in Project
+        </div>
         <div class="panel-body">
             <div class="well">
                 <div class="col-md-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_content">
-                            <div class="modal-header" style="padding:0px; text-align: left;"><label>Detail User in Project</label></div>
                             <table class="table" style="text-align: left; border: none;">
                                 <tr>
                                     <td style="border: none;">Account: </td>
@@ -32,7 +35,7 @@
                                 </tr>
                                 <tr>
                                     <td style="border: none;">Joined Date</td>
-                                    <td style="border: none;">@Model.JoinedDate</td>
+                                    <td style="border: none;">@Model.joinedDate</td>
                                 </tr>
                                 <tr>
                                     <td style="border: none;">Group</td>

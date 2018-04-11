@@ -25,7 +25,7 @@ namespace Model.EF
         [Required]
         public string description { get; set; }
 
-        public int? idProject { get; set; }
+        public int idProject { get; set; }
 
         public DateTime startDate { get; set; }
 

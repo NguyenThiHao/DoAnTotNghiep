@@ -168,6 +168,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ResultController.cs" />
     <Compile Include="Controllers\PhaseController.cs" />
     <Compile Include="Controllers\PositionUserController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -216,6 +217,7 @@
     <Content Include="Views\Sprint\EditSprint.cshtml" />
     <Content Include="Views\Task\EditTask.cshtml" />
     <Content Include="Views\Task\ListTask.cshtml" />
+    <Content Include="Views\Result\Logworks.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -228,6 +230,7 @@
     <Folder Include="scripts\morris.js-0.5.1\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Group\" />
+    <Folder Include="Views\Logworks\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">

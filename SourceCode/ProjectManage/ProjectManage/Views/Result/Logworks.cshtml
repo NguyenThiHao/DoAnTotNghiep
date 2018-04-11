@@ -1,13 +1,14 @@
-﻿@model Model.EF.Task
+﻿@model Model.ViewModel.ResultTask
 @{
-    ViewBag.Title = "EditTask";
+    ViewBag.Title = "Logworks";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+
 <div class="col-lg-2"></div>
 <div class="col-lg-8">
     <div class="panel panel-default">
         <div class="panel-heading" style="text-align: left; font-size: 25px">
-            Edit Task
+            Logworks
         </div>
         <div class="panel-body">
             <div class="well">
@@ -16,13 +17,12 @@
                         <div class="x_content">
                             <br />
                             <div class="form-horizontal form-label-left">
-
                                 @using (Html.BeginForm())
                                 {
-                                    @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
+
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Task Name <span class="required">*</span></label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Task <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             @Html.TextBoxFor(model => model.taskName, new { @class = "form-control", placeholder = "Task Name" })
                                             <div class="message">
@@ -42,80 +42,50 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Priority <span class="required">*</span></label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.priority, new { @class = "form-control", placeholder = "Priority" })
+                                            @Html.TextBoxFor(model => model.date, new { @class = "form-control",  type = "date" })
                                             <div class="message">
-                                                @Html.ValidationMessageFor(model => model.priority)
+                                                @Html.ValidationMessageFor(model => model.date)
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Task <span class="required">*</span></label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Worked </label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.type, new { @class = "form-control", placeholder = "Type " })
+                                            @Html.TextBoxFor(model => model.resultToday, new { @class = "form-control", @autofocus = "autofocus" })
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.resultToday)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextAreaFor(model => model.description, new { @class = "form-control", placeholder = "Description", rows = "10"})
+                                            <div class="message">
+                                                @Html.ValidationMessageFor(model => model.description)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Type <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            @Html.TextBoxFor(model => model.type, new { @class = "form-control", placeholder = "Type" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.type)
                                             </div>
                                         </div>
                                     </div>
 
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Due<span class="required">*</span></label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.due, new { @class = "form-control", placeholder = "Due", type = "date" })
-                                            <div class="message">
-                                                @Html.ValidationMessageFor(model => model.due)
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Estimate Time <span class="required">*</span></label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.estimateTime, new { @class = "form-control", placeholder = "Estimate Time" })
-                                            <div class="message">
-                                                @Html.ValidationMessageFor(model => model.estimateTime)
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Assignee to <span class="required">*</span></label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.assignee, new { @class = "form-control", placeholder = "Assignee to " })
-                                            <div class="message">
-                                                @Html.ValidationMessageFor(model => model.assignee)
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span></label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = "10", placeholder = "Description" })
-                                            <div class="message">
-                                                @Html.ValidationMessageFor(model => model.description)
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span></label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.status, new { @class = "form-control", placeholder = "Status" })
-                                            <div class="message">
-                                                @Html.ValidationMessageFor(model => model.status)
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                             <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
-                                            <button type="submit" class="btn btn-success" value="Edit">Edit</button>
+                                            <button type="submit" class="btn btn-success" value="Create">Create</button>
                                         </div>
                                     </div>
                                 }
@@ -123,25 +93,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-
-
-
-<style type="text/css">
-    .message {
-        float: left;
-        padding: 5px;
-        color: red;
-        text-align: left;
-    }
-
-    .required {
-        color: red;
-    }
-</style>
 
 

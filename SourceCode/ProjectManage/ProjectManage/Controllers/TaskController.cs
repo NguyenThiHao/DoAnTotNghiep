@@ -97,9 +97,13 @@ namespace ProjectManage.Controllers
             return View();
         }
 
-        public ActionResult ListTask(int idUser)
+        //Lấy ra list task được chỉ định cho 1 người trong 1 project 
+        public ActionResult ListTask(int idUser, int idProject)
         {
-            var result = new TaskDao().ListTaskAsigneeToUser(idUser);
+            //Lấy ra project của task
+
+            var result = new TaskDao().ListTaskAsigneeToUser(idUser, idProject);
+            ViewBag.ProjectName = new ProjectDao().GetProjectName(idProject);
             return View(result);
         }
     }

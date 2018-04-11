@@ -20,13 +20,11 @@ namespace Model.EF
 
         [StringLength(200)]
         public string link { get; set; }
+        [Required]
+        public string type { get; set; }
 
         [Required]
         public string description { get; set; }
-
-        [Required]
-        [StringLength(250)]
-        public string summary { get; set; }
 
         public double resultToday { get; set; }
 
