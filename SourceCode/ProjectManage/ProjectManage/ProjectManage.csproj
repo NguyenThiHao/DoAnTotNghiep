@@ -197,7 +197,6 @@
     <Content Include="Views\Shared\_TablePartial.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\User\CreateUser.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\DetailUser.cshtml" />
     <Content Include="Views\PositionUser\Dashboard.cshtml" />
     <Content Include="Views\Sprint\CreateSprint.cshtml" />
@@ -218,6 +217,7 @@
     <Content Include="Views\Task\EditTask.cshtml" />
     <Content Include="Views\Task\ListTask.cshtml" />
     <Content Include="Views\Result\Logworks.cshtml" />
+    <Content Include="Views\Result\EditLogwork.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

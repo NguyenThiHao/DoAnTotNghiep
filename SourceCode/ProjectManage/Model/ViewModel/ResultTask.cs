@@ -16,8 +16,7 @@ namespace Model.ViewModel
         public string userName { get; set; }
         public string account { get; set; }
         public string description { get; set; }
-        public float resultToday { get; set; }
-        public float total { get; set; }
+        public double resultToday { get; set; }
         public string type { get; set; }
     }
 }

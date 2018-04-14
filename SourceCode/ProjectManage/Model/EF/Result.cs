@@ -28,8 +28,6 @@ namespace Model.EF
 
         public double resultToday { get; set; }
 
-        public double total { get; set; }
-
         public virtual Task Task { get; set; }
     }
 }

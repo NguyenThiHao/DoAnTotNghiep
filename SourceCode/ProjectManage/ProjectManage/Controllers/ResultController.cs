@@ -11,6 +11,7 @@ namespace ProjectManage.Controllers
 {
     public class ResultController : BaseController
     {
+        #region Logwork
         // GET: Logworks
         public ActionResult Logworks(int idTask)
         {
@@ -43,5 +44,29 @@ namespace ProjectManage.Controllers
             }
             return View("Logworks");
         }
+
+        #endregion
+
+        #region Edit logworks
+        public ActionResult EditLogwork(ResultTask resultTask)
+        {
+            //Kiểm tra Validation
+            if (ModelState.IsValid)
+            {
+                var dao = new ResultDao();
+                var result = dao.EditResult(resultTask);
+                if (result)
+                {
+                    SetAlert("Edit Task suscessful!", "success");
+                    return RedirectToAction("DetailTask", "Task", new { idTask = resultTask.idTask });
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Edit logwork failed!");
+                }
+            }
+            return View("EditLogwork");
+        }
+        #endregion
     }
 }

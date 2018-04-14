@@ -1,12 +1,12 @@
-﻿    <div class="col-lg-12">
+﻿@model Model.ViewModel.TasksAssignedToUser
+
+<div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="well">
                 <div class="col-md-12 col-xs-12" style="text-align: right;">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"> </span>  Edit </button>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-comment"> </span>  Comment </button>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-send"> </span>  Assignee </button>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-calendar"> </span> Log work</button>
+                    @Html.ActionLink("EditTask", "EditTask", "Task", new { idTask = Model.idTask } , new { @class = "btn btn-default" })
+                    @Html.ActionLink("Logwork", "Logworks", "Result", null, new { @class = "btn btn-default" })
                 </div>
                 <div class="col-md-16 col-xs-12">
                     <div class="x_panel">
@@ -15,19 +15,19 @@
                             <table class="table" style="text-align: left; border: none;">
                                 <tr>
                                     <td style="border: none;">Type: </td>
-                                    <td style="border: none;">Sub-task</td>
+                                    <td style="border: none;">@Model.type</td>
                                     <td style="border: none;">Status: </td>
-                                    <td style="border: none;">In-Progress</td>
+                                    <td style="border: none;">@Model.status</td>
                                 </tr>
                                 <tr>
                                     <td style="border: none;">Priority:</td>
-                                    <td style="border: none;">Major</td>
+                                    <td style="border: none;">@Model.priority</td>
                                     <td style="border: none;"> </td>
                                     <td style="border: none;"> </td>
                                 </tr>
                                 <tr>
                                     <td style="border: none;">Sprint: </td>
-                                    <td style="border: none;">Speint Name</td>
+                                    <td style="border: none;">@Model.sprintName</td>
                                 </tr>
                             </table>
                         </div>

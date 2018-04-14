@@ -76,5 +76,17 @@ namespace Model.Dao
             int idPhase = db.Sprints.SingleOrDefault(x => x.idSprint == idSprint).idPhase;
             return idPhase;
         }
+
+        //Lấy ra tên của 1 sprint
+        public string GetPhaseName(int idSprint)
+        {
+            return db.Sprints.Find(idSprint).sprintName.ToString();
+        }
+
+        //Lấy ra id người tạo ra sprint
+        public int GetReporter(int idSprint)
+        {
+            return db.Sprints.Find(idSprint).reporter;
+        }
     }
 }

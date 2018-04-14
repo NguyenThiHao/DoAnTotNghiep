@@ -32,7 +32,7 @@ namespace Model.EF
 
         public DateTime due { get; set; }
 
-        public int estimateTime { get; set; }
+        public double estimateTime { get; set; }
 
         [Required]
         public string description { get; set; }

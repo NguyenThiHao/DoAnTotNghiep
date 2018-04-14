@@ -1,21 +1,176 @@
-﻿@{
+﻿@model Model.ViewModel.TasksAssignedToUser
+@{
     ViewBag.Title = "DetailTask";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    double remaining = 100 - Model.loggedTime;
 }
 
 <div class="col-lg-12">
     <div class="panel-heading" style="text-align: left; font-size: 25px">
-        <a href="#">Đường dẫn đến task hiện tại</a>
-        <span>Summary task</span>
+        <a href="#">Đường dẫn đến task hiện tại</a><br />
+        <span>@Model.summary</span>
     </div>
 </div>
         @*Vùng hiển thị Chi tiết công việc*@
         <div class="col-lg-8" style="padding:5px;">
-            @Html.Action("DetailTaskPartial", "Task")
-        </div>
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="well">
+                            <div class="col-md-12 col-xs-12" style="text-align: right;">
+                                @Html.ActionLink("EditTask", "EditTask", "Task", new { idTask = Model.idTask }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Logwork", "Logworks", "Result", null, new { @class = "btn btn-default" })
+                            </div>
+                            <div class="col-md-16 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_content">
+                                        <div class="modal-header" style="padding: 0px; text-align: left;"><label>Detail</label></div>
+                                        <table class="table" style="text-align: left; border: none;">
+                                            <tr>
+                                                <td style="border: none;">Type: </td>
+                                                <td style="border: none;">@Model.type</td>
+                                                <td style="border: none;">Status: </td>
+                                                <td style="border: none;">@Model.status</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;">Priority:</td>
+                                                <td style="border: none;">@Model.priority</td>
+                                                <td style="border: none;"> </td>
+                                                <td style="border: none;"> </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;">Sprint: </td>
+                                                <td style="border: none;">@Model.sprintName</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;">Estimate: </td>
+                                                <td style="border: none;">@Model.estimateTime</td>
+                                            </tr>
+                                        </table>
+                                    </div>
 
+                                    <div class="x_content">
+                                        <div class="modal-header" style="padding: 0px; text-align: left;"><label>Attachments</label></div>
+                                        <h3>Vùng Attachment</h3>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="modal-header" style="padding: 0px; text-align: left;">
+                                            <label>Log work</label>
+
+                                        </div>
+                                        <div>
+                                            <table class="table table-striped">
+                                                <thead style="text-align:center;">
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>Description</th>
+                                                        <th>Worked</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align:left;">
+                                                    <tr>
+                                                        <td>01/04/2018</td>
+                                                        <td>Create module A</td>
+                                                        <td>8</td>
+                                                        <td><a href="#"><span class="glyphicon glyphicon-cog"></span></a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01/04/2018</td>
+                                                        <td>Create module A</td>
+                                                        <td>8</td>
+                                                        <td><a href="#"><span class="glyphicon glyphicon-cog"></span></a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01/04/2018</td>
+                                                        <td>Create module A</td>
+                                                        <td>8</td>
+                                                        <td><a href="#"><span class="glyphicon glyphicon-cog"></span></a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
         @*Vùng hiển thị nội dung người tạo và thời gian*@
         <div class="col-lg-4" style="padding: 5px;">
-            @Html.Action("MoreDetailTaskPartial", "Task")
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="well">
+                        <div class="col-md-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_content">
+                                    <div class="modal-header" style="padding:0px; text-align: left;"><label>People</label></div>
+                                    <table class="table" style="text-align: left; border: none;">
+                                        <tr>
+                                            <td style="border: none;">Assignee: </td>
+                                            <td style="border: none;">@Model.accountAssignee (@Model.nameAssignee)</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: none;">Reporter: </td>
+                                            <td style="border: none;">@Model.accountReporter (@Model.nameReporter)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="x_content">
+                                    <div class="modal-header" style="padding: 0px; text-align: left;"><label>Date</label></div>
+                                    <table class="table" style="text-align: left; border: none;">
+                                        <tr>
+                                            <td style="border: none;">Due: </td>
+                                            <td style="border: none;">@Model.due</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: none;">Created: </td>
+                                            <td style="border: none;">@Model.createdDate</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="x_content">
+                                    <div class="modal-header" style="padding: 0px; text-align: left;"><label>Time Tracking:</label></div>
+                                    <table class="table" style="text-align: left; border: none;">
+                                        <tr>
+                                            <td style="border: none; " width="30%">Estimated:</td>
+                                            <td style="border: none; padding-top: 7px;">
+                                                <div class="progress">
+                                                    <div class="progress-bar" style="width: 100%;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr style="padding: 0px;">
+                                            <td style="border: none;" width="30%">Remaining:</td>
+                                            <td style="border: none; padding-top: 7px;">
+                                                <div class="progress">
+                                                    <div class="progress-bar-warning progress-bar" style="width:@remaining% ; float:right; ">        
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr style="padding: 0px;">
+                                            <td style="border: none;" width="30%">Logged:</td>
+                                            <td style="border: none; padding-top: 7px;">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" style="width: @Model.loggedTime%;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>

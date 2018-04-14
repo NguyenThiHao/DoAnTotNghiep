@@ -73,7 +73,6 @@
     <Compile Include="EF\TypeOfWork.cs" />
     <Compile Include="EF\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\DetailResult.cs" />
     <Compile Include="ViewModel\ResultTask.cs" />
     <Compile Include="ViewModel\TasksAssignedToUser.cs" />
     <Compile Include="ViewModel\UserByProject.cs" />

@@ -10,12 +10,6 @@ namespace ProjectManage.Controllers
 {
     public class TaskController : BaseController
     {
-        // GET: Task
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         #region CreateTask
         [HttpGet]
         public ActionResult CreateTask()
@@ -49,11 +43,7 @@ namespace ProjectManage.Controllers
             return View("CreateTask");
         }
         #endregion
-        public ActionResult DetailTaskPartial()
-        {
-            return View();
-        }
-
+        
         #region EditTask: Chỉnh sửa thông tin Task
         [HttpGet]
         public ActionResult EditTask(int idTask)
@@ -85,26 +75,33 @@ namespace ProjectManage.Controllers
         }
         #endregion
 
+        #region Detail Task
         public ActionResult DetailTask(int idTask)
         {
-            //Tạo ViewBag lưu danh sách project
-            ViewBag.GetListSprint = new SprintDao().GetListSprint();
-            return View();
+            int idProject = new TaskDao().GetProject(idTask);
+            var result = new TaskDao().TaskAsigneeToUser(idTask, idProject);
+            return View(result);
+        }
+
+        public PartialViewResult DetailTaskPartial(int idTask, int idProject)
+        {
+            var result = new TaskDao().TaskAsigneeToUser(idTask, idProject);
+            return PartialView(result);
         }
 
         public ActionResult MoreDetailTaskPartial()
         {
             return View();
         }
+        #endregion
 
-        //Lấy ra list task được chỉ định cho 1 người trong 1 project 
+        #region ListTask (Dashboard):  Lấy ra list task được chỉ định cho 1 người trong 1 project 
         public ActionResult ListTask(int idUser, int idProject)
         {
-            //Lấy ra project của task
-
             var result = new TaskDao().ListTaskAsigneeToUser(idUser, idProject);
             ViewBag.ProjectName = new ProjectDao().GetProjectName(idProject);
             return View(result);
         }
+        #endregion
     }
 }

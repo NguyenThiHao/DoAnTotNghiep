@@ -59,6 +59,7 @@ namespace Model.Dao
                 task.assignee = entity.assignee;
                 task.priority = entity.priority;
                 task.summary = entity.summary;
+                task.estimateTime = entity.estimateTime;
                 //Lưu vào csdl
                 db.SaveChanges();
                 return true;
@@ -76,31 +77,66 @@ namespace Model.Dao
             {
                 List<TasksAssignedToUser> listTasksAssigned = new List<TasksAssignedToUser>();
                 List<EF.Task> listTask = db.Tasks.Where(x => x.assignee == idUser).ToList();
-                foreach(var item in listTask)
+                foreach (var item in listTask)
                 {
-                    if(CheckProject(item.idTask, idProject))
+                    if (CheckProject(item.idTask, idProject))
                     {
                         TasksAssignedToUser task = new TasksAssignedToUser();
                         task.idTask = item.idTask;
-                        task.idUser = item.assignee;
+                        task.idAssignee = item.assignee;
+                        task.idSprint = item.idSprint;
+                        task.sprintName = new SprintDao().GetPhaseName(task.idSprint);
                         task.idProject = idProject;
                         task.priority = item.priority;
                         task.status = item.status;
                         task.summary = item.summary;
                         task.description = item.description;
                         task.due = item.due;
+                        task.type = item.type;
+                        task.estimateTime = item.estimateTime;
                         task.createdDate = item.createdDate;
                         task.projectName = new ProjectDao().GetProjectName(idProject);
                         task.taskName = item.taskName;
+                        task.loggedTime = new TaskDao().GetLogedTime(task.idTask);
                         listTasksAssigned.Add(task);
                     }
                 }
                 return listTasksAssigned;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
+        }
+
+        //Lấy ra chi tiết của 1 task
+        public TasksAssignedToUser TaskAsigneeToUser(int idTask, int idProject)
+        {
+
+            EF.Task item = db.Tasks.Find(idTask);
+            TasksAssignedToUser task = new TasksAssignedToUser();
+            task.idTask = item.idTask;
+            task.idAssignee = item.assignee;
+            task.accountAssignee = new UserDao().GetAccountUser(task.idAssignee);
+            task.nameAssignee = new UserDao().GetNameUser(task.idAssignee);
+            task.idSprint = item.idSprint;
+            task.sprintName = new SprintDao().GetPhaseName(task.idSprint);
+            task.idReporter = new SprintDao().GetReporter(task.idSprint);
+            task.accountReporter = new UserDao().GetAccountUser(task.idReporter);
+            task.nameReporter = new UserDao().GetNameUser(task.idReporter);
+            task.idProject = idProject;
+            task.priority = item.priority;
+            task.status = item.status;
+            task.summary = item.summary;
+            task.description = item.description;
+            task.due = item.due;
+            task.type = item.type;
+            task.estimateTime = item.estimateTime;
+            task.createdDate = item.createdDate;
+            task.projectName = new ProjectDao().GetProjectName(idProject);
+            task.taskName = item.taskName;
+            task.loggedTime = new TaskDao().GetLogedTime(idTask);
+            return task;
         }
 
         //Kiểm tra 1 task thuộc Sprint nào
@@ -116,7 +152,7 @@ namespace Model.Dao
             int idSprint = CheckSprint(idTask);
             int idPhase = new SprintDao().CheckPhase(idSprint);
             int idPrj = new PhaseDao().CheckProject(idPhase);
-            if(idPrj == idProject)
+            if (idPrj == idProject)
             {
                 return true;
             }
@@ -124,6 +160,15 @@ namespace Model.Dao
             {
                 return false;
             }
+        }
+
+        //Kiểm tra 1 task thuộc project nào
+        public int GetProject(int idTask)
+        {
+            int idSprint = CheckSprint(idTask);
+            int idPhase = new SprintDao().CheckPhase(idSprint);
+            int idProject = new PhaseDao().CheckProject(idPhase);
+            return idProject;
         }
 
         //Lấy ra người thực hiện 1 task
@@ -140,9 +185,26 @@ namespace Model.Dao
         }
 
         //Lấy ra taskName của 1 task
-        public string GetTaskName (int idTask)
+        public string GetTaskName(int idTask)
         {
             return db.Tasks.SingleOrDefault(x => x.idTask == idTask).taskName;
         }
+
+
+        //% thời gian đã làm trong 1 task
+        public double GetLogedTime(int idTask)
+        {
+            double estimateTime = db.Tasks.Find(idTask).estimateTime;
+            double loggedTime = 0;
+            List<Result> listResultTask = db.Results.Where(x => x.idTask == idTask).ToList();
+            foreach (var item in listResultTask)
+            {
+                loggedTime = loggedTime + item.resultToday;
+            }
+            double logged = loggedTime / estimateTime * 100;
+            return logged;
+        }
+
+
     }
 }
