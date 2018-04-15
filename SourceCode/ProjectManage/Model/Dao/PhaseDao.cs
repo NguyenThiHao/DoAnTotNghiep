@@ -89,5 +89,11 @@ namespace Model.Dao
             int idProject = db.Phases.SingleOrDefault(x => x.idPhase == idPhase).idProject;
             return idProject;
         }
+
+        //Lấy ra tên của Phase theo id
+        public string GetPhaseName(int idPhase)
+        {
+            return db.Phases.Find(idPhase).phaseName.ToString();
+        }
     }
 }

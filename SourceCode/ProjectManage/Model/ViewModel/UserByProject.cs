@@ -12,7 +12,6 @@ namespace Model.ViewModel
         public string projectName { get; set; }
         public int idUser { get; set; }
         public string userName { get; set; }
-
         public string account { get; set; }
         public string position { get; set; }
         public int idGroup { get; set; }
@@ -20,6 +19,7 @@ namespace Model.ViewModel
 
         public DateTime? joinedDate { get; set; }
         public string status { get; set; }
+        public string email { get; set; }
 
     }
 }

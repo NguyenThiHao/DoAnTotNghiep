@@ -83,10 +83,23 @@ namespace ProjectManage.Controllers
             return View("EditSprint");
         }
         #endregion
-        #region: DetailSprint: Xem chi tiết một Sprint
+        
+        #region DetailSprint: Xem chi tiết một Sprint
         public ActionResult DetailSprint(int idSprint)
         {
-            return View();
+            var dao = new SprintDao();
+            var detailSprint = dao.ViewDetail(idSprint);
+            string namePhase = new PhaseDao().GetPhaseName(detailSprint.idPhase);
+            ViewBag.namePhase = namePhase;
+            ViewBag.nameReporter = new UserDao().GetNameUser(detailSprint.reporter);
+            return View(detailSprint);
+        }
+
+        public ActionResult ListTaskInSprint(int idSprint)
+        {
+            var dao = new TaskDao();
+            var listTask = dao.ListTaskBySprint(idSprint);
+            return PartialView(listTask);
         }
         #endregion
     }

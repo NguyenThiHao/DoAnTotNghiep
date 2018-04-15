@@ -1,0 +1,29 @@
+﻿@model List<Model.EF.Result>
+<div class="x_content">
+    <div class="modal-header" style="padding: 0px; text-align: left;">
+        <label>Log work</label>
+
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead style="text-align:center;">
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Worked</th>
+                </tr>
+            </thead>
+            <tbody style="text-align:left;">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.date</td>
+                        <td>@item.description</td>
+                        <td>@item.resultToday</td>
+                        <td><a href="/Result/EditLogwork?idTask=@item.idTask&date=@item.date"><span class="glyphicon glyphicon-cog"></span></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

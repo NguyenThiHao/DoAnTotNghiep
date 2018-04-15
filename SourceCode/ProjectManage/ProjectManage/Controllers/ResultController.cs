@@ -48,6 +48,7 @@ namespace ProjectManage.Controllers
         #endregion
 
         #region Edit logworks
+        [HttpPost]
         public ActionResult EditLogwork(ResultTask resultTask)
         {
             //Kiểm tra Validation
@@ -66,6 +67,13 @@ namespace ProjectManage.Controllers
                 }
             }
             return View("EditLogwork");
+        }
+        [HttpGet]
+        public ActionResult EditLogwork(int idTask, DateTime date)
+        {
+            var dao = new ResultDao();
+            var result = dao.GetResult(idTask, date);
+            return View(result);
         }
         #endregion
     }

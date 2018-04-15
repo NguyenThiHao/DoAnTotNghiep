@@ -197,14 +197,12 @@
     <Content Include="Views\Shared\_TablePartial.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\User\CreateUser.cshtml" />
-    <Content Include="Views\User\DetailUser.cshtml" />
     <Content Include="Views\PositionUser\Dashboard.cshtml" />
     <Content Include="Views\Sprint\CreateSprint.cshtml" />
     <Content Include="Views\Sprint\DetailSprint.cshtml" />
     <Content Include="Views\Task\CreateTask.cshtml" />
     <Content Include="Views\Task\DetailTask.cshtml" />
-    <Content Include="Views\Task\DetailTaskPartial.cshtml" />
-    <Content Include="Views\Task\MoreDetailTaskPartial.cshtml" />
+    <Content Include="Views\Task\LogworkPartial.cshtml" />
     <Content Include="Views\Project\EditProject.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
@@ -218,6 +216,8 @@
     <Content Include="Views\Task\ListTask.cshtml" />
     <Content Include="Views\Result\Logworks.cshtml" />
     <Content Include="Views\Result\EditLogwork.cshtml" />
+    <Content Include="Views\Phase\ListSprintInPhase.cshtml" />
+    <Content Include="Views\Sprint\ListTaskInSprint.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

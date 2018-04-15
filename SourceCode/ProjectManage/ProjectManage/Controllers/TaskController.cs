@@ -83,15 +83,10 @@ namespace ProjectManage.Controllers
             return View(result);
         }
 
-        public PartialViewResult DetailTaskPartial(int idTask, int idProject)
+        public ActionResult LogworkPartial(int idTask)
         {
-            var result = new TaskDao().TaskAsigneeToUser(idTask, idProject);
-            return PartialView(result);
-        }
-
-        public ActionResult MoreDetailTaskPartial()
-        {
-            return View();
+            List<Result> listResultTask = new ResultDao().ListResultLogwork(idTask);
+            return View(listResultTask);
         }
         #endregion
 

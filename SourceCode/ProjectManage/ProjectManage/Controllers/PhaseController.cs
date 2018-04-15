@@ -75,13 +75,24 @@ namespace ProjectManage.Controllers
                 }
             }
             return View("EditPhase");
-            #endregion
         }
+        #endregion
 
-        #region: DetailSprint: Xem chi tiết một Sprint
+        #region DetailSprint: Xem chi tiết một Sprint
         public ActionResult DetailPhase(int idPhase)
         {
-            return View();
+            var dao = new PhaseDao();
+            var detailPhase = dao.ViewDetail(idPhase);
+            string nameProject = new ProjectDao().GetProjectName(detailPhase.idProject);
+            ViewBag.nameProject = nameProject;
+            return View(detailPhase);
+        }
+
+        public ActionResult ListSprintInPhase(int idPhase)
+        {
+            var dao = new SprintDao();
+            var listSprint = dao.ListSprintByPhase(idPhase);
+            return PartialView(listSprint);
         }
         #endregion
     }

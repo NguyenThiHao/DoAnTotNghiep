@@ -57,6 +57,7 @@ namespace ProjectManage.Controllers
             userByProject.userName = user.userName;
             userByProject.account = user.account;
             userByProject.idGroup = user.idGroup;
+            userByProject.email = user.mail;
             //Lấy ra tên group
             userByProject.groupName = new GroupDao().GetGroupName(userByProject.idGroup);
             return View(userByProject);
