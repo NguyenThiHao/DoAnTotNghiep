@@ -16,11 +16,23 @@
             <tbody style="text-align:left;">
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr id="row_@item.date">
                         <td>@item.date</td>
                         <td>@item.description</td>
                         <td>@item.resultToday</td>
-                        <td><a href="/Result/EditLogwork?idTask=@item.idTask&date=@item.date"><span class="glyphicon glyphicon-cog"></span></a></td>
+                        <td class="dropdown"><span class="glyphicon glyphicon-cog" data-toggle="dropdown"></span>
+                            <ul class="dropdown-menu" style="margin-right: 0px;">
+                                <li><a href="/Result/EditLogwork?idTask=@item.idTask&date=@item.date.GetDateTimeFormats('m')">Edit</a></li>
+                                <li>
+                                    @Ajax.ActionLink("Delete", "DeleteLogwork", "Task", new {idTask = item.idTask, date = item.date} ,new AjaxOptions
+                               {
+                                   Confirm = "Do you want delete this logwork?",
+                                   OnComplete = "$('#row_"+@item.date+"').remove()",
+                                   HttpMethod = "Delete"
+                               })
+                                </li>
+                            </ul>
+                        </td>
                     </tr>
                 }
             </tbody>

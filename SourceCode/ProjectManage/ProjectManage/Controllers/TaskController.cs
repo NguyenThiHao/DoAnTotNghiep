@@ -98,5 +98,14 @@ namespace ProjectManage.Controllers
             return View(result);
         }
         #endregion
+
+        #region Delete Logwork
+        [HttpDelete]
+        public ActionResult DeleteLogwork(int idTask, DateTime date)
+        {
+            new ResultDao().DeleteLogwork(idTask, date);
+            return RedirectToAction("LogworkPartial");
+        }
+        #endregion
     }
 }

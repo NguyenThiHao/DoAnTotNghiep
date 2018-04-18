@@ -83,6 +83,7 @@ namespace ProjectManage.Controllers
         }
         #endregion
 
+        #region Detail Project
         public ActionResult DetailProject(int idProject)
         {
             var project = new ProjectDao().ViewDetail(idProject);
@@ -106,16 +107,18 @@ namespace ProjectManage.Controllers
             return View(detailProject);
         }
 
+        //Danh sách các user ở trong 1 project
         public ActionResult ListUserPartial(int idProject)
         {
             List<PositionUser> listPosition = new PositionUserDao().ListUserByProject(idProject);
-            List<Model.ViewModel.UserByProject> listUserByProject = new List<Model.ViewModel.UserByProject>();
+            List<Model.ViewModel.UserByProject> listUserByProject = new List<UserByProject>();
             foreach(PositionUser i in listPosition)
             {
                 int idUser = i.idUser;
-                var userByProject = new Model.ViewModel.UserByProject();
+                var userByProject = new UserByProject();
                 userByProject.idUser = idUser;
                 userByProject.position = i.position;
+                userByProject.idProject = i.idProject;
                 userByProject.account = new UserDao().GetAccountUser(idUser);
                 userByProject.status = i.status;
                 userByProject.joinedDate = i.joinedDate;
@@ -123,5 +126,22 @@ namespace ProjectManage.Controllers
             }
             return View(listUserByProject);
         }
+
+        //Lấy ra danh sách các phase trong project
+        public ActionResult ListPhaseInProject(int idProject)
+        {
+            List<Phase> listPhase = new PhaseDao().ListPhaseByProject(idProject);
+            return PartialView(listPhase);
+        }
+        #endregion
+
+        #region Remove user from project
+        [HttpDelete]
+        public ActionResult RemoveUser(int idUser, int idProject)
+        {
+            new PositionUserDao().RemoveUser(idUser, idProject);
+            return RedirectToAction("ListUserPartial");
+        }
+        #endregion
     }
 }

@@ -75,5 +75,21 @@ namespace Model.Dao
             resultTask.summary = new TaskDao().GetSummary(idTask);
             return resultTask;
         }
+
+        //Delete 1 logwork
+        public bool DeleteLogwork(int idTask, DateTime date)
+        {
+            try
+            {
+                var result = db.Results.SingleOrDefault(x => x.idTask == idTask & x.date == date);
+                db.Results.Remove(result);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

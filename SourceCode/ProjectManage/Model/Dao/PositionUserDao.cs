@@ -78,5 +78,21 @@ namespace Model.Dao
                 return 0;
             }
         }
+
+        //Xóa 1 người ra khỏi project
+        public bool RemoveUser(int idUser, int idProject)
+        {
+            try
+            {
+                var result = db.PositionUsers.SingleOrDefault(x => x.idUser == idUser & x.idProject == idProject);
+                db.PositionUsers.Remove(result);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
