@@ -8,3 +8,5 @@ D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\Model\bin\Debug\EntityFramew
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\Model\bin\Debug\EntityFramework.SqlServer.xml
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\Model\obj\Debug\Model.dll
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\Model\obj\Debug\Model.pdb
+D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\Model\bin\Debug\PagedList.dll
+D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\Model\bin\Debug\PagedList.xml

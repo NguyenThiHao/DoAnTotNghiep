@@ -41,7 +41,6 @@ namespace Model.EF
         [StringLength(50)]
         public string type { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string status { get; set; }
 

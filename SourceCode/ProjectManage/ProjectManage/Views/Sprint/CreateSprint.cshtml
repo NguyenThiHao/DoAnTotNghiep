@@ -38,7 +38,7 @@
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             @Html.DropDownListFor(model => model.idPhase, new SelectList(ViewBag.GetListPhase, "idPhase", "phaseName", "Phase"), new { @class = "form-control", rows = "6", placeholder = "Phase" })
                                             <div class="message">
-                                                @Html.ValidationMessageFor(model => model.createdDate)
+                                                @Html.ValidationMessageFor(model => model.idPhase)
                                             </div>
                                         </div>
                                     </div>

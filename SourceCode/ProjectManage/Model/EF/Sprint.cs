@@ -33,7 +33,6 @@ namespace Model.EF
         [Required]
         public string description { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string status { get; set; }
 

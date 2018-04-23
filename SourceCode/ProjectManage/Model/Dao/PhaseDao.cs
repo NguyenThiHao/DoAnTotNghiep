@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
+using PagedList;
 
 namespace Model.Dao
 {
@@ -35,9 +36,10 @@ namespace Model.Dao
         }
 
         //Lấy ra List<Phase> theo idProject
-        public List<Phase> ListPhaseByProject(int idProject)
+        public IEnumerable<Phase> ListPhaseByProject(int idProject, int page, int pageSize)
         {
-            return db.Phases.Where(x => x.idProject == idProject).ToList();
+            IQueryable<Phase> model = db.Phases.Where(x => x.idProject == idProject);
+            return model.OrderByDescending(x => x.startDate).ToPagedList(page, pageSize);
         }
 
         //Xem chi tiết của Phase

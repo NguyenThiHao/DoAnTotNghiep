@@ -8,7 +8,7 @@ using Model.EF;
 using Model.ViewModel;
 using ProjectManage.Common;
 using ProjectManage.Models;
-
+using PagedList;
 
 namespace ProjectManage.Controllers
 {
@@ -128,9 +128,10 @@ namespace ProjectManage.Controllers
         }
 
         //Lấy ra danh sách các phase trong project
-        public ActionResult ListPhaseInProject(int idProject)
+        public ActionResult ListPhaseInProject(int idProject, int page =1, int pageSize = 5)
         {
-            List<Phase> listPhase = new PhaseDao().ListPhaseByProject(idProject);
+            var listPhase = new PhaseDao().ListPhaseByProject(idProject, page, pageSize);
+            ViewBag.idProject = idProject;
             return PartialView(listPhase);
         }
         #endregion
