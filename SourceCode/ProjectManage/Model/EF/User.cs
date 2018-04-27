@@ -38,6 +38,8 @@ namespace Model.EF
         public string mail { get; set; }
 
         public bool status { get; set; }
+        [StringLength(20)]
+        public string idGroupUser { get; set; }
 
         public virtual Group Group { get; set; }
 

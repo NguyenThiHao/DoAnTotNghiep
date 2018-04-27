@@ -80,7 +80,7 @@
         <!--Menu bên phải-->
         <div class="col-md-5" style="background-color: #205081; height: 40px">
             <!--Form tìm kiếm-->
-            <div class="col-md-8 ">
+            @*<div class="col-md-8 ">
                 <form action="" class="navbar-form navbar-right" method="post" style="margin-top: 3px;">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search...">
@@ -89,18 +89,13 @@
                         <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
                     </div>
                 </form>
-            </div>
+            </div>*@
             <!--Hết form tìm kiếm-->
             <div class="col-md-4">
                 <ul class="nav nav-pills righty">
                     <li class="dropdown">
                         <a data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            @*<li><a href="../User/DetailUser?id_user=@currentUser.idUser">@currentUser.userName.ToString()</a></li>
-                            <div class="divider"></div>
-                            <li><a href="../Task/Dashboard?id_user=@currentUser.idUser">Dashboard</a></li>
-                            <li><a href="../Timesheet/Timesheet?id_user=@currentUser.idUser">Timesheet</a></li>*@
-                            <div class="divider"></div>
                             <li><a href="../Login/Login">Log Out</a></li>
                         </ul>
                     </li>

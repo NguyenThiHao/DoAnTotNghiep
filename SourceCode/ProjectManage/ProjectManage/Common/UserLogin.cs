@@ -11,6 +11,6 @@ namespace ProjectManage.Common
         public int idUser { get; set; }
         public string account { get; set; }
 
-        public string idGroup { get; set; }
+        public string idGroupUser { get; set; }
     }
 }

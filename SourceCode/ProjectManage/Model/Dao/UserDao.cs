@@ -24,8 +24,28 @@ namespace Model.Dao
             return entity.idUser;
         }
 
+        public List<string> GetListCredential(string account)
+        {
+            var user = db.Users.Single(x => x.account == account);
+            var data = (from a in db.Credentials
+                        join b in db.UserGroups on a.idUserGroup equals b.id
+                        join c in db.Roles on a.idRole equals c.id
+                        where b.id == user.idGroupUser
+                        select new
+                        {
+                            idRole = a.idRole,
+                            idUserGroup = a.idUserGroup
+                        }).AsEnumerable().Select(x => new Credential()
+                        {
+                            idRole = x.idRole,
+                            idUserGroup = x.idUserGroup
+                        });
+            return data.Select(x => x.idRole).ToList();
+
+        }
+
         //Login
-        public int Login(string account, string password)
+        public int Login(string account, string password, bool isLoginAdmin = false)
         {
             var result = db.Users.SingleOrDefault(x => x.account == account);
             if (result == null )
@@ -34,19 +54,43 @@ namespace Model.Dao
             }
             else
             {
-                if(result.status == false)
+                if (isLoginAdmin == true)
                 {
-                    return -1;
-                }
-                else
-                {
-                    if(result.password == password)
+                    if (result.idGroupUser == CommonConstants.ADMIN_GROUP)
                     {
-                        return 1;
+                        if (result.status == false)
+                        {
+                            return -1;
+                        }
+                        else
+                        {
+                            if (result.password == password)
+                                return 1;
+                            else
+                                return -2;
+                        }
                     }
                     else
                     {
-                        return -2;
+                        return -3;
+                    }
+                }
+                else
+                {
+                    if (result.status == false)
+                    {
+                        return -1;
+                    }
+                    else
+                    {
+                        if (result.password == password)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return -2;
+                        }
                     }
                 }
             }

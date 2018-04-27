@@ -26,7 +26,7 @@ namespace ProjectManage.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
-                var result = dao.Login(model.account, Encryptor.MD5Hash(model.password));
+                var result = dao.Login(model.account, Encryptor.MD5Hash(model.password), false);
                 if (result == 1)
                 {
                     //lấy ra user theo account
@@ -36,7 +36,9 @@ namespace ProjectManage.Controllers
                     //khởi tạo giá trị cho userSession lấy từ user
                     userSession.account = user.account;
                     userSession.idUser = user.idUser;
-
+                    userSession.idGroupUser = user.idGroupUser;
+                    var listCredetial = dao.GetListCredential(model.account);
+                    Session.Add(CommonConstants.SESSION_CREDENTIALS, listCredetial);
                     Session.Add(CommonConstants.USER_SESSION, userSession);
                     //Đăng nhập thành công trả về trang chủ
                     return RedirectToAction("Dashboard", "PositionUser", new {idUser = userSession.idUser });
@@ -56,6 +58,10 @@ namespace ProjectManage.Controllers
                 else if (result == -2)
                 {
                     ModelState.AddModelError("", "Password is incorrect!");
+                }
+                else if (result == -3)
+                {
+                    ModelState.AddModelError("", "Your account does not have administrator!");
                 }
             }
             return View("Login");

@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonConstants.cs" />
     <Compile Include="Dao\GroupDao.cs" />
     <Compile Include="Dao\PhaseDao.cs" />
     <Compile Include="Dao\PositionUserDao.cs" />
@@ -64,18 +65,21 @@
     <Compile Include="Dao\TaskDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\Category.cs" />
+    <Compile Include="EF\Credential.cs" />
     <Compile Include="EF\Group.cs" />
     <Compile Include="EF\Phase.cs" />
     <Compile Include="EF\PositionUser.cs" />
     <Compile Include="EF\Project.cs" />
     <Compile Include="EF\ProjectManageDbContext.cs" />
     <Compile Include="EF\Result.cs" />
+    <Compile Include="EF\Role.cs" />
     <Compile Include="EF\Sprint.cs" />
     <Compile Include="EF\StatusType.cs" />
     <Compile Include="EF\Task.cs" />
     <Compile Include="EF\TaskType.cs" />
     <Compile Include="EF\TypeOfWork.cs" />
     <Compile Include="EF\User.cs" />
+    <Compile Include="EF\UserGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ResultTask.cs" />
     <Compile Include="ViewModel\TasksAssignedToUser.cs" />

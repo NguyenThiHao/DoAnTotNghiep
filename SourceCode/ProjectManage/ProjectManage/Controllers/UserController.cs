@@ -18,6 +18,7 @@ namespace ProjectManage.Controllers
         }
 
         #region Create User
+        [HasCredential(RoleID = "VIEW_USER")]
         //Thêm mới 1 user
         public ActionResult CreateUser(User user)
         {
@@ -51,6 +52,7 @@ namespace ProjectManage.Controllers
 
         #region Edit User: Chỉnh sửa thông tin User
         //Load trang Edit user, truyền vào tham số idUser
+        [HasCredential(RoleID = "EDIT_USER")]
         public ActionResult EditUser(int idUser)
         {
             var user = new UserDao().GetUserById(idUser);
@@ -59,6 +61,7 @@ namespace ProjectManage.Controllers
 
         [HttpPost]
         //Chỉnh sửa user
+        [HasCredential(RoleID = "EDIT_USER")]
         public ActionResult EditUser(User user)
         {
             //Kiểm tra validation
