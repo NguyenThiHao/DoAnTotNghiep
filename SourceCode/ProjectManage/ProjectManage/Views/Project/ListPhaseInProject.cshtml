@@ -29,7 +29,7 @@
                         }
                     </tbody>
                 </table>
-                @Html.PagedListPager(Model, page => Url.Action("DetailProject", new {ViewBag.idProject, page }))
+                @*@Html.PagedListPager(Model, page => Url.Action("DetailProject", new {ViewBag.idProject, page }))*@
                 
             </div>
             @Html.ActionLink("Create Phase", "CreatePhase", "Phase", null, new { @class = "btn btn-success" })

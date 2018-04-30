@@ -12,7 +12,6 @@
                 @Html.ActionLink("Edit", "EditPhase", "Phase", new { idPhase = Model.idPhase }, new { @class = "btn btn-default", style = "float: right;" })
             </div>
             <div class="panel-body">
-                <div class="well">
                     <div class="col-md-16 col-xs-12">
                         <div class="x_panel">
                             <div class="x_content">
@@ -51,8 +50,6 @@
             </div>
         </div>
     </div>
-</div>
-
 <!--Vùng hiển thị danh sách các sprint trong phase-->
 <div class="col-lg-5" style="padding: 0px;">
     @Html.Action("ListSprintInPhase", "Phase", new { idPhase = Model.idPhase})

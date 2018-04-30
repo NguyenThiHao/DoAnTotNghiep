@@ -22,7 +22,6 @@ D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\Microsoft.
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\Microsoft.AI.WindowsServer.dll
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\Microsoft.ApplicationInsights.dll
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\Microsoft.Web.Infrastructure.dll
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\System.Web.Helpers.dll
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\System.Web.Mvc.dll
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\System.Web.Razor.dll
@@ -54,3 +53,4 @@ D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\PagedList.
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\PagedList.Mvc.dll
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\PagedList.xml
 D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\PagedList.Mvc.xml
+D:\DoAn_repo\DoAnTotNghiep\SourceCode\ProjectManage\ProjectManage\bin\Microsoft.Web.Infrastructure.dll
