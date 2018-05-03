@@ -181,7 +181,6 @@
     <Compile Include="Common\HasCredentialAttribute.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ResultController.cs" />
     <Compile Include="Controllers\PhaseController.cs" />
@@ -206,7 +205,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Shared\_CategoriesPartial.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Shared\_TablePartial.cshtml" />

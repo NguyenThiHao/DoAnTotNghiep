@@ -11,14 +11,8 @@ namespace ProjectManage.Controllers
 {
     public class UserController : BaseController
     {
-        // GET: User
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         #region Create User
-        [HasCredential(RoleID = "VIEW_USER")]
+        [HasCredential(RoleID = "CREATE_USER")]
         //Thêm mới 1 user
         public ActionResult CreateUser(User user)
         {
@@ -45,6 +39,7 @@ namespace ProjectManage.Controllers
         #endregion
 
         //Xem chi tiết 1 user
+        [HasCredential(RoleID = "VIEW_USER")]
         public ActionResult DetailUser(int idUser)
         {       
             return View();

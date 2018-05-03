@@ -12,20 +12,17 @@ namespace ProjectManage.Controllers
 {
     public class SprintController : BaseController
     {
-        // GET: Sprint
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         #region CreateSprint: Tạo mới 1 Sprint
         [HttpGet]
+        [HasCredential(RoleID = "CREATE_SPRINT")]
         public ActionResult CreateSprint()
         {
             ViewBag.GetListPhase = new PhaseDao().GetListPhase();
             return View();
         }
 
+        [HttpPost]
+        [HasCredential(RoleID = "CREATE_SPRINT")]
         public ActionResult CreateSprint(Sprint sprint)
         {
             //Tạo ViewBag lưu danh sách Phase
@@ -55,6 +52,7 @@ namespace ProjectManage.Controllers
 
         #region EditSprint: Chỉnh sửa thông tin Sprint
         [HttpGet]
+        [HasCredential(RoleID = "EDIT_SPRINT")]
         public ActionResult EditSprint(int idSprint)
         {
             var sprint = new SprintDao().ViewDetail(idSprint);
@@ -63,6 +61,7 @@ namespace ProjectManage.Controllers
 
         //Chỉnh sửa project
         [HttpPost]
+        [HasCredential(RoleID = "EDIT_SPRINT")]
         public ActionResult EditSprint(Sprint sprint)
         {
             //Kiểm tra Validation
@@ -83,8 +82,9 @@ namespace ProjectManage.Controllers
             return View("EditSprint");
         }
         #endregion
-        
+
         #region DetailSprint: Xem chi tiết một Sprint
+        [HasCredential(RoleID = "VIEW_SPRINT")]
         public ActionResult DetailSprint(int idSprint)
         {
             var dao = new SprintDao();

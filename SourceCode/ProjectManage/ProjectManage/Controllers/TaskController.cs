@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model.EF;
 using Model.Dao;
+using ProjectManage.Common;
 
 namespace ProjectManage.Controllers
 {
@@ -12,6 +13,7 @@ namespace ProjectManage.Controllers
     {
         #region CreateTask
         [HttpGet]
+        [HasCredential(RoleID = "CREARE_TASK")]
         public ActionResult CreateTask()
         {
             ViewBag.GetListSprint = new SprintDao().GetListSprint();
@@ -19,6 +21,7 @@ namespace ProjectManage.Controllers
         }
 
         [HttpPost]
+        [HasCredential(RoleID = "CREARE_TASK")]
         public ActionResult CreateTask(Task task )
         {
             //Tạo ViewBag lưu danh sách project
@@ -46,6 +49,7 @@ namespace ProjectManage.Controllers
         
         #region EditTask: Chỉnh sửa thông tin Task
         [HttpGet]
+        [HasCredential(RoleID = "EDIT_TASK")]
         public ActionResult EditTask(int idTask)
         {
             var task = new TaskDao().ViewDetail(idTask);
@@ -54,6 +58,7 @@ namespace ProjectManage.Controllers
 
         //Chỉnh sửa project
         [HttpPost]
+        [HasCredential(RoleID = "EDIT_TASK")]
         public ActionResult EditTask(Task task)
         {
             //Kiểm tra Validation
@@ -76,6 +81,7 @@ namespace ProjectManage.Controllers
         #endregion
 
         #region Detail Task
+        [HasCredential(RoleID = "VIEW_TASK")]
         public ActionResult DetailTask(int idTask)
         {
             int idProject = new TaskDao().GetProject(idTask);
@@ -91,6 +97,7 @@ namespace ProjectManage.Controllers
         #endregion
 
         #region ListTask (Dashboard):  Lấy ra list task được chỉ định cho 1 người trong 1 project 
+        [HasCredential(RoleID = "VIEW_RESULT")]
         public ActionResult ListTask(int idUser, int idProject)
         {
             var result = new TaskDao().ListTaskAsigneeToUser(idUser, idProject);
@@ -101,6 +108,7 @@ namespace ProjectManage.Controllers
 
         #region Delete Logwork
         [HttpDelete]
+        [HasCredential(RoleID = "DELETE_RESULT")]
         public ActionResult DeleteLogwork(int idTask, DateTime date)
         {
             new ResultDao().DeleteLogwork(idTask, date);

@@ -23,6 +23,7 @@ namespace ProjectManage.Controllers
         }
 
         #region CreateProject
+        [HasCredential(RoleID = "CREATE_PROJECT")]
         [HttpGet]
         public ActionResult CreateProject()
         {
@@ -31,6 +32,7 @@ namespace ProjectManage.Controllers
 
         //Thêm mới 1 project
         [HttpPost]
+        [HasCredential(RoleID = "CREATE_PROJECT")]
         public ActionResult CreateProject(Project project)
         {
             //Kiểm tra Validation
@@ -54,6 +56,7 @@ namespace ProjectManage.Controllers
 
         #region EditProject
         [HttpGet]
+        [HasCredential(RoleID = "EDIT_PROJECT")]
         public ActionResult EditProject(int idProject)
         {
             var project = new ProjectDao().ViewDetail(idProject);
@@ -62,6 +65,7 @@ namespace ProjectManage.Controllers
 
         //Chỉnh sửa project
         [HttpPost]
+        [HasCredential(RoleID = "EDIT_PROJECT")]
         public ActionResult EditProject(Project project)
         {
             //Kiểm tra Validation
@@ -84,6 +88,7 @@ namespace ProjectManage.Controllers
         #endregion
 
         #region Detail Project
+        [HasCredential(RoleID = "VIEW_PROJECT")]
         public ActionResult DetailProject(int idProject)
         {
             var project = new ProjectDao().ViewDetail(idProject);
@@ -108,6 +113,7 @@ namespace ProjectManage.Controllers
         }
 
         //Danh sách các user ở trong 1 project
+        [HasCredential(RoleID = "VIEW_PROJECT")]
         public ActionResult ListUserPartial(int idProject)
         {
             List<PositionUser> listPosition = new PositionUserDao().ListUserByProject(idProject);
@@ -128,6 +134,7 @@ namespace ProjectManage.Controllers
         }
 
         //Lấy ra danh sách các phase trong project
+        [HasCredential(RoleID = "VIEW_PROJECT")]
         public ActionResult ListPhaseInProject(int idProject, int page =1, int pageSize = 5)
         {
             var listPhase = new PhaseDao().ListPhaseByProject(idProject, page, pageSize);
@@ -137,6 +144,7 @@ namespace ProjectManage.Controllers
         #endregion
 
         #region Remove user from project
+        [HasCredential(RoleID = "DELETE_POSITION")]
         [HttpDelete]
         public ActionResult RemoveUser(int idUser, int idProject)
         {

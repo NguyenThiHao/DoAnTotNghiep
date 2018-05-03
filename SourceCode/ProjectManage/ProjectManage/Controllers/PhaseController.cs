@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Model.EF;
 using Model.Dao;
+using ProjectManage.Common;
+
 namespace ProjectManage.Controllers
 {
     public class PhaseController : BaseController
@@ -17,6 +19,7 @@ namespace ProjectManage.Controllers
 
         #region CreatePhase: Tạo mới 1 Phase
         [HttpGet]
+        [HasCredential(RoleID = "CREATE_PHASE")]
         public ActionResult CreatePhase()
         {
             //Tạo ViewBag lưu danh sách project
@@ -24,6 +27,7 @@ namespace ProjectManage.Controllers
             return View();
         }
         [HttpPost]
+        [HasCredential(RoleID = "CREATE_PHASE")]
         public ActionResult CreatePhase(Phase phase)
         {
             //Tạo ViewBag lưu danh sách project
@@ -49,6 +53,7 @@ namespace ProjectManage.Controllers
 
         #region EditPhase: Chỉnh sửa thông tin Phase
         [HttpGet]
+        [HasCredential(RoleID = "EDIT_PHASE")]
         public ActionResult EditPhase(int idPhase)
         {
             var phase = new PhaseDao().ViewDetail(idPhase);
@@ -57,6 +62,7 @@ namespace ProjectManage.Controllers
 
         //Chỉnh sửa project
         [HttpPost]
+        [HasCredential(RoleID = "EDIT_PHASE")]
         public ActionResult EditPhase(Phase phase)
         {
             //Kiểm tra Validation
@@ -78,7 +84,8 @@ namespace ProjectManage.Controllers
         }
         #endregion
 
-        #region DetailSprint: Xem chi tiết một Sprint
+        #region DetailPhase: Xem chi tiết một Phase
+        [HasCredential(RoleID = "VIEW_PHASE")]
         public ActionResult DetailPhase(int idPhase)
         {
             var dao = new PhaseDao();
