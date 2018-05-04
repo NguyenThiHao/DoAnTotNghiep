@@ -117,27 +117,39 @@
 }
 
 <script>
+
+    var Open = 3,
+        InProgress = 4,
+        Done = 2,
+        G;
+
+    function updateData() {
+        return [{
+            y: '2018-04-05',  //Ngày
+            a: Open,
+            b: InProgress,
+            c: Done
+        }];
+    }
+
+    $('#graph_area').hover(function () {
+        Open++;
+        InProgress++;
+        Done++;
+        console.log(Open, InProgress, Done)
+        G.setData(updateData());
+    });
+
     new Morris.Area({
         element: 'graph_area',
-        data: [
-            { period: '2018 W1', open: 56, inprogress: 34, done: 23 },
-            { period: '2018 W2', open: 78, inprogress: 94, done: 50 },
-            { period: '2018 W3', open: 12, inprogress: 69, done: 25 },
-            { period: '2018 W4', open: 67, inprogress: 97, done: 89 },
-            { period: '2018 W5', open: 81, inprogress: 19, done: 93 },
-            { period: '2018 W6', open: 67, inprogress: 42, done: 81 },
-            { period: '2018 W7', open: 82, inprogress: 37, done: 18 },
-            { period: '2018 W8', open: 73, inprogress: 67, done: 75 },
-            { period: '2018 W9', open: 87, inprogress: 60, done: 28 },
-            { period: '2018 W10', open: 32, inprogress: 13, done: 91 },
-            { period: '2018 W11', open: 87, inprogress: 60, done: 28 },
-            { period: '2018 W12', open: 32, inprogress: 13, done: 91 },
-        ],
-        xkey: 'period',
-        ykeys: ['open', 'inprogress', 'done'],
+        data: updateData(),
+        xkey: 'y',
+        ykeys: ['a', 'b', 'c'],
         lineColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-        labels: ['open', 'inprogress', 'done'],
+        labels: ['Open', 'Inprogress', 'Done'],
         pointSize: 2,
         hideHover: 'auto'
     });
+
+
 </script>
