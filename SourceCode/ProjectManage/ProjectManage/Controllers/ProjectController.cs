@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Model.Dao;
 using Model.EF;
 using Model.ViewModel;
 using ProjectManage.Common;
 using ProjectManage.Models;
-using PagedList;
+using System.Web.Script.Serialization;
 
 namespace ProjectManage.Controllers
 {
@@ -109,6 +106,12 @@ namespace ProjectManage.Controllers
             detailProject.totalMembers = new PositionUserDao().TotalUserByProject(idProject);
             //Lấy ra tổng số Phase trong 1 project
             detailProject.totalPhase = new PhaseDao().TotalPhaseByProject(idProject);
+
+            //Vẽ biểu đồ
+            List<ChartParse> listChart = new ProjectDao().ListChart(idProject);
+            ViewBag.ListChart = (new JavaScriptSerializer().Serialize(listChart)).Replace("\"", "");
+            
+
             return View(detailProject);
         }
 

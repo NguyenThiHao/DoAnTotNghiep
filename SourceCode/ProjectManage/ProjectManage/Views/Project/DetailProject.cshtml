@@ -1,4 +1,5 @@
-﻿@model ProjectManage.Models.DetailProject
+﻿@using Model.ViewModel;
+@model ProjectManage.Models.DetailProject
 @{
     ViewBag.Title = "DetailProject";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
@@ -117,39 +118,17 @@
 }
 
 <script>
-
-    var Open = 3,
-        InProgress = 4,
-        Done = 2,
-        G;
-
-    function updateData() {
-        return [{
-            y: '2018-04-05',  //Ngày
-            a: Open,
-            b: InProgress,
-            c: Done
-        }];
-    }
-
-    $('#graph_area').hover(function () {
-        Open++;
-        InProgress++;
-        Done++;
-        console.log(Open, InProgress, Done)
-        G.setData(updateData());
-    });
-
+    
+    
     new Morris.Area({
         element: 'graph_area',
-        data: updateData(),
-        xkey: 'y',
-        ykeys: ['a', 'b', 'c'],
+        data: @ViewBag.ListChart,
+        xkey: 'date',
+        ykeys: ['create', 'inprogress', 'done'],
         lineColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-        labels: ['Open', 'Inprogress', 'Done'],
+        labels: ['Create', 'Inprogress', 'Done'],
         pointSize: 2,
         hideHover: 'auto'
+        
     });
-
-
 </script>

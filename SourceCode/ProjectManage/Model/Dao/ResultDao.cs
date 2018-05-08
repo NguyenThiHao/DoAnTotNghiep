@@ -91,5 +91,23 @@ namespace Model.Dao
                 return false;
             }
         }
+
+        //Tổng các task được thực hiện trong ngày
+        public int TotalInProgress(int idProject, DateTime date)
+        {
+            var model = from a in db.Projects
+                        join b in db.Phases
+                        on a.idProject equals b.idProject
+                        where a.idProject == idProject
+                        join c in db.Sprints
+                        on b.idPhase equals c.idPhase
+                        join d in db.Tasks
+                        on c.idSprint equals d.idSprint
+                        join e in db.Results
+                        on d.idTask equals e.idTask
+                        where e.date == date
+                        select e.idTask;
+            return model.Count();
+        }
     }
 }

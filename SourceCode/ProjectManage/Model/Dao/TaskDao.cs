@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
 using Model.ViewModel;
-using Model.Dao;
 
 namespace Model.Dao
 {
@@ -44,12 +43,12 @@ namespace Model.Dao
             return db.Tasks.Find(idTask);
         }
 
-        //Chỉnh sửa Project
+        //Chỉnh sửa Task
         public bool EditTask(EF.Task entity)
         {
             try
             {
-                //Lấy ra project có id giống với id của project cần sửa
+                //Lấy ra Task có id giống với id của Task cần sửa
                 var task = db.Tasks.Find(entity.idTask);
                 //Thay đổi các trường trong project
                 task.taskName = entity.taskName;
@@ -205,6 +204,37 @@ namespace Model.Dao
             return logged;
         }
 
+        //Lấy ra tổng số Task được tạo ra trong ngày
+        public int TotalCreatedTask(DateTime date, int idProject)
+        {
+            var model = from a in db.Projects
+                        join b in db.Phases
+                        on a.idProject equals b.idProject
+                        where a.idProject == idProject
+                        join c in db.Sprints
+                        on b.idPhase equals c.idPhase
+                        join d in db.Tasks
+                        on c.idSprint equals d.idSprint
+                        where d.createdDate == date
+                        select d.idTask;
+            return model.Count();
+        }
+
+        //Lấy ra tổng số Task được hoàn thành trong ngày
+        public int TotalDoneTask(DateTime date, int idProject)
+        {
+            var model = from a in db.Projects
+                        join b in db.Phases
+                        on a.idProject equals b.idProject
+                        where a.idProject == idProject
+                        join c in db.Sprints
+                        on b.idPhase equals c.idPhase
+                        join d in db.Tasks
+                        on c.idSprint equals d.idSprint
+                        where d.status == "Done"
+                        select d.idTask;
+            return model.Count();
+        }
 
     }
 }
