@@ -109,9 +109,8 @@ namespace ProjectManage.Controllers
 
             //Vẽ biểu đồ
             List<ChartParse> listChart = new ProjectDao().ListChart(idProject);
-            ViewBag.ListChart = (new JavaScriptSerializer().Serialize(listChart)).Replace("\"", "");
+            ViewBag.Chart = (new JavaScriptSerializer().Serialize(listChart));
             
-
             return View(detailProject);
         }
 

@@ -87,7 +87,7 @@ namespace Model.Dao
             {
                 ChartParse chart = new ChartParse();
                 startdate = startdate.AddDays(1);//dang ra ham nay phai ađ duoc chu nho. thi t cung hoc tren mang thoi :v
-                chart.date = startdate.ToString("dd/MM/yyyy");
+                chart.day = startdate.ToString("yyyy-MM-dd");
                 chart.create = new TaskDao().TotalCreatedTask(startdate, idProject);
                 chart.inprogress = new ResultDao().TotalInProgress(idProject, startdate);
                 chart.done = new TaskDao().TotalDoneTask(startdate, idProject);

@@ -65,14 +65,8 @@ namespace ProjectManage.Controllers
         }
         #endregion
 
-        #region ListTask: Danh sách các công việc Assigee cho 1 User trong project
-        //public ActionResult ListTask(int idUser, int idProject)
-        //{
-        //    List<Phase> listPhase = new PhaseDao().ListPhaseByProject(idProject);
-
-        //    //lấy ra danh sách task
-        //    return View();
-        //}
+        #region Thêm một user vào trong project
+         
         #endregion
 
     }

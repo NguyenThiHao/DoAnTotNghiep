@@ -8,7 +8,7 @@ namespace Model.ViewModel
 {
     public class Chart
     {
-        public DateTime date;
+        public DateTime day;
         public int create;
         public int inprogress;
         public int done;

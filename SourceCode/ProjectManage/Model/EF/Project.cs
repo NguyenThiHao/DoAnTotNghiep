@@ -26,8 +26,13 @@ namespace Model.EF
         [Required]
         public string description { get; set; }
 
-        public DateTime startDate { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime startDate { get;  set; }
 
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime endDate { get; set; }
 
         [Required]

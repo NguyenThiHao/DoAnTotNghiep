@@ -71,7 +71,7 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
 
-                                            @Html.TextBoxFor(model => model.startDate, new { @class = "form-control", placeholder = "Planded Start", type = "date" })
+                                            @Html.EditorFor(model => model.startDate,new { htmlAttributes = new { @class = "form-control", placeholder = "Planded Start", type = "date" } })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.startDate)
                                             </div>
@@ -81,8 +81,10 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-
-                                            @Html.TextBoxFor(model => model.endDate, new { @class = "form-control", placeholder = "End Date", type = "date" })
+                                            
+                                                @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control" ,placeholder = "Planded End", type = "date" } })
+                                            
+                                            
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.endDate)
                                             </div>
