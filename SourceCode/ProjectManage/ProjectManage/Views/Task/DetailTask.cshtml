@@ -16,123 +16,207 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                    <div class="col-md-12 col-xs-12" style="text-align: right;">
-                        @Html.ActionLink("EditTask", "EditTask", "Task", new { idTask = Model.idTask }, new { @class = "btn btn-default" })
-                        @Html.ActionLink("Logwork", "Logworks", "Result", new { idTask = Model.idTask }, new { @class = "btn btn-default" })
-                    </div>
-                    <div class="col-md-16 col-xs-12">
-                        <div class="x_panel">
-                            <div class="x_content">
-                                <div class="modal-header" style="padding: 0px; text-align: left;"><label>Detail</label></div>
-                                <table class="table" style="text-align: left; border: none;">
-                                    <tr>
-                                        <td style="border: none;">Type: </td>
-                                        <td style="border: none;">@Model.type</td>
-                                        <td style="border: none;">Status: </td>
-                                        <td style="border: none;">@Model.status</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="border: none;">Priority:</td>
-                                        <td style="border: none;">@Model.priority</td>
-                                        <td style="border: none;"> </td>
-                                        <td style="border: none;"> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="border: none;">Sprint: </td>
-                                        <td style="border: none;">@Model.sprintName</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="border: none;">Estimate: </td>
-                                        <td style="border: none;">@Model.estimateTime</td>
-                                    </tr>
-                                </table>
-                            </div>
+                <div class="col-md-12 col-xs-12" style="text-align: right;">
+                    @Html.ActionLink("EditTask", "EditTask", "Task", new { idTask = Model.idTask }, new { @class = "btn btn-default " })
+                    @*@Html.ActionLink("Logwork", "Logworks", "Result", new { idTask = Model.idTask }, new { @class = "btn btn-default"})*@
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Logwork</button>
+                </div>
+                <div class="col-md-16 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <div class="modal-header" style="padding: 0px; text-align: left;"><label>Detail</label></div>
+                            <table class="table" style="text-align: left; border: none;">
+                                <tr>
+                                    <td style="border: none;">Type: </td>
+                                    <td style="border: none;">@Model.type</td>
+                                    <td style="border: none;">Status: </td>
+                                    <td style="border: none;">@Model.status</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;">Priority:</td>
+                                    <td style="border: none;">@Model.priority</td>
+                                    <td style="border: none;"> </td>
+                                    <td style="border: none;"> </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;">Sprint: </td>
+                                    <td style="border: none;">@Model.sprintName</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;">Estimate: </td>
+                                    <td style="border: none;">@Model.estimateTime</td>
+                                </tr>
+                            </table>
+                        </div>
 
-                            @*<div class="x_content">
+                        @*<div class="x_content">
                                 <div class="modal-header" style="padding: 0px; text-align: left;"><label>Attachments</label></div>
                                 <h3>Vùng Attachment</h3>
                             </div>*@
-                            <div class="x_content">
-                                <div class="modal-header" style="padding: 0px; text-align: left;"><label>Description</label></div>
-                                <p style="text-align: left; padding-left: 10px;">@Model.description</p>
-                            </div>
-                            @Html.Action("LogworkPartial", "Task", new {idTask = Model.idTask })
+                        <div class="x_content">
+                            <div class="modal-header" style="padding: 0px; text-align: left;"><label>Description</label></div>
+                            <p style="text-align: left; padding-left: 10px;">@Model.description</p>
                         </div>
+                        @Html.Action("LogworkPartial", "Task", new { idTask = Model.idTask })
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 @*Vùng hiển thị nội dung người tạo và thời gian*@
 <div class="col-lg-4" style="padding: 5px;">
     <div class="panel panel-default">
         <div class="panel-body">
-                <div class="col-md-12 col-xs-12">
-                    <div class="x_panel">
-                        <div class="x_content">
-                            <div class="modal-header" style="padding:0px; text-align: left;"><label>People</label></div>
-                            <table class="table" style="text-align: left; border: none;">
-                                <tr>
-                                    <td style="border: none;">Assignee: </td>
-                                    <td style="border: none;">@Model.accountAssignee (@Model.nameAssignee)</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: none;">Reporter: </td>
-                                    <td style="border: none;">@Model.accountReporter (@Model.nameReporter)</td>
-                                </tr>
-                            </table>
-                        </div>
+            <div class="col-md-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="modal-header" style="padding:0px; text-align: left;"><label>People</label></div>
+                        <table class="table" style="text-align: left; border: none;">
+                            <tr>
+                                <td style="border: none;">Assignee: </td>
+                                <td style="border: none;">@Model.accountAssignee (@Model.nameAssignee)</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Reporter: </td>
+                                <td style="border: none;">@Model.accountReporter (@Model.nameReporter)</td>
+                            </tr>
+                        </table>
+                    </div>
 
-                        <div class="x_content">
-                            <div class="modal-header" style="padding: 0px; text-align: left;"><label>Date</label></div>
-                            <table class="table" style="text-align: left; border: none;">
-                                <tr>
-                                    <td style="border: none;">Due: </td>
-                                    <td style="border: none;">@Model.due</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: none;">Created: </td>
-                                    <td style="border: none;">@Model.createdDate</td>
-                                </tr>
-                            </table>
-                        </div>
+                    <div class="x_content">
+                        <div class="modal-header" style="padding: 0px; text-align: left;"><label>Date</label></div>
+                        <table class="table" style="text-align: left; border: none;">
+                            <tr>
+                                <td style="border: none;">Due: </td>
+                                <td style="border: none;">@Model.due</td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;">Created: </td>
+                                <td style="border: none;">@Model.createdDate</td>
+                            </tr>
+                        </table>
+                    </div>
 
-                        <div class="x_content">
-                            <div class="modal-header" style="padding: 0px; text-align: left;"><label>Time Tracking:</label></div>
-                            <table class="table" style="text-align: left; border: none;">
-                                <tr>
-                                    <td style="border: none; " width="30%">Estimated:</td>
-                                    <td style="border: none; padding-top: 7px;">
-                                        <div class="progress">
-                                            <div class="progress-bar" style="width: 100%;">
-                                            </div>
+                    <div class="x_content">
+                        <div class="modal-header" style="padding: 0px; text-align: left;"><label>Time Tracking:</label></div>
+                        <table class="table" style="text-align: left; border: none;">
+                            <tr>
+                                <td style="border: none; " width="30%">Estimated:</td>
+                                <td style="border: none; padding-top: 7px;">
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 100%;">
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr style="padding: 0px;">
-                                    <td style="border: none;" width="30%">Remaining:</td>
-                                    <td style="border: none; padding-top: 7px;">
-                                        <div class="progress">
-                                            <div class="progress-bar-warning progress-bar" style="width:@remaining% ; float:right; ">
-                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="padding: 0px;">
+                                <td style="border: none;" width="30%">Remaining:</td>
+                                <td style="border: none; padding-top: 7px;">
+                                    <div class="progress">
+                                        <div class="progress-bar-warning progress-bar" style="width:@remaining% ; float:right; ">
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr style="padding: 0px;">
-                                    <td style="border: none;" width="30%">Logged:</td>
-                                    <td style="border: none; padding-top: 7px;">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" style="width: @Model.loggedTime%;">
-                                            </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="padding: 0px;">
+                                <td style="border: none;" width="30%">Logged:</td>
+                                <td style="border: none; padding-top: 7px;">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" style="width: @Model.loggedTime%;">
                                         </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal form-label-left">
+                    <form action="/Result/Logworks?idTask=2" method="post">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Task <span class="required">*</span></label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input class="form-control" id="taskName" name="taskName" placeholder="Task Name" type="text" value="Create Detail Product">
+                                <div class="message">
+                                    <span class="field-validation-valid" data-valmsg-for="taskName" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Summary <span class="required">*</span></label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input class="form-control" id="summary" name="summary" placeholder="Summary" type="text" value="Create Detail Product">
+                                <div class="message">
+                                    <span class="field-validation-valid" data-valmsg-for="summary" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date <span class="required">*</span></label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input class="form-control" data-val="true" data-val-date="The field date must be a date." data-val-required="The date field is required." id="date" name="date" type="date" value="1/1/0001 12:00:00 AM">
+                                <div class="message">
+                                    <span class="field-validation-valid" data-valmsg-for="date" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Worked </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input autofocus="autofocus" class="form-control" data-val="true" data-val-number="The field resultToday must be a number." data-val-required="The resultToday field is required." id="resultToday" name="resultToday" type="text" value="0">
+                                <div class="message">
+                                    <span class="field-validation-valid" data-valmsg-for="resultToday" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span></label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea class="form-control" cols="20" id="description" name="description" placeholder="Description" rows="10"></textarea>
+                                <div class="message">
+                                    <span class="field-validation-valid" data-valmsg-for="description" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Type <span class="required">*</span></label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input class="form-control" id="type" name="type" placeholder="Type" type="text" value="">
+                                <div class="message">
+                                    <span class="field-validation-valid" data-valmsg-for="type" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                <button type="reset" class="btn btn-primary" value="Cancel">Cancel</button>
+                                <button type="submit" class="btn btn-success" value="Create">Create</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+               
+            </div>
+        </div>
+
+    </div>
+</div>

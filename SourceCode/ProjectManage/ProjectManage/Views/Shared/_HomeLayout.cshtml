@@ -18,10 +18,11 @@
     <title>Project Manage</title>
 </head>
 <body>
-    @Html.Partial("_CategoriesPartial")
+        @*@Html.Partial("~/Views/Shared/_CategoriesPartial.cshtml")*@
+    @Html.Action("Menu", "Menu")
     <!--Vùng body-->
     <div class="col-md-12" style="min-height: 1000px; text-align: center;">
-        <div id="page-wrapper" style="padding-top: 20px; margin-top: 25px;">
+        <div id="page-wrapper" style="padding-top: 20px;">
             <div class="row">
                 @RenderBody()
             </div>

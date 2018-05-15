@@ -57,6 +57,10 @@ namespace ProjectManage.Controllers
         public ActionResult EditPhase(int idPhase)
         {
             var phase = new PhaseDao().ViewDetail(idPhase);
+            int idProject = phase.idProject;
+            //Lấy ra tên Project
+            string nameProject = new ProjectDao().GetProjectName(idProject);
+            ViewBag.NameProject = nameProject;
             return View(phase);
         }
 
@@ -91,6 +95,8 @@ namespace ProjectManage.Controllers
             var dao = new PhaseDao();
             var detailPhase = dao.ViewDetail(idPhase);
             string nameProject = new ProjectDao().GetProjectName(detailPhase.idProject);
+            List<Project> listProject = new ProjectDao().GetListProject();
+            ViewBag.ListProject = listProject;
             ViewBag.nameProject = nameProject;
             return View(detailPhase);
         }

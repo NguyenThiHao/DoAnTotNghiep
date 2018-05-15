@@ -19,9 +19,8 @@ namespace Model.EF
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Result> Results { get; set; }
         public virtual DbSet<Sprint> Sprints { get; set; }
-        public virtual DbSet<StatusType> StatusTypes { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
-        public virtual DbSet<TaskType> TaskTypes { get; set; }
+        public virtual DbSet<Type> Types { get; set; }
         public virtual DbSet<TypeOfWork> TypeOfWorks { get; set; }
         public virtual DbSet<User> Users { get; set; }
 

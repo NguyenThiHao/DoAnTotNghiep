@@ -78,7 +78,7 @@ namespace Model.Dao
         }
 
         //Lấy ra tên của 1 sprint
-        public string GetPhaseName(int idSprint)
+        public string GetSprintName(int idSprint)
         {
             return db.Sprints.Find(idSprint).sprintName.ToString();
         }

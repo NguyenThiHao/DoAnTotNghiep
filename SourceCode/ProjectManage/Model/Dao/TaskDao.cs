@@ -84,7 +84,7 @@ namespace Model.Dao
                         task.idTask = item.idTask;
                         task.idAssignee = item.assignee;
                         task.idSprint = item.idSprint;
-                        task.sprintName = new SprintDao().GetPhaseName(task.idSprint);
+                        task.sprintName = new SprintDao().GetSprintName(task.idSprint);
                         task.idProject = idProject;
                         task.priority = item.priority;
                         task.status = item.status;
@@ -119,7 +119,7 @@ namespace Model.Dao
             task.accountAssignee = new UserDao().GetAccountUser(task.idAssignee);
             task.nameAssignee = new UserDao().GetNameUser(task.idAssignee);
             task.idSprint = item.idSprint;
-            task.sprintName = new SprintDao().GetPhaseName(task.idSprint);
+            task.sprintName = new SprintDao().GetSprintName(task.idSprint);
             task.idReporter = new SprintDao().GetReporter(task.idSprint);
             task.accountReporter = new UserDao().GetAccountUser(task.idReporter);
             task.nameReporter = new UserDao().GetNameUser(task.idReporter);

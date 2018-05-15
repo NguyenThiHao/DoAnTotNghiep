@@ -11,6 +11,8 @@ namespace Model.EF
     {
         [Key]
         [Column(Order = 0)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime date { get; set; }
 
         [Key]

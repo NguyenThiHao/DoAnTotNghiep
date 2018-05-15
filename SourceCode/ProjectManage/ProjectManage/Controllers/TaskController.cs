@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model.EF;
 using Model.Dao;
+using Model.ViewModel;
 using ProjectManage.Common;
 
 namespace ProjectManage.Controllers
@@ -16,6 +17,10 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "CREARE_TASK")]
         public ActionResult CreateTask()
         {
+            //Lấy ra danh sách User
+            List<User> listUser = new UserDao().ListUser();
+            //Đổ vào ViewBag hiển thị lên View
+            ViewBag.ListUser = listUser;
             ViewBag.GetListSprint = new SprintDao().GetListSprint();
             return View();
         }
@@ -26,8 +31,10 @@ namespace ProjectManage.Controllers
         {
             //Tạo ViewBag lưu danh sách project
             ViewBag.GetListSprint = new SprintDao().GetListSprint();
-            //Lưu danh sách User theo project vào ViewBag
-            //List<UserByProject> listUserByProject = new PositionUserDao.ListUserByProject(idProject)
+            //Lấy ra danh sách User
+            List<User> listUser = new UserDao().ListUser();
+            //Đổ vào ViewBag hiển thị lên View
+            ViewBag.ListUser = listUser;
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {
@@ -53,6 +60,10 @@ namespace ProjectManage.Controllers
         public ActionResult EditTask(int idTask)
         {
             var task = new TaskDao().ViewDetail(idTask);
+            int idSprint = task.idSprint;
+            //lấy ra tên Sprint
+            string sprintName = new SprintDao().GetSprintName(idSprint);
+            ViewBag.SprintName = sprintName;
             return View(task);
         }
 
@@ -61,6 +72,10 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_TASK")]
         public ActionResult EditTask(Task task)
         {
+            int idSprint = task.idSprint;
+            //lấy ra tên Sprint
+            string sprintName = new SprintDao().GetSprintName(idSprint);
+            ViewBag.SprintName = sprintName;
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {

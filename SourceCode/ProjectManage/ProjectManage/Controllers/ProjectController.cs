@@ -11,19 +11,22 @@ namespace ProjectManage.Controllers
 {
     public class ProjectController : BaseController
     {
-        public ActionResult Index()
-        {
-            var dao = new PositionUserDao();
-            var userLogin = new UserLogin();
-            var listPositionUser = dao.ListProjectJoined(userLogin.idUser);
-            return View(listPositionUser);
-        }
+        //public ActionResult Index()
+        //{
+        //    var dao = new PositionUserDao();
+        //    var userLogin = new UserLogin();
+        //    var listPositionUser = dao.ListProjectJoined(userLogin.idUser);
+        //    return View(listPositionUser);
+        //}
+
+        List<string> listProjectType = new TypeDao().ListProjectType();
 
         #region CreateProject
         [HasCredential(RoleID = "CREATE_PROJECT")]
         [HttpGet]
         public ActionResult CreateProject()
         {
+            ViewBag.ListProjectType = listProjectType;
             return View();
         }
 
@@ -32,6 +35,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "CREATE_PROJECT")]
         public ActionResult CreateProject(Project project)
         {
+            ViewBag.ListProjectType = listProjectType;
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {
@@ -56,6 +60,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_PROJECT")]
         public ActionResult EditProject(int idProject)
         {
+            ViewBag.ListProjectType = listProjectType;
             var project = new ProjectDao().ViewDetail(idProject);
             return View(project);
         }
@@ -65,6 +70,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_PROJECT")]
         public ActionResult EditProject(Project project)
         {
+            ViewBag.ListProjectType = listProjectType;
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {
@@ -118,20 +124,8 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "VIEW_PROJECT")]
         public ActionResult ListUserPartial(int idProject)
         {
-            List<PositionUser> listPosition = new PositionUserDao().ListUserByProject(idProject);
-            List<Model.ViewModel.UserByProject> listUserByProject = new List<UserByProject>();
-            foreach(PositionUser i in listPosition)
-            {
-                int idUser = i.idUser;
-                var userByProject = new UserByProject();
-                userByProject.idUser = idUser;
-                userByProject.position = i.position;
-                userByProject.idProject = i.idProject;
-                userByProject.account = new UserDao().GetAccountUser(idUser);
-                userByProject.status = i.status;
-                userByProject.joinedDate = i.joinedDate;
-                listUserByProject.Add(userByProject);
-            }
+            var dao = new PositionUserDao();
+            List<UserByProject> listUserByProject = dao.ListUserByProject(idProject); 
             return View(listUserByProject);
         }
 

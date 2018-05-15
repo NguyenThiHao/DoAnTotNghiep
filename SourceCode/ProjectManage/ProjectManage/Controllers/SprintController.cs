@@ -56,6 +56,10 @@ namespace ProjectManage.Controllers
         public ActionResult EditSprint(int idSprint)
         {
             var sprint = new SprintDao().ViewDetail(idSprint);
+            //Lấy ra idPhase của sprint hiện tại
+            int idPhase = sprint.idPhase;
+            //Lấy ra tên của phase
+            ViewBag.PhaseName = new PhaseDao().GetPhaseName(idPhase);
             return View(sprint);
         }
 
@@ -69,6 +73,8 @@ namespace ProjectManage.Controllers
             {
                 var dao = new SprintDao();
                 var result = dao.EditSprint(sprint);
+                int idPhase = sprint.idPhase;
+                ViewBag.PhaseName = new PhaseDao().GetPhaseName(idPhase);
                 if (result)
                 {
                     SetAlert("Edit sprint suscessful!", "success");

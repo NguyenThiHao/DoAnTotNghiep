@@ -98,14 +98,3 @@ namespace Model.Dao
         
     }
 }
-
-//hinh nhu phải dùng for ms đúng chứ nhỉ. Lấy từ ngày bắt đầu dự án đến ngày hôm nay. 
-//    hình như đang sai ở đây rồi (
-//    nuhhuwng nói chung ý t là: muốn tính toán công việc từng ngày, từ ngày bắt đầu đến ngày hôm nay
-//    m sua xem, testc thay hinh nhu no dang bi sao. uh. giơ t cũng thấy sai sai :d :v
-//    giờ sửa thé nào dc.
-//    cai db.Prọect kia la lay duoc t chua hieu cai ni 
-
-//    hàm totalCreate kia là tính trong ngày nào đó, 1 project có bao nhiêu task dc tạo ra
-//    total inprogress ngày nào đó dc truyền vào 1 project --> task đang thực hiện
-//    à, run di

@@ -1,23 +1,6 @@
 ﻿@model Model.EF.Project
 @{
     ViewBag.Title = "EditProject";
-    var typeOfProject = new List<String>
-            {
-                 "Full",
-                 "Develop",
-                 "Test",
-                 "Maintain",
-            };
-    ViewBag.typeOfProject = typeOfProject;
-
-    var Status = new List<string>
-    {
-        "Created",
-        "In-progress",
-        "Done",
-    };
-    ViewBag.status = Status;
-
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 <div class="col-lg-2"></div>
@@ -50,7 +33,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Project <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.DropDownListFor(model => model.typeProject, new SelectList(ViewBag.typeOfProject), new { @class = "form-control", placeholder = "Type of Project" })
+                                            @Html.DropDownListFor(model => model.typeProject, new SelectList(ViewBag.ListProjectType), new { @class = "form-control", placeholder = "Type of Project" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.typeProject)
                                             </div>
@@ -70,7 +53,6 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-
                                             @Html.EditorFor(model => model.startDate,new { htmlAttributes = new { @class = "form-control", placeholder = "Planded Start", type = "date" } })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.startDate)
@@ -81,10 +63,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            
+               
                                                 @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control" ,placeholder = "Planded End", type = "date" } })
-                                            
-                                            
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.endDate)
                                             </div>

@@ -22,6 +22,16 @@
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
                                     <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sprint Name <span class="required">*</span></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input class="form-control" id="idSprint" name="idSprint" type="text" value="@ViewBag.SprintName" readonly="readonly">
+                                            <div class="message">
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Task Name <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             @Html.TextBoxFor(model => model.taskName, new { @class = "form-control", placeholder = "Task Name" })
@@ -65,7 +75,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Due<span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.due, new { @class = "form-control", placeholder = "Due", type = "date" })
+                                            @Html.EditorFor(model => model.due, new { htmlAttributes = new { @class = "form-control", placeholder = "Due", type = "date" } })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.due)
                                             </div>

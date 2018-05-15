@@ -156,6 +156,12 @@ namespace Model.Dao
                 return "";
             }
         }
+
+        //Lấy ra danh sách User
+        public List<User> ListUser()
+        {
+            return db.Users.ToList();
+        }
     }
 }
 

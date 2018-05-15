@@ -12,6 +12,8 @@ namespace ProjectManage.Controllers
 {
     public class LoginController : Controller
     {
+        //Tạo ra 1 userSession
+        public UserLogin userSession = new UserLogin();
         // GET: /Login/
         [HttpGet]
         public ActionResult Login()
@@ -31,15 +33,16 @@ namespace ProjectManage.Controllers
                 {
                     //lấy ra user theo account
                     var user = dao.GetUserByAccount(model.account);
-                    //Tạo ra 1 userSession
-                    var userSession = new UserLogin();
                     //khởi tạo giá trị cho userSession lấy từ user
                     userSession.account = user.account;
+                    
                     userSession.idUser = user.idUser;
                     userSession.idGroupUser = user.idGroupUser;
                     var listCredetial = dao.GetListCredential(model.account);
                     Session.Add(CommonConstants.SESSION_CREDENTIALS, listCredetial);
                     Session.Add(CommonConstants.USER_SESSION, userSession);
+
+                    Session["userName"] = user.userName;
                     //Đăng nhập thành công trả về trang chủ
                     return RedirectToAction("Dashboard", "PositionUser", new {idUser = userSession.idUser });
                 }

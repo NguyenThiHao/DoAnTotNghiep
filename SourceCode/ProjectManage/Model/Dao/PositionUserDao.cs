@@ -24,14 +24,13 @@ namespace Model.Dao
             return listPositionUser;
         }
 
-
         //Kiểm tra 1 người có phải là leader của 1 project hay không
         public bool IsLeader(int idUser, int idProject)
         {
             try
             {
                 var result = db.PositionUsers.SingleOrDefault(x => x.idUser == idUser & x.idProject == idProject);
-                if (result.position == "Leader")
+                if (result.position == "Project Manager")
                 {
                     return true;
                 }
@@ -46,11 +45,24 @@ namespace Model.Dao
             }
         }
 
-        //Lấy ra danh sách user tham gia vào project
-        public List<PositionUser> ListUserByProject(int idProject)
+        //Lấy ra chi tiết danh sách user trong 1 project
+        public List<UserByProject> ListUserByProject(int idProject)
         {
-            List<PositionUser> listIdUser = db.PositionUsers.Where(x => x.idProject == idProject).ToList();
-            return listIdUser;
+            List<PositionUser> listPosition = db.PositionUsers.Where(x => x.idProject == idProject).ToList();
+            List<UserByProject> listUserByProject = new List<UserByProject>();
+            foreach (PositionUser i in listPosition)
+            {
+                int idUser = i.idUser;
+                var userByProject = new UserByProject();
+                userByProject.idUser = idUser;
+                userByProject.position = i.position;
+                userByProject.idProject = i.idProject;
+                userByProject.account = new UserDao().GetAccountUser(idUser);
+                userByProject.status = i.status;
+                userByProject.joinedDate = i.joinedDate;
+                listUserByProject.Add(userByProject);
+            }
+            return listUserByProject;
         }
 
         //Tìm kiếm PositionUser theo idUser và IdProject
@@ -71,7 +83,7 @@ namespace Model.Dao
         {
             try
             {
-                return db.PositionUsers.SingleOrDefault(x => x.idProject == idProject && x.position == "Leader").idUser;
+                return db.PositionUsers.SingleOrDefault(x => x.idProject == idProject && x.position == "Project Manager").idUser;
             }
             catch(Exception ex)
             {
@@ -86,6 +98,21 @@ namespace Model.Dao
             {
                 var result = db.PositionUsers.SingleOrDefault(x => x.idUser == idUser & x.idProject == idProject);
                 db.PositionUsers.Remove(result);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        //Thêm 1 người vào project
+        public bool AddUser(PositionUser entity)
+        {
+            try
+            {
+                db.PositionUsers.Add(entity);
                 db.SaveChanges();
                 return true;
             }

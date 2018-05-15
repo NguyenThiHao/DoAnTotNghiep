@@ -21,22 +21,21 @@
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Phase Name <span class="required">*</span></label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Project <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.phaseName, new { @class = "form-control", placeholder = "Phase Name" })
+                                            <input class="form-control" id="idProject" name="idProject" placeholder="Project" type="text" value="@ViewBag.NameProject" readonly="readonly">
                                             <div class="message">
-                                                @Html.ValidationMessageFor(model => model.phaseName)
+                                                @Html.ValidationMessageFor(model => model.idProject)
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Project <span class="required">*</span></label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Phase Name <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.idProject, new { @class = "form-control", placeholder = "Project" })
-                                            @*@Html.DropDownListFor(model => model.idProject, new SelectList(ViewBag.GetListProject, "idProject", "projectName", "Project"), new { @class = "form-control", rows = "6", placeholder = "Project" })*@
+                                            @Html.TextBoxFor(model => model.phaseName, new { @class = "form-control", placeholder = "Phase Name" })
                                             <div class="message">
-                                                @Html.ValidationMessageFor(model => model.idProject)
+                                                @Html.ValidationMessageFor(model => model.phaseName)
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +63,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Started Date <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.startDate, new { @class = "form-control",  placeholder = "Started Date", type = "date" })
+                                            @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", placeholder = "Started Date", type = "date" } })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.startDate)
                                             </div>
@@ -73,7 +72,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.endDate, new { @class = "form-control", placeholder = "End Date", type = "date" })
+                                            @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control", placeholder = "End Date", type = "date" } })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.endDate)
                                             </div>

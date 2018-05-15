@@ -63,6 +63,7 @@
     <Compile Include="Dao\ResultDao.cs" />
     <Compile Include="Dao\SprintDao.cs" />
     <Compile Include="Dao\TaskDao.cs" />
+    <Compile Include="Dao\TypeDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\Category.cs" />
     <Compile Include="EF\Credential.cs" />
@@ -74,9 +75,8 @@
     <Compile Include="EF\Result.cs" />
     <Compile Include="EF\Role.cs" />
     <Compile Include="EF\Sprint.cs" />
-    <Compile Include="EF\StatusType.cs" />
+    <Compile Include="EF\Type.cs" />
     <Compile Include="EF\Task.cs" />
-    <Compile Include="EF\TaskType.cs" />
     <Compile Include="EF\TypeOfWork.cs" />
     <Compile Include="EF\User.cs" />
     <Compile Include="EF\UserGroup.cs" />
