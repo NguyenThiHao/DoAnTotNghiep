@@ -208,7 +208,6 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Menu\Menu.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
-    <Content Include="Views\Shared\_TablePartial.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\User\CreateUser.cshtml" />
     <Content Include="Views\PositionUser\Dashboard.cshtml" />
@@ -218,7 +217,6 @@
     <Content Include="Views\Task\DetailTask.cshtml" />
     <Content Include="Views\Task\LogworkPartial.cshtml" />
     <Content Include="Views\Project\EditProject.cshtml" />
-    <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
     <Content Include="Views\Phase\CreatePhase.cshtml" />
     <Content Include="Views\Phase\DetailPhase.cshtml" />
@@ -234,6 +232,7 @@
     <Content Include="Views\Sprint\ListTaskInSprint.cshtml" />
     <Content Include="Views\Project\ListPhaseInProject.cshtml" />
     <Content Include="Views\Shared\Error401.cshtml" />
+    <Content Include="Views\PositionUser\AddUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

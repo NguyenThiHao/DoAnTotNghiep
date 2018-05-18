@@ -39,5 +39,44 @@ namespace Model.Dao
             }
             return listTaskType;
         }
+
+        //Lấy ra danh sách status của công việc
+        public List<string> ListStatus()
+        {
+            List<EF.Type> list = db.Types.Where(x => x.table == "s").ToList();
+            List<string> listStatus = new List<string>();
+            foreach (var item in list)
+            {
+                string type = item.typeName;
+                listStatus.Add(type);
+            }
+            return listStatus;
+        }
+
+        //Lấy ra danh sách trạng thái của người dùng
+        public List<string> ListStatusUser()
+        {
+            List<EF.Type> list = db.Types.Where(x => x.table == "s").ToList();
+            List<string> listStatusUser = new List<string>();
+            foreach (var item in list)
+            {
+                string type = item.typeName;
+                listStatusUser.Add(type);
+            }
+            return listStatusUser;
+        }
+
+        //Lấy ra danh sách vai trò của người dùng trong dự án
+        public List<string> ListPosition()
+        {
+            List<EF.Type> list = db.Types.Where(x => x.table == "su").ToList();
+            List<string> listPosition = new List<string>();
+            foreach (var item in list)
+            {
+                string type = item.typeName;
+                listPosition.Add(type);
+            }
+            return listPosition;
+        }
     }
 }

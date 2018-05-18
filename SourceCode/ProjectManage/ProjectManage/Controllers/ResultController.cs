@@ -11,10 +11,12 @@ namespace ProjectManage.Controllers
 {
     public class ResultController : BaseController
     {
+        List<string> listTaskType = new TypeDao().ListTaskType();
         #region Logwork
         // GET: Logworks
         public ActionResult Logworks(int idTask)
         {
+            ViewBag.listTaskType = listTaskType;
             ResultTask resultTask = new ResultTask();
             resultTask.idTask = idTask;
             resultTask.taskName = new TaskDao().GetTaskName(idTask);
@@ -27,6 +29,7 @@ namespace ProjectManage.Controllers
         [HttpPost]
         public ActionResult Logworks(ResultTask resultTask)
         {
+            ViewBag.listTaskType = listTaskType;
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {
@@ -51,6 +54,7 @@ namespace ProjectManage.Controllers
         [HttpPost]
         public ActionResult EditLogwork(ResultTask resultTask)
         {
+            ViewBag.listTaskType = listTaskType;
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {
@@ -71,6 +75,7 @@ namespace ProjectManage.Controllers
         [HttpGet]
         public ActionResult EditLogwork(int idTask, DateTime date)
         {
+            ViewBag.listTaskType = listTaskType;
             var dao = new ResultDao();
             var result = dao.GetResult(idTask, date);
             return View(result);

@@ -43,6 +43,7 @@ namespace ProjectManage.Controllers
                     Session.Add(CommonConstants.USER_SESSION, userSession);
 
                     Session["userName"] = user.userName;
+                    Session["idUser"] = user.idUser;
                     //Đăng nhập thành công trả về trang chủ
                     return RedirectToAction("Dashboard", "PositionUser", new {idUser = userSession.idUser });
                 }

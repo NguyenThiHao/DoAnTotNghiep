@@ -11,15 +11,8 @@ namespace ProjectManage.Controllers
 {
     public class ProjectController : BaseController
     {
-        //public ActionResult Index()
-        //{
-        //    var dao = new PositionUserDao();
-        //    var userLogin = new UserLogin();
-        //    var listPositionUser = dao.ListProjectJoined(userLogin.idUser);
-        //    return View(listPositionUser);
-        //}
-
         List<string> listProjectType = new TypeDao().ListProjectType();
+        List<string> listStatus = new TypeDao().ListStatus();
 
         #region CreateProject
         [HasCredential(RoleID = "CREATE_PROJECT")]
@@ -61,6 +54,7 @@ namespace ProjectManage.Controllers
         public ActionResult EditProject(int idProject)
         {
             ViewBag.ListProjectType = listProjectType;
+            ViewBag.listStatus = listStatus;
             var project = new ProjectDao().ViewDetail(idProject);
             return View(project);
         }
@@ -71,6 +65,7 @@ namespace ProjectManage.Controllers
         public ActionResult EditProject(Project project)
         {
             ViewBag.ListProjectType = listProjectType;
+            ViewBag.listStatus = listStatus;
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {
@@ -125,7 +120,8 @@ namespace ProjectManage.Controllers
         public ActionResult ListUserPartial(int idProject)
         {
             var dao = new PositionUserDao();
-            List<UserByProject> listUserByProject = dao.ListUserByProject(idProject); 
+            List<UserByProject> listUserByProject = dao.ListUserByProject(idProject);
+            ViewBag.idProject = idProject;
             return View(listUserByProject);
         }
 

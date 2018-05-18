@@ -11,6 +11,7 @@ namespace ProjectManage.Controllers
 {
     public class PhaseController : BaseController
     {
+        List<string> listStatus = new TypeDao().ListStatus();
         // GET: Phase
         public ActionResult Index()
         {
@@ -22,6 +23,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "CREATE_PHASE")]
         public ActionResult CreatePhase()
         {
+            ViewBag.listStatus = listStatus;
             //Tạo ViewBag lưu danh sách project
             ViewBag.GetListProject = new ProjectDao().GetListProject();
             return View();
@@ -30,6 +32,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "CREATE_PHASE")]
         public ActionResult CreatePhase(Phase phase)
         {
+            ViewBag.listStatus = listStatus;
             //Tạo ViewBag lưu danh sách project
             ViewBag.GetListProject = new ProjectDao().GetListProject();
             //Kiểm tra Validation
@@ -56,6 +59,9 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_PHASE")]
         public ActionResult EditPhase(int idPhase)
         {
+            //Tạo ViewBag lưu danh sách project
+            ViewBag.GetListProject = new ProjectDao().GetListProject();
+            ViewBag.listStatus = listStatus;
             var phase = new PhaseDao().ViewDetail(idPhase);
             int idProject = phase.idProject;
             //Lấy ra tên Project
@@ -69,6 +75,9 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_PHASE")]
         public ActionResult EditPhase(Phase phase)
         {
+            //Tạo ViewBag lưu danh sách project
+            ViewBag.GetListProject = new ProjectDao().GetListProject();
+            ViewBag.listStatus = listStatus;
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {

@@ -22,11 +22,11 @@
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sprint Name <span class="required">*</span></label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Task Name <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <input class="form-control" id="idSprint" name="idSprint" type="text" value="@ViewBag.SprintName" readonly="readonly">
+                                            @Html.TextBoxFor(model => model.taskName, new { @class = "form-control", placeholder = "Task Name" })
                                             <div class="message">
-                                               
+                                                @Html.ValidationMessageFor(model => model.taskName)
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +64,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Task <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.type, new { @class = "form-control", placeholder = "Type " })
+
+                                            @Html.DropDownListFor(model => model.type, new SelectList(ViewBag.listTypeTask), new { @class = "form-control", placeholder = "Type" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.type)
                                             </div>
@@ -95,13 +96,12 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Assignee to <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.assignee, new { @class = "form-control", placeholder = "Assignee to " })
+                                            @Html.DropDownListFor(model => model.assignee, new SelectList(ViewBag.ListUser, "idUser", "account", "User"), new { @class = "form-control", placeholder = "Assignee to " })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.assignee)
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span></label>
@@ -115,7 +115,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.TextBoxFor(model => model.status, new { @class = "form-control", placeholder = "Status" })
+
+                                            @Html.DropDownListFor(model => model.status, new SelectList(ViewBag.listStatus), new { @class = "form-control", placeholder = "Status" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.status)
                                             </div>

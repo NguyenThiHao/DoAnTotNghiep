@@ -48,6 +48,6 @@
             </tbody>
             
         </table>
-        @Html.ActionLink("Add User", "AddUser", "PositionUser", null, new { @class = "btn btn-success", style = "margin: 10px; float: right;" })
+        @Html.ActionLink("Add User", "AddUser", "PositionUser", new { idProject = ViewBag.idProject}, new { @class = "btn btn-success", style = "margin: 10px; float: right;" })
     </div>
 </div>

@@ -10,8 +10,10 @@ using ProjectManage.Controllers;
 
 namespace ProjectManage.Controllers
 {
+
     public class SprintController : BaseController
     {
+        List<string> listStatus = new TypeDao().ListStatus();
         #region CreateSprint: Tạo mới 1 Sprint
         [HttpGet]
         [HasCredential(RoleID = "CREATE_SPRINT")]
@@ -55,6 +57,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_SPRINT")]
         public ActionResult EditSprint(int idSprint)
         {
+            ViewBag.listStatus = listStatus;
             var sprint = new SprintDao().ViewDetail(idSprint);
             //Lấy ra idPhase của sprint hiện tại
             int idPhase = sprint.idPhase;
@@ -68,6 +71,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_SPRINT")]
         public ActionResult EditSprint(Sprint sprint)
         {
+            ViewBag.listStatus = listStatus;
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {

@@ -13,6 +13,7 @@ namespace ProjectManage.Controllers
         public ActionResult Menu()
         {
             ViewBag.username = Session["userName"];
+            ViewBag.idUser = Session["idUser"];
             List<Dashboard> listProject = (List<Dashboard>)Session["listProject"];
             return View(listProject);
         }

@@ -19,12 +19,12 @@ namespace ProjectManage.Controllers
         {
             //Lấy ra danh sách project mà user đang tham gia
             var listProjectJoined = new PositionUserDao().ListProjectJoined(idUser);
-            
+
             //Khởi tạo class 1 Dashboard để lấy ra chi tiết hơn
             Dashboard dashboard = new Dashboard();
             //Khởi tạo 1 list<Dashboard> lưu trữ
             List<Dashboard> listDashboard = new List<Dashboard>();
-            foreach(var item in listProjectJoined)
+            foreach (var item in listProjectJoined)
             {
                 //lấy ra tên của Project
                 dashboard.projectName = new ProjectDao().GetProjectName(item.idProject);
@@ -64,45 +64,55 @@ namespace ProjectManage.Controllers
             userByProject.email = user.mail;
             //Lấy ra tên group
             userByProject.groupName = new GroupDao().GetGroupName(userByProject.idGroup);
-            
+
             return View(userByProject);
         }
         #endregion
 
-        public ActionResult _CategoriesPartial()
-        {
-
-            
-
-
-
-
-
-            //int idUser = Int32.Parse(Request.QueryString["idUser"].ToString());
-            //ViewBag.Account = new UserDao().GetAccountUser(idUser);
-            //ViewBag.IdUser = idUser;
-            ////Lấy ra danh sách project mà user đang tham gia
-            //var listProjectJoined = new PositionUserDao().ListProjectJoined(idUser);
-            ////Khởi tạo class 1 Dashboard để lấy ra chi tiết hơn
-            //Dashboard dashboard = new Dashboard();
-            ////Khởi tạo 1 list<Dashboard> lưu trữ
-            //List<Dashboard> listDashboard = new List<Dashboard>();
-            //foreach (var item in listProjectJoined)
-            //{
-            //    //lấy ra tên của Project
-            //    dashboard.projectName = new ProjectDao().GetProjectName(item.idProject);
-            //    dashboard.idProject = item.idProject;
-            //    //Lưu dashboard vào List
-            //    listDashboard.Add(dashboard);
-            //}
-            //Session["ListProject"] = listDashboard;
-            return View();
-        }
-
-
         #region Thêm một user vào trong project
-
+        //public ActionResult AddUser()
+        //{
+        //    //Lấy ra danh sách User
+        //    List<User> listUser = new UserDao().ListUser();
+        //    //Đổ vào ViewBag hiển thị lên View
+        //    ViewBag.ListUser = listUser;
+        //    //Lấy ra list position user
+        //    List<string> listPosition = new TypeDao().ListPosition();
+        //    ViewBag.ListPosition = listPosition;
+        //    return View();
+        //}
+        public ActionResult AddUser(PositionUser entity)
+        {
+            //Lấy ra danh sách User
+            List<User> listUser = new UserDao().ListUser();
+            //Đổ vào ViewBag hiển thị lên View
+            ViewBag.ListUser = listUser;
+            //Lấy ra list position user
+            List<string> listPosition = new TypeDao().ListPosition();
+            ViewBag.ListPosition = listPosition;
+            //Tạo ViewBag lưu danh sách project
+            ViewBag.GetListProject = new ProjectDao().GetListProject();
+            //Kiểm tra validation
+            if (ModelState.IsValid)
+            {
+                //Kiểm tra Validation
+                if (ModelState.IsValid)
+                {
+                    var dao = new PositionUserDao();
+                    bool result = dao.AddUser(entity);
+                    if (result)
+                    {
+                        SetAlert("Add users to the project successfully!", "success");
+                        return RedirectToAction("DetailProject", "Project", new { idProject = entity.idProject });
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Add users to the project failed!");
+                    }
+                }
+            }
+            return View("AddUser");
+        }
         #endregion
-
     }
 }

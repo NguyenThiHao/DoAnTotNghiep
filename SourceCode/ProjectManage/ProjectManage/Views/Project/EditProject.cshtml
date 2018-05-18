@@ -33,7 +33,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Type of Project <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            @Html.DropDownListFor(model => model.typeProject, new SelectList(ViewBag.ListProjectType), new { @class = "form-control", placeholder = "Type of Project" })
+                                            @Html.DropDownListFor(model => model.typeProject, new SelectList(ViewBag.ListProjectType),"Type", new { @class = "form-control", placeholder = "Type of Project" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.typeProject)
                                             </div>
@@ -75,7 +75,7 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
 
-                                            @Html.DropDownListFor(model => model.status, new SelectList(ViewBag.Status), new { @class = "form-control", placeholder = "Status" })
+                                            @Html.DropDownListFor(model => model.status, new SelectList(ViewBag.listStatus), new { @class = "form-control", placeholder = "Status" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.status)
                                             </div>
