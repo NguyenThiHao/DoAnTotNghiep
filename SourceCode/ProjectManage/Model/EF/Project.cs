@@ -35,7 +35,7 @@ namespace Model.EF
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime endDate { get; set; }
 
-        [Required]
+        
         [StringLength(50)]
         public string status { get; set; }
 

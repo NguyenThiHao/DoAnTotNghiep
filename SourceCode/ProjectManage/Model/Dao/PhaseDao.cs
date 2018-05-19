@@ -97,5 +97,14 @@ namespace Model.Dao
         {
             return db.Phases.Find(idPhase).phaseName.ToString();
         }
+
+        //Lấy ra 1 phase theo id
+        public List<Phase> GetPhaseById(int idPhase)
+        {
+            List<Phase> listPhase = new List<Phase>();
+            Phase phase = db.Phases.Find(idPhase);
+            listPhase.Add(phase);
+            return listPhase;
+        }
     }
 }

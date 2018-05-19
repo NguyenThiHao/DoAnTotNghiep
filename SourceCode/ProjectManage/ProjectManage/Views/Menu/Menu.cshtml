@@ -5,28 +5,30 @@
 <!--Menu bên trái-->
 <div class="col-md-7" style="background-color: #205081">
     <ul class="nav nav-pills">
-        <li style="padding: 0px 10px;"><a href="../PositionUser/Dashboard?idUser=@ViewBag.idUser"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li style="padding: 0px 20px;"><a href="../PositionUser/Dashboard?idUser=@ViewBag.idUser"><span class="glyphicon glyphicon-home"></span></a></li>
 
         <li class="dropdown" style="padding: 0px 5px;">
             <a data-toggle="dropdown">Project <span class="caret"></span></a>
             <ul class="dropdown-menu">
+                <li><a href="../Project/CreateProject">Create Project</a></li>
+                <div class="divider"></div>
                 @foreach (var item in Model)
                 {
                     <li><a href="../Project/DetailProject?idProject=@item.idProject">@item.projectName</a></li>
                 }
             </ul>
         </li>
-        <li style="padding: 0px 5px;">
+        <li style="padding: 0px 20px;">
             <a href="../Phase/CreatePhase">Phase </a>
         </li>
 
-        <li style="padding: 0px 5px;">
+        <li style="padding: 0px 20px;">
             <a href="../Sprint/CreateSprint"> Sprint </a>
         </li>
-        <li style="padding: 0px 5px;">
-            <a href="../Sprint/CreateTask">Task</a>
+        <li style="padding: 0px 20px;">
+            <a href="../Task/CreateTask">Task</a>
         </li>
-        <li class="dropdown" style="padding: 0px 5px;">
+        <li class="dropdown" style="padding: 0px 20px;">
             <a data-toggle="dropdown">Chart <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 @foreach (var item in Model)

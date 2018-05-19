@@ -45,7 +45,7 @@ namespace ProjectManage.Controllers
                     ModelState.AddModelError("", "Logworks failed!");
                 }
             }
-            return View("Logworks");
+            return RedirectToAction("DetailTask", "Task", new { idTask = resultTask.idTask, Show = "block" });
         }
 
         #endregion

@@ -13,7 +13,10 @@ namespace ProjectManage.Common
         public string RoleID { set; get; }
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
+
+
             var session = (UserLogin)HttpContext.Current.Session[CommonConstants.USER_SESSION];
+
             if (session == null)
             {
                 return false;

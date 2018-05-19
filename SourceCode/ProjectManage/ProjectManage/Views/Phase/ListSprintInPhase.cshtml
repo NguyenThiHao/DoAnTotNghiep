@@ -29,7 +29,7 @@
                     </tbody>     
                 </table>
             </div>
-            @Html.ActionLink("Create Sprint", "CreateSprint", "Sprint", null, new { @class = "btn btn-success" })
+            @Html.ActionLink("Create Sprint", "CreateSprint", "Sprint", new { idPhase = ViewBag.idPhase}, new { @class = "btn btn-success" })
         </div>
     </div>
 </div>

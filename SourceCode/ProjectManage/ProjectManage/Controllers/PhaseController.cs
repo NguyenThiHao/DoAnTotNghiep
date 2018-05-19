@@ -12,20 +12,24 @@ namespace ProjectManage.Controllers
     public class PhaseController : BaseController
     {
         List<string> listStatus = new TypeDao().ListStatus();
-        // GET: Phase
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         #region CreatePhase: Tạo mới 1 Phase
         [HttpGet]
         [HasCredential(RoleID = "CREATE_PHASE")]
         public ActionResult CreatePhase()
         {
             ViewBag.listStatus = listStatus;
-            //Tạo ViewBag lưu danh sách project
-            ViewBag.GetListProject = new ProjectDao().GetListProject();
+            if (Request.QueryString["idProject"] != null)
+            {
+                Project project = new ProjectDao().GetProjectById(Int32.Parse(Request["idProject"]));
+                List<Project> listProject = new List<Project>();
+                listProject.Add(project);
+                ViewBag.GetListProject = listProject;
+            }
+            else
+            {
+                //Tạo ViewBag lưu danh sách project
+                ViewBag.GetListProject = new ProjectDao().GetListProject();
+            }
             return View();
         }
         [HttpPost]
@@ -33,8 +37,18 @@ namespace ProjectManage.Controllers
         public ActionResult CreatePhase(Phase phase)
         {
             ViewBag.listStatus = listStatus;
-            //Tạo ViewBag lưu danh sách project
-            ViewBag.GetListProject = new ProjectDao().GetListProject();
+            if (Request.QueryString["idProject"] != null)
+            {
+                Project project = new ProjectDao().GetProjectById(Int32.Parse(Request["idProject"]));
+                List<Project> listProject = new List<Project>();
+                listProject.Add(project);
+                ViewBag.GetListProject = listProject;
+            }
+            else
+            {
+                //Tạo ViewBag lưu danh sách project
+                ViewBag.GetListProject = new ProjectDao().GetListProject();
+            }
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {
@@ -112,6 +126,7 @@ namespace ProjectManage.Controllers
 
         public ActionResult ListSprintInPhase(int idPhase)
         {
+            ViewBag.idPhase = idPhase;
             var dao = new SprintDao();
             var listSprint = dao.ListSprintByPhase(idPhase);
             return PartialView(listSprint);

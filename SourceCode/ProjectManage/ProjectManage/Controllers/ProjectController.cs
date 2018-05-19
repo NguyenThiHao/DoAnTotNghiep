@@ -32,21 +32,33 @@ namespace ProjectManage.Controllers
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {
+
                 var dao = new ProjectDao();
-                long idProject = dao.CreateProject(project);
+                int idProject = dao.CreateProject(project);
                 if (idProject > 0)
                 {
-                    SetAlert("Create project suscessful!", "success");
-                    return RedirectToAction("DetailProject", "Project", new { idProject = project.idProject});
+
+                    PositionUser pUser = new PositionUser((int)Session["idUser"], idProject);
+
+                    if (new PositionUserDao().AddUser(pUser))
+                    {
+                        SetAlert("Create project suscessful!", "success");
+                        return RedirectToAction("DetailProject", "Project", new { idProject = project.idProject });
+                    }
+
                 }
                 else
                 {
                     ModelState.AddModelError("", "Create project failed!");
                 }
+
+
             }
             return View("CreateProject");
         }
         #endregion
+
+
 
         #region EditProject
         [HttpGet]
@@ -111,7 +123,7 @@ namespace ProjectManage.Controllers
             //Vẽ biểu đồ
             List<ChartParse> listChart = new ProjectDao().ListChart(idProject);
             ViewBag.Chart = (new JavaScriptSerializer().Serialize(listChart));
-            
+
             return View(detailProject);
         }
 
@@ -127,8 +139,9 @@ namespace ProjectManage.Controllers
 
         //Lấy ra danh sách các phase trong project
         [HasCredential(RoleID = "VIEW_PROJECT")]
-        public ActionResult ListPhaseInProject(int idProject, int page =1, int pageSize = 5)
+        public ActionResult ListPhaseInProject(int idProject, int page = 1, int pageSize = 5)
         {
+            ViewBag.idProject = idProject;
             var listPhase = new PhaseDao().ListPhaseByProject(idProject, page, pageSize);
             ViewBag.idProject = idProject;
             return PartialView(listPhase);

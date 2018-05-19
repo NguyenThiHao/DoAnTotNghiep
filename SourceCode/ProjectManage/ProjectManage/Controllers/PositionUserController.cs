@@ -20,12 +20,14 @@ namespace ProjectManage.Controllers
             //Lấy ra danh sách project mà user đang tham gia
             var listProjectJoined = new PositionUserDao().ListProjectJoined(idUser);
 
-            //Khởi tạo class 1 Dashboard để lấy ra chi tiết hơn
-            Dashboard dashboard = new Dashboard();
+
+
             //Khởi tạo 1 list<Dashboard> lưu trữ
             List<Dashboard> listDashboard = new List<Dashboard>();
             foreach (var item in listProjectJoined)
             {
+                //Khởi tạo class 1 Dashboard để lấy ra chi tiết hơn
+                Dashboard dashboard = new Dashboard();
                 //lấy ra tên của Project
                 dashboard.projectName = new ProjectDao().GetProjectName(item.idProject);
                 dashboard.idProject = item.idProject;
@@ -93,25 +95,23 @@ namespace ProjectManage.Controllers
             //Tạo ViewBag lưu danh sách project
             ViewBag.GetListProject = new ProjectDao().GetListProject();
             //Kiểm tra validation
-            if (ModelState.IsValid)
+
+            if (entity.idUser != null || entity.position != null || entity.idProject != null)
             {
-                //Kiểm tra Validation
-                if (ModelState.IsValid)
+                var dao = new PositionUserDao();
+                bool result = dao.AddUser(entity);
+                if (result)
                 {
-                    var dao = new PositionUserDao();
-                    bool result = dao.AddUser(entity);
-                    if (result)
-                    {
-                        SetAlert("Add users to the project successfully!", "success");
-                        return RedirectToAction("DetailProject", "Project", new { idProject = entity.idProject });
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "Add users to the project failed!");
-                    }
+                    SetAlert("Add users to the project successfully!", "success");
+                    return RedirectToAction("DetailProject", "Project", new { idProject = entity.idProject });
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Add users to the project failed!");
                 }
             }
-            return View("AddUser");
+            
+            return RedirectToAction("DetailProject", "Project", new { idProject = entity.idProject, Show = "block" });
         }
         #endregion
     }

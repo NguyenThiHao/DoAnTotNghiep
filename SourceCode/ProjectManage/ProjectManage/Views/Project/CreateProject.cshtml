@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "CreateProject";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
+
 }
 <div class="col-lg-2"></div>
 <div class="col-lg-8">
@@ -54,7 +55,7 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
 
-                                            @Html.TextBoxFor(model => model.startDate, new { @class = "form-control", placeholder = "Planded Start", type = "date" })
+                                            @Html.TextBoxFor(model => model.startDate, new { @class = "form-control ", placeholder = "Planded Start", type = "date", id="startdate" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.startDate)
                                             </div>
@@ -65,9 +66,10 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date <span class="required">*</span></label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
 
-                                            @Html.TextBoxFor(model => model.endDate, new { @class = "form-control", placeholder = "End Date", type = "date" })
+                                            @Html.TextBoxFor(model => model.endDate, new { @class = "form-control", placeholder = "End Date", type = "date", id = "enddate" })
                                             <div class="message">
                                                 @Html.ValidationMessageFor(model => model.endDate)
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -101,5 +103,12 @@
         color: red;
     }
 </style>
+<script>
+    var date = new Date();
+    date.setDate(date.getDate() - 1);
 
+    $('#startdate').datepicker({
+        startDate: date
+    });
+</script>
 

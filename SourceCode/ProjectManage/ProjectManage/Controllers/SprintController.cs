@@ -19,7 +19,17 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "CREATE_SPRINT")]
         public ActionResult CreateSprint()
         {
-            ViewBag.GetListPhase = new PhaseDao().GetListPhase();
+
+            if (Request.QueryString["idPhase"] != null)
+            {
+                ViewBag.GetListPhase = new PhaseDao().GetPhaseById(Int32.Parse(Request["idPhase"]));
+            }
+            else
+            {
+                //Tạo ViewBag lưu danh sách Phase
+                ViewBag.GetListPhase = new PhaseDao().GetListPhase();
+            }
+
             return View();
         }
 
@@ -27,8 +37,17 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "CREATE_SPRINT")]
         public ActionResult CreateSprint(Sprint sprint)
         {
-            //Tạo ViewBag lưu danh sách Phase
-            ViewBag.GetListPhase = new PhaseDao().GetListPhase();
+            
+            if (Request.QueryString["idPhase"] != null)
+            {
+                ViewBag.GetListPhase = new PhaseDao().GetPhaseName(Int32.Parse( Request["idPhase"]));
+            }else
+            {
+                //Tạo ViewBag lưu danh sách Phase
+                ViewBag.GetListPhase = new PhaseDao().GetListPhase();
+            }
+            
+           
             //Kiểm tra Validation
             if (ModelState.IsValid)
             {
@@ -107,6 +126,7 @@ namespace ProjectManage.Controllers
 
         public ActionResult ListTaskInSprint(int idSprint)
         {
+            ViewBag.idSprint = idSprint;
             var dao = new TaskDao();
             var listTask = dao.ListTaskBySprint(idSprint);
             return PartialView(listTask);

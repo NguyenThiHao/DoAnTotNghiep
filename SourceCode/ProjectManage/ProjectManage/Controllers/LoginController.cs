@@ -44,6 +44,12 @@ namespace ProjectManage.Controllers
 
                     Session["userName"] = user.userName;
                     Session["idUser"] = user.idUser;
+                    if (model.rememberMe == true)
+                    {
+                        HttpCookie ck = new HttpCookie("user.account");
+                        ck.Expires = DateTime.Now.AddDays(15);
+                        Response.Cookies.Add(ck);
+                    }
                     //Đăng nhập thành công trả về trang chủ
                     return RedirectToAction("Dashboard", "PositionUser", new {idUser = userSession.idUser });
                 }

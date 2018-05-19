@@ -12,16 +12,27 @@ namespace ProjectManage.Controllers
 {
     public class TaskController : BaseController
     {
+        List<string> listTypeTask = new TypeDao().ListTaskType();
         #region CreateTask
         [HttpGet]
         [HasCredential(RoleID = "CREARE_TASK")]
         public ActionResult CreateTask()
         {
+            ViewBag.listTypeTask = listTypeTask;
             //Lấy ra danh sách User
             List<User> listUser = new UserDao().ListUser();
             //Đổ vào ViewBag hiển thị lên View
             ViewBag.ListUser = listUser;
-            ViewBag.GetListSprint = new SprintDao().GetListSprint();
+            if (Request.QueryString["idSprint"] != null)
+            {
+                List<Sprint> listSprint = new SprintDao().GetSprint(Int32.Parse(Request.QueryString["idSprint"]));
+                ViewBag.GetListSprint = listSprint;
+            }
+            else
+            {
+                //Tạo ViewBag lưu danh sách project
+                ViewBag.GetListSprint = new SprintDao().GetListSprint();
+            }
             return View();
         }
 
@@ -29,8 +40,17 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "CREARE_TASK")]
         public ActionResult CreateTask(Task task )
         {
-            //Tạo ViewBag lưu danh sách project
-            ViewBag.GetListSprint = new SprintDao().GetListSprint();
+            ViewBag.listTypeTask = listTypeTask;
+            if (Request.QueryString["idSprint"] != null)
+            {
+                List<Sprint> listSprint = new SprintDao().GetSprint(Int32.Parse(Request.QueryString["idSprint"]));
+                ViewBag.GetListSprint = listSprint;
+            }
+            else
+            {
+                //Tạo ViewBag lưu danh sách project
+                ViewBag.GetListSprint = new SprintDao().GetListSprint();
+            }
             //Lấy ra danh sách User
             List<User> listUser = new UserDao().ListUser();
             //Đổ vào ViewBag hiển thị lên View
@@ -59,6 +79,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_TASK")]
         public ActionResult EditTask(int idTask)
         {
+            ViewBag.listTypeTask = listTypeTask;
             var task = new TaskDao().ViewDetail(idTask);
             int idSprint = task.idSprint;
             //lấy ra tên Sprint
@@ -72,6 +93,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_TASK")]
         public ActionResult EditTask(Task task)
         {
+            ViewBag.listTypeTask = listTypeTask;
             int idSprint = task.idSprint;
             //lấy ra tên Sprint
             string sprintName = new SprintDao().GetSprintName(idSprint);
@@ -99,6 +121,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "VIEW_TASK")]
         public ActionResult DetailTask(int idTask)
         {
+            ViewBag.listTypeTask = listTypeTask;
             int idProject = new TaskDao().GetProject(idTask);
             var result = new TaskDao().TaskAsigneeToUser(idTask, idProject);
             return View(result);

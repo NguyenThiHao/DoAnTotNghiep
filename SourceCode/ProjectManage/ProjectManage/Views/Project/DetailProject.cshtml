@@ -120,8 +120,6 @@
 }
 
 <script>
-
-    
     new Morris.Area({
         element: 'graph_area1',
         data: @Html.Raw(@ViewBag.Chart),
@@ -134,17 +132,6 @@
         hideHover: 'auto'
 
     });
-
-    //new Morris.Area({
-    //    element: 'graph_area1',
-    //    data: [{day:'2018-05-06',create:0,inprogress:0,done:0},{day:'2018-05-07',create:0,inprogress:0,done:0},{day:'2018-05-08',create:0,inprogress:0,done:0},{day:'2018-05-09',create:0,inprogress:0,done:0}],
-    //    xkey: 'day',
-    //    xLabels: "day",
-    //    ykeys: ['create', 'inprogress', 'done'],
-    //    lineColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-    //    labels: ['Create', 'Inprogress', 'Done'],
-    //    pointSize: 2,
-    //    hideHover: 'auto'
-
-    //});
 </script>
+
+

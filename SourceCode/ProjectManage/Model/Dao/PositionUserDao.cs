@@ -60,6 +60,7 @@ namespace Model.Dao
                 userByProject.account = new UserDao().GetAccountUser(idUser);
                 userByProject.status = i.status;
                 userByProject.joinedDate = i.joinedDate;
+                userByProject.userName = new UserDao().GetNameUser(idUser);
                 listUserByProject.Add(userByProject);
             }
             return listUserByProject;

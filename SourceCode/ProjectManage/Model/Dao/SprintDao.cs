@@ -88,5 +88,13 @@ namespace Model.Dao
         {
             return db.Sprints.Find(idSprint).reporter;
         }
+
+        //Lấy ra sprint theo id
+        public List<Sprint> GetSprint(int idSprint)
+        {
+            List<Sprint> listSprint = new List<Sprint>();
+            listSprint.Add(db.Sprints.Find(idSprint));
+            return listSprint;
+        }
     }
 }

@@ -3,6 +3,13 @@
     ViewBag.Title = "DetailTask";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
     double remaining = 100 - Model.loggedTime;
+    string Show = Request.QueryString["Show"];
+    string idTask = Request.QueryString["idTask"];
+    string inClass = "";
+    if (Show == "block")
+    {
+        inClass = " in";
+    }
 }
 
 <div class="col-lg-12">
@@ -106,7 +113,7 @@
                                 <td style="border: none; " width="30%">Estimated:</td>
                                 <td style="border: none; padding-top: 7px;">
                                     <div class="progress">
-                                        <div class="progress-bar" style="width: 100%;">
+                                        <div class="progress-bar" style="width: 100%;" >
                                         </div>
                                     </div>
                                 </td>
@@ -129,7 +136,16 @@
                                     </div>
                                 </td>
                             </tr>
+                            
                         </table>
+                        @if (Model.loggedTime > 100)
+                        {
+
+                            <div class="alert alert-danger">
+                                Logged Time is over Estimate Time
+                            </div>
+
+                        }
                     </div>
                 </div>
             </div>
@@ -140,17 +156,17 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade @inClass" id="myModal" role="dialog" style="display:@Show">
     <div class="modal-dialog">
         <!-- Modal -->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <button type="button" class="close" data-dismiss="modal" onclick="myFunction()">&times;</button>
+                <h4 class="modal-title">Logwork</h4>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal form-label-left">
-                    <form action="/Result/Logworks?idTask=2" method="post">
+                    <form action="/Result/Logworks?idTask=@idTask" method="post">
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Task <span class="required">*</span></label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
@@ -170,15 +186,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date <span class="required">*</span></label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input class="form-control" data-val="true" data-val-date="The field date must be a date." data-val-required="The date field is required." id="date" name="date" type="date" value="1/1/0001 12:00:00 AM">
-                                <div class="message">
-                                    <span class="field-validation-valid" data-valmsg-for="date" data-valmsg-replace="true"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Worked </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <input autofocus="autofocus" class="form-control" data-val="true" data-val-number="The field resultToday must be a number." data-val-required="The resultToday field is required." id="resultToday" name="resultToday" type="text" value="0">
@@ -188,23 +195,42 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date <span class="required">*</span></label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input class="form-control" data-val="true" data-val-date="The field date must be a date." data-val-required="The date field is required." id="date" name="date" type="date" value="1/1/0001 12:00:00 AM">
+                                <div class="message">
+                                    <span class="field-validation-valid" data-valmsg-for="date" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span></label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <textarea class="form-control" cols="20" id="description" name="description" placeholder="Description" rows="10"></textarea>
+                                <textarea class="form-control" cols="20" id="description" name="description" placeholder="Description" rows="5"></textarea>
                                 <div class="message">
                                     <span class="field-validation-valid" data-valmsg-for="description" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
                         </div>
+       
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Type <span class="required">*</span></label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input class="form-control" id="type" name="type" placeholder="Type" type="text" value="">
+
+                                <select class="form-control" data-val="true" data-val-length="The field type must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The type field is required." id="type" name="type" placeholder="Type">
+                                    <option>Create</option>
+                                    <option>Correct</option>
+                                    <option>Test</option>
+                                    <option>Review</option>
+                                </select>
                                 <div class="message">
                                     <span class="field-validation-valid" data-valmsg-for="type" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
@@ -220,3 +246,10 @@
 
     </div>
 </div>
+<script>
+    function myFunction() {
+        var element = document.getElementById("myModal");
+        element.classList.remove("in");
+        element.style.display = "none";
+    }
+</script>

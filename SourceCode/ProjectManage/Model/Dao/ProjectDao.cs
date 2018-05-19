@@ -54,6 +54,7 @@ namespace Model.Dao
                 project.startDate = entity.startDate;
                 project.endDate = entity.endDate;
                 project.status = entity.status;
+                project.typeProject = entity.typeProject;
                 //Lưu vào csdl
                 db.SaveChanges();
                 return true;

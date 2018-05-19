@@ -233,6 +233,8 @@
     <Content Include="Views\Project\ListPhaseInProject.cshtml" />
     <Content Include="Views\Shared\Error401.cshtml" />
     <Content Include="Views\PositionUser\AddUser.cshtml" />
+    <Content Include="Views\Group\CreateGroup.cshtml" />
+    <Content Include="Views\Group\DetailGroup.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -244,7 +246,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="scripts\morris.js-0.5.1\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Group\" />
     <Folder Include="Views\Logworks\" />
   </ItemGroup>
   <ItemGroup>
