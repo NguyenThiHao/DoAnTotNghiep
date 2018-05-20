@@ -87,10 +87,10 @@ namespace Model.Dao
             while (DateTime.Compare(startdate, DateTime.Today) < 0)
             {
                 ChartParse chart = new ChartParse();
-                startdate = startdate.AddDays(1);//dang ra ham nay phai ađ duoc chu nho. thi t cung hoc tren mang thoi :v
+                startdate = startdate.AddDays(1);
                 chart.day = startdate.ToString("yyyy-MM-dd");
                 chart.create = new TaskDao().TotalCreatedTask(startdate, idProject);
-                chart.inprogress = new ResultDao().TotalInProgress(idProject, startdate);
+                chart.inprogress = new TaskDao().TotalInprogress(startdate, idProject);
                 chart.done = new TaskDao().TotalDoneTask(startdate, idProject);
                 listChart.Add(chart);
             }

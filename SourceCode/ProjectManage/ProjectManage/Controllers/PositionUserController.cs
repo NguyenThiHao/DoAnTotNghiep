@@ -72,17 +72,6 @@ namespace ProjectManage.Controllers
         #endregion
 
         #region Thêm một user vào trong project
-        //public ActionResult AddUser()
-        //{
-        //    //Lấy ra danh sách User
-        //    List<User> listUser = new UserDao().ListUser();
-        //    //Đổ vào ViewBag hiển thị lên View
-        //    ViewBag.ListUser = listUser;
-        //    //Lấy ra list position user
-        //    List<string> listPosition = new TypeDao().ListPosition();
-        //    ViewBag.ListPosition = listPosition;
-        //    return View();
-        //}
         public ActionResult AddUser(PositionUser entity)
         {
             //Lấy ra danh sách User

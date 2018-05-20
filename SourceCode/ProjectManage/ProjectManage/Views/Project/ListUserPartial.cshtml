@@ -1,4 +1,5 @@
-﻿@model List<Model.ViewModel.UserByProject>
+﻿@using Model.EF
+@model List<Model.ViewModel.UserByProject>
 @{
     string Show = Request.QueryString["Show"];
     string idProject = Request.QueryString["idProject"];
@@ -16,6 +17,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Account</th>
+                    <th>Username</th>
                     <th>Position</th>
                     <th>Joined Date</th>
                     <th>Status</th>
@@ -28,6 +30,9 @@
                         <tr class="gradeA odd" role="row" id="row_@item.idUser@item.idProject">
                             <td class="sorting_1">
                                 <span>@(i++)</span>
+                            </td>
+                            <td class="sorting_1">
+                                <a href="/PositionUser/ViewDetail?idUser=@item.idUser&idProject=@item.idProject">@item.account</a>
                             </td>
                             <td class="sorting_1">
                                 <a href="/PositionUser/ViewDetail?idUser=@item.idUser&idProject=@item.idProject">@item.userName</a>
@@ -67,7 +72,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" onclick="myFunction()">&times;</button>
-                <h4 class="modal-title">Logwork</h4>
+                <h4 class="modal-title">Add User</h4>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal form-label-left">
@@ -77,29 +82,10 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Project <span class="required">*</span></label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <select class="form-control" data-val="true" data-val-number="The field idProject must be a number." data-val-required="The idProject field is required." id="idProject" name="idProject" placeholder="Project" rows="6">
-                                    <option selected="selected" value="3">Xây dựng website bán sách</option>
-                                    <option value="6">Dự án 1</option>
-                                    <option value="9">Dự án 2</option>
-                                    <option value="10">Dự án 3</option>
-                                    <option value="11">Dự án 4</option>
-                                    <option value="12">Dự án 5</option>
-                                    <option value="13">Dự án 6</option>
-                                    <option value="14">Dự án 7</option>
-                                    <option value="15">Dự án 8</option>
-                                    <option value="16">Dự án 9</option>
-                                    <option value="17">Dự án 10</option>
-                                    <option value="18">Dự án 11</option>
-                                    <option value="19">Dự án 12</option>
-                                    <option value="21">Dự án 13</option>
-                                    <option value="22">Dự án 14</option>
-                                    <option value="23">Dự án 15</option>
-                                    <option value="24">Dự án 16</option>
-                                    <option value="26">Dự án 17</option>
-                                    <option value="27">Hệ thông thi trắc nghiệm online</option>
-                                    <option value="28">Kiểm thử hệ thống quản trị mạng</option>
-                                    <option value="29">Kiểm thử hệ thống quản trị mạng</option>
-                                    <option value="30">Kiểm thử hệ thống quản trị mạng</option>
-                                    <option value="31">Kiểm thử hệ thống quản trị mạng</option>
+                                    @foreach (var item in ViewBag.listProject)
+                                    {
+                                        <option value="@item.idProject">@item.projectName</option>
+                                    }
                                 </select>
                                 <div class="message">
                                     <span class="field-validation-valid" data-valmsg-for="idProject" data-valmsg-replace="true"></span>
@@ -110,18 +96,10 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">User <span class="required">*</span></label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <select class="form-control" data-val="true" data-val-number="The field idUser must be a number." data-val-required="The idUser field is required." id="idUser" name="idUser" placeholder="Type of Project">
-                                    <option value="2">admin</option>
-                                    <option value="3">Nguyễn Thị Hảo</option>
-                                    <option value="6">Nguyễn Thị Hảo</option>
-                                    <option value="15">hao</option>
-                                    <option value="23">Nguyễn Thị Hiền</option>
-                                    <option value="24">Nguyễn Văn A</option>
-                                    <option value="26">Trần Văn B</option>
-                                    <option value="27">Hoàng Thị C</option>
-                                    <option value="28">Nguyen Van D</option>
-                                    <option value="29">Nguyen Van E</option>
-                                    <option value="30">Nguyen Thi G</option>
-                                    <option value="31">Nguyễn Thi H</option>
+                                    @foreach (var item in ViewBag.ListUser)
+                                    {
+                                        <option value="@item.idUser">@item.account (@item.userName)</option>
+                                    }
                                 </select>
                                 <div class="message">
                                     <span class="field-validation-valid" data-valmsg-for="idUser" data-valmsg-replace="true"></span>

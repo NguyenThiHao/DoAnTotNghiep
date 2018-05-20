@@ -53,6 +53,7 @@ namespace Model.EF
         public string priority { get; set; }
 
         public int assignee { get; set; }
+        public int idProject { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Result> Results { get; set; }

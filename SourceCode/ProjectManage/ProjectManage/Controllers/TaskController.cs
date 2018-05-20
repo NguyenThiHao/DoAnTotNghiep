@@ -13,6 +13,7 @@ namespace ProjectManage.Controllers
     public class TaskController : BaseController
     {
         List<string> listTypeTask = new TypeDao().ListTaskType();
+        List<string> listStatus = new TypeDao().ListStatus();
         #region CreateTask
         [HttpGet]
         [HasCredential(RoleID = "CREARE_TASK")]
@@ -59,7 +60,9 @@ namespace ProjectManage.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new TaskDao();
-                long idTask = dao.CreateTask(task);
+                int idTask = dao.CreateTask(task);
+                int idProject = dao.GetProject(idTask);
+                task.idProject = idProject;
                 if (idTask > 0)
                 {
                     SetAlert("Create task suscessful!", "success");
@@ -79,6 +82,11 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_TASK")]
         public ActionResult EditTask(int idTask)
         {
+            ViewBag.listStatus = listStatus;
+            //Lấy ra danh sách User
+            List<User> listUser = new UserDao().ListUser();
+            //Đổ vào ViewBag hiển thị lên View
+            ViewBag.ListUser = listUser;
             ViewBag.listTypeTask = listTypeTask;
             var task = new TaskDao().ViewDetail(idTask);
             int idSprint = task.idSprint;
@@ -93,6 +101,11 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "EDIT_TASK")]
         public ActionResult EditTask(Task task)
         {
+            ViewBag.listStatus = listStatus;
+            //Lấy ra danh sách User
+            List<User> listUser = new UserDao().ListUser();
+            //Đổ vào ViewBag hiển thị lên View
+            ViewBag.ListUser = listUser;
             ViewBag.listTypeTask = listTypeTask;
             int idSprint = task.idSprint;
             //lấy ra tên Sprint

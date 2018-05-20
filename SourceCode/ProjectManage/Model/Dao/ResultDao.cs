@@ -28,6 +28,9 @@ namespace Model.Dao
             db.Results.Add(entity);
             //Lưu vào DB
             db.SaveChanges();
+            //Đổi trạng thái cho task
+            EF.Task task = new TaskDao().ViewDetail(entity.idTask);
+            task.status = "Inprogress"; 
             return entity.idTask;
         }
 
@@ -109,5 +112,6 @@ namespace Model.Dao
                         select e.idTask;
             return model.Count();
         }
+
     }
 }

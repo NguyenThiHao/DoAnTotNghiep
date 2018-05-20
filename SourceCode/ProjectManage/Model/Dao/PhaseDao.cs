@@ -36,10 +36,10 @@ namespace Model.Dao
         }
 
         //Lấy ra List<Phase> theo idProject
-        public IEnumerable<Phase> ListPhaseByProject(int idProject, int page, int pageSize)
+        public List<Phase> ListPhaseByProject(int idProject)
         {
-            IQueryable<Phase> model = db.Phases.Where(x => x.idProject == idProject);
-            return model.OrderByDescending(x => x.startDate).ToPagedList(page, pageSize);
+            List<Phase> model = db.Phases.Where(x => x.idProject == idProject).ToList();
+            return model;
         }
 
         //Xem chi tiết của Phase

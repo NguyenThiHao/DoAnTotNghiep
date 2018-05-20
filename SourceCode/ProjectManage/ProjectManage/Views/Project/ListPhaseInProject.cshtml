@@ -1,5 +1,4 @@
-﻿@using PagedList.Mvc;
-@model PagedList.IPagedList<Model.EF.Phase>
+﻿@model List<Model.EF.Phase>
 <!--Vùng hiển thị list các sprint trong 1 phase-->
 <div class="col-lg-12" style="padding-left: 0px;">
     <div class="panel panel-default">
@@ -29,7 +28,6 @@
                         }
                     </tbody>
                 </table>
-                @*@Html.PagedListPager(Model, page => Url.Action("DetailProject", new {ViewBag.idProject, page }))*@
                 
             </div>
             @Html.ActionLink("Create Phase", "CreatePhase", "Phase", new { idProject = @ViewBag.idProject}, new { @class = "btn btn-success" })

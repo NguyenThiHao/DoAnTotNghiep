@@ -74,7 +74,7 @@ namespace ProjectManage.Controllers
                 if (result)
                 {
                     SetAlert("Edit user suscessful!", "success");
-                    return RedirectToAction("Detail", "User");
+                    return RedirectToAction("Dashboard", "PositionUser");
                 }
                 else
                 {

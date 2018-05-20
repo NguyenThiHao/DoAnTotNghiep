@@ -205,36 +205,53 @@ namespace Model.Dao
         }
 
         //Lấy ra tổng số Task được tạo ra trong ngày
+        //public int TotalCreatedTask(DateTime date, int idProject)
+        //{
+        //    var model = from a in db.Projects
+        //                join b in db.Phases
+        //                on a.idProject equals b.idProject
+        //                where a.idProject == idProject
+        //                join c in db.Sprints
+        //                on b.idPhase equals c.idPhase
+        //                join d in db.Tasks
+        //                on c.idSprint equals d.idSprint
+        //                where d.createdDate == date
+        //                select d.idTask;
+        //    return model.Count();
+        //}
+
         public int TotalCreatedTask(DateTime date, int idProject)
         {
-            var model = from a in db.Projects
-                        join b in db.Phases
-                        on a.idProject equals b.idProject
-                        where a.idProject == idProject
-                        join c in db.Sprints
-                        on b.idPhase equals c.idPhase
-                        join d in db.Tasks
-                        on c.idSprint equals d.idSprint
-                        where d.createdDate == date
-                        select d.idTask;
-            return model.Count();
+            var result = db.Tasks.Where(x => x.idProject == idProject && x.createdDate == date && x.status == "Created").ToList();
+            return result.Count();    
         }
 
         //Lấy ra tổng số Task được hoàn thành trong ngày
+        //public int TotalDoneTask(DateTime date, int idProject)
+        //{
+        //    var model = from a in db.Projects
+        //                join b in db.Phases
+        //                on a.idProject equals b.idProject
+        //                where a.idProject == idProject
+        //                join c in db.Sprints
+        //                on b.idPhase equals c.idPhase
+        //                join d in db.Tasks
+        //                on c.idSprint equals d.idSprint
+        //                where d.status == "Done"
+        //                select d.idTask;
+        //    return model.Count();
+        //}
+
         public int TotalDoneTask(DateTime date, int idProject)
         {
-            var model = from a in db.Projects
-                        join b in db.Phases
-                        on a.idProject equals b.idProject
-                        where a.idProject == idProject
-                        join c in db.Sprints
-                        on b.idPhase equals c.idPhase
-                        join d in db.Tasks
-                        on c.idSprint equals d.idSprint
-                        where d.status == "Done"
-                        select d.idTask;
-            return model.Count();
+            var result = db.Tasks.Where(x => x.idProject == idProject && x.createdDate == date && x.status == "Done").ToList();
+            return result.Count();
         }
 
+        public int TotalInprogress(DateTime date, int idProject)
+        {
+            var result = db.Tasks.Where(x => x.idProject == idProject && x.createdDate == date && x.status == "Inprogress").ToList();
+            return result.Count();
+        }
     }
 }

@@ -101,6 +101,7 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "VIEW_PROJECT")]
         public ActionResult DetailProject(int idProject)
         {
+
             var project = new ProjectDao().ViewDetail(idProject);
             var detailProject = new DetailProject();
             //Gán giá trị cho DetailProject
@@ -131,18 +132,24 @@ namespace ProjectManage.Controllers
         [HasCredential(RoleID = "VIEW_PROJECT")]
         public ActionResult ListUserPartial(int idProject)
         {
+            //Lấy ra danh sách User
+            List<User> listUser = new UserDao().ListUser();
+            //Đổ vào ViewBag hiển thị lên View
+            ViewBag.ListUser = listUser;
             var dao = new PositionUserDao();
             List<UserByProject> listUserByProject = dao.ListUserByProject(idProject);
             ViewBag.idProject = idProject;
+            List<Project> listProject = new ProjectDao().GetListProject();
+            ViewBag.listProject = listProject; 
             return View(listUserByProject);
         }
 
         //Lấy ra danh sách các phase trong project
         [HasCredential(RoleID = "VIEW_PROJECT")]
-        public ActionResult ListPhaseInProject(int idProject, int page = 1, int pageSize = 5)
+        public ActionResult ListPhaseInProject(int idProject)
         {
             ViewBag.idProject = idProject;
-            var listPhase = new PhaseDao().ListPhaseByProject(idProject, page, pageSize);
+            var listPhase = new PhaseDao().ListPhaseByProject(idProject);
             ViewBag.idProject = idProject;
             return PartialView(listPhase);
         }
